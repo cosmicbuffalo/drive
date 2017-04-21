@@ -2,6 +2,12 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.validators import RegexValidator
+import re, bcrypt
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
+PHONE_REGEX = re.compile(r'^\+?1?\d{9,15}$')
 
 
 class UserManager(models.Manager):
@@ -122,15 +128,35 @@ class UserManager(models.Manager):
         return {'result':"Successfully registered new user", 'messages':messages, 'user':user}
 
 class User(models.Model):
+    MALE = "M"
+    FEMALE = "F"
+    OTHER = "O"
+    RATHER_NOT_SAY = "R"
+    GENDER_CHOICES = (
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+        (OTHER, 'Other'),
+        (RATHER_NOT_SAY, 'Rather not say')
+    )
+
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
-    username = models.CharField(max_length=45)
-    email = models.CharField(max_length=100)
+    email = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
     salt = models.CharField(max_length=100)
-    master_folder = models.ForeignKey(Folder) #master folder is assigned to user when regis
+    birthday = models.DateField()
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    phone_number = models.CharField(max_length=15, unique=True, validators=[
+        RegexValidator(
+            regex=r'^\+?1?\d{9,15}$',
+            message='Please enter phone number in the format: +12223334444'
+        )
+    ])
+    #master folder is assigned to user during registration and will always be their root folder from then on
+    #master_folder = models.ForeignKey(Folder, related_name="master_user")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     objects = UserManager()
 
 
@@ -146,6 +172,13 @@ class Folder(models.Model):
     stars = models.ManyToManyField(User, related_name="starred_folders")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class Root_Folder(models.Model):
+    user = models.ForeignKey(User, related_name="master")
+    folder = models.ForeignKey(Folder, related_name="master")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 
 #
 # class Nest_relation(models.Model):

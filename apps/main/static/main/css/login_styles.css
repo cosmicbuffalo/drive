@@ -27,14 +27,6 @@ h1{
   font-size: 2.2em;
 }
 
-.button{
-  background-color: #5764f7;
-  display: inline-block;
-  padding: 18px 22px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-
-}
-
 #main-content{
   text-align: center;
 }
@@ -55,8 +47,17 @@ h1{
 }
 
 .chunk{
-  padding: 10px 0px;
+  padding: 10px 0px 20px;
 }
+.banner-chunk{
+  color: #555;
+}
+#logo-chunk{
+  padding-top: 32px;
+  padding-bottom: 26px;
+}
+
+
 
 #main-box{
   border-radius: 2px;
@@ -69,16 +70,28 @@ h1{
 }
 .inner-box{
   display: inline-block;
-  width: 274px;
+  width: 100%;
+  box-sizing: border-box;
   padding-left: 40px;
   padding-right: 40px;
 }
 #profile-pic{
   padding-top:40px;
-  padding-bottom: 24px;
+  padding-bottom: 4px;
 }
 #profile-pic img{
   width: 94px;
+}
+#identifier-display{
+  font-size: .85em;
+  color:#404040;
+  padding-bottom: 14px;
+}
+.transparent{
+  visibility: hidden;
+}
+.hidden{
+  display: none;
 }
 input{
   width: 258px;
@@ -86,7 +99,7 @@ input{
   /*padding: 0px 8px;*/
   padding: 10px 8px 9px;
 }
-#next-button{
+.button{
   width: 278px;
   background-color: #5764f7;
   color:white;
@@ -95,7 +108,10 @@ input{
   padding: 10px 0px 9px;
   border: none;
   border-radius: 3px;
-  margin:6px 0px;
+  margin:7px 0px;
+}
+#sign-in-button{
+  margin-top: 9px;
 }
 #find-my-account-link{
   font-size: .8em;
@@ -103,6 +119,13 @@ input{
 }
 form{
   text-align: right;
+}
+input::placeholder{
+  color: #999999;
+  font-weight: 300;
+}
+input[type="text"]{
+  color: #404040;
 }
 #upper-box-section{
   padding-bottom: 44px;
@@ -112,6 +135,8 @@ form{
   vertical-align: top;
   padding-top: 20px;
   padding-left: 34px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 #lower-box-section img{
   width: 32px;
@@ -130,7 +155,44 @@ form{
   margin:3px 0px;
 }
 
-
 #lower-box-content{
   display: inline-block;
+}
+
+#create-account-chunk{
+  padding-top: 44px;
+  font-size: .9em;
+}
+
+#bottom-links-chunk{
+  font-size: .9em;
+  color: #404040;
+  padding-top: 40px;
+}
+
+#footer{
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  bottom: 0px;
+  border-top: 1px solid #e7e7e7;
+  padding: 6px 40px 4px;
+}
+.footer-item{
+  color: #404040;
+  font-size: .7em;
+  display: inline-block;
+}
+.footer-item li{
+  margin-right: 15px;
+}
+#language-picker{
+  float: right;
+}
+#language-select{
+  vertical-align: top;
+}
+footer-item li{
+
 }

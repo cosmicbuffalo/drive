@@ -15,10 +15,10 @@
               <span class="blue-text">D</span><span class="red-text">o</span><span class="yellow-text">o</span><span class="blue-text">d</span><span class="green-text">l</span><span class="red-text">e</span>
             </span>
           </div>
-          <div class="chunk">
+          <div class="chunk banner-chunk">
             <h1>One account. All of Doodle.</h1>
           </div>
-          <div class="chunk">
+          <div class="chunk banner-chunk">
             Sign in to continue to Doodle Drive
           </div>
           <div id="main-box">
@@ -26,11 +26,24 @@
               <div id="profile-pic">
                 <img src="{% static 'main/img/empty-profile.png' %}" alt="empty profile pic">
               </div>
-              <form action="{% url 'process_login' %}" method="post">
+              <div id="identifier-display" class="toggle-transparent transparent">
+                nick.delannoy@gmail.com
+              </div>
+              <form id="login-form" action="{% url 'process_login' %}" method="post">
                 {% csrf_token %}
-                <input type="text" name="identifier" value="" placeholder="Email or phone">
-                <input id="next-button" type="submit" name="" value="Next">
-                <a id="find-my-account-link" href="#">Find my account</a>
+                <input id="first-input" class="toggle-hidden" type="text" name="identifier" value="" placeholder="Email or phone">
+                <input id="second-input" class="toggle-hidden hidden" type="password" name="password" value="" placeholder="Password">
+                <div id="messages-area">
+                  {% if messages %}
+                    {% for message in messages %}
+                      <span class="error-message">{{message}}</span>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <input id="next-button" class="button toggle-hidden" type="submit" name="" value="Next">
+                <input id="sign-in-button" class="button toggle-hidden hidden" type="submit" name="" value="Sign In">
+                <a id="find-my-account-link" class="toggle-hidden" href="#">Find my account</a>
+                <a id="forgot-password-link" class="toggle-hidden hidden" href="#">Forgot password?</a>
               </form>
             </div>
             <div class="inner-box" id="lower-box-section">
@@ -42,10 +55,10 @@
               </div>
             </div>
           </div>
-          <div class="chunk">
+          <div class="chunk" id="create-account-chunk">
             <a href="{% url 'create_account_page' %}">Create account</a>
           </div>
-          <div class="chunk">
+          <div class="chunk" id="bottom-links-chunk">
             <p>One Doodle Account for everything Doodle</p>
             <div id="bottom-link-collection">
               <img src="" alt="Doodle">

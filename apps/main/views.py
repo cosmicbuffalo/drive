@@ -19,7 +19,7 @@ def show_create_account_page(request):
 
     if 'current_user' in request.session.keys():
         return redirect('/home')
-    return HttpResponse("Create account page")
+    return render(request, "main/create_account.html")
 
 def process_login(request):
     if request.method == "POST":

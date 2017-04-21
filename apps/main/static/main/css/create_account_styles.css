@@ -1,0 +1,218 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Montserrat', sans-serif;
+  color: #404040;
+}
+ul{
+  /*float: right;*/
+  list-style: none;
+}
+li{
+  display: inline-block;
+  /*margin: 0px 9px;*/
+}
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+#colored-logo-text{
+  font-size: 2em;
+}
+.blue-text{
+  color:#5764f7;
+}
+.red-text{
+  color:#ea35ac;
+}
+.yellow-text{
+  color:#ff752c;
+}
+.green-text{
+  color:#13c79e;
+}
+#nav-bar{
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+  min-width: 977px;
+  box-sizing: border-box;
+  padding:15px 40px 18px;
+}
+.nav-bar-item{
+  display: inline-block;
+}
+#sign-in-link-div{
+  float: right;
+}
+.button{
+  /*width: 278px;*/
+  background-color: #5764f7;
+  border: 1px solid #1451b3;
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+  color:white;
+  font-size: 13px;
+  font-weight: 300;
+  padding: 7px 10px 8px;
+  /*border: none;*/
+  border-radius: 2px;
+  margin:7px 0px;
+}
+
+
+#main-content{
+  padding:40px 40px 0px;
+  text-align: center;
+}
+
+.chunk{
+  text-align: center;
+  font-weight: 200;
+}
+#main-banner{
+  width: 897px;
+  display: inline-block;
+  padding-bottom: 40px;
+}
+h1{
+  font-size: 2.3em;
+  font-weight: 200;
+}
+.column{
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+}
+#main-columns{
+  display: inline-block;
+  width: 897px;
+}
+#left-column{
+  width: 530px;
+}
+#right-column{
+  width: 362px;
+}
+
+.title, .subtitle{
+  display: block;
+}
+.title{
+  font-size: 1.3em;
+  margin-bottom: 14px;
+}
+.subtitle{
+  font-size: .8em;
+  font-weight: 300;
+}
+#left-column .chunk{
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+#doodle-logo-strip{
+  width: 352px;
+  height: 24px;
+}
+#devices-img{
+  width:300px;
+  height:172px;
+}
+
+#register-box{
+  background-color: #f1f1f1;
+  text-align: left;
+  padding: 24px 28px 64px;
+  border: 1px solid rgba(231,231,231,0.35);
+  border-radius: 1px;
+}
+.form-field{
+  /*border: 1px solid black;*/
+  padding-bottom: 17px;
+}
+input[type="text"], input[type="email"], input[type="password"]{
+  font-size: .8em;
+  box-sizing: border-box;
+  padding: 5px 7px 4px;
+}
+input[type="email"]::placeholder{
+  text-align: right;
+}
+.name-input{
+  width: 146px;
+}
+#first-name-input{
+  width: 147px;
+}
+.form-space{
+  display: inline-block;
+  width: 1px;
+}
+#register-box label{
+  display: block;
+  font-weight: bold;
+  font-size: .8em;
+  padding-bottom: 4px;
+}
+.full-line-input{
+  width: 100%;
+  box-sizing: border-box;
+
+}
+#register-box select{
+  background: linear-gradient(#f5f5f5, #f1f1f1);
+  /*border: 1px;*/
+  border-color: #dcdcdc;
+  height: 28px;
+  font-weight: bold;
+}
+#month-select{
+  width: 128px;
+  position: relative;
+  top: -2px;
+}
+#day-input{
+  width: 60px;
+}
+#year-input{
+  width: 95px;
+}
+#next-step-button{
+  float:right;
+  font-weight: 500;
+  font-size: .7em;
+
+}
+
+
+
+
+#footer{
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  bottom: 0px;
+  border-top: 1px solid #e7e7e7;
+  padding: 6px 40px 4px;
+}
+.footer-item{
+  color: #404040;
+  font-size: .7em;
+  display: inline-block;
+}
+.footer-item li{
+  margin-right: 15px;
+}
+#language-picker{
+  float: right;
+  padding-top: 3px;
+}
+#language-select{
+  vertical-align: top;
+}
+#doodle-footer-link{
+  color:#999;
+}

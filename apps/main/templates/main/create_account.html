@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Create your Doodle Account</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500" rel="stylesheet">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'main/css/create_account_styles.css' %}">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="nav-bar">
+        <div class="nav-bar-item">
+          <span id="colored-logo-text">
+            <span class="blue-text">D</span><span class="red-text">o</span><span class="yellow-text">o</span><span class="blue-text">d</span><span class="green-text">l</span><span class="red-text">e</span>
+          </span>
+        </div>
+        <div id="sign-in-link-div" class="nav-bar-item">
+          <form action="{% url 'login' %}">
+            <input class="button" type="submit" name="" value="Sign in">
+          </form>
+        </div>
+      </div>
+      <div id="main-content">
+        <div class="chunk" id="main-banner">
+          <h1>Create your Doodle Account</h1>
+        </div>
+        <div id="main-columns" class="chunk">
+          <div class="column" id="left-column">
+            <div class="chunk" >
+              <span class="title">One account is all you need</span>
+              <span class="subtitle">One free account gets you into everything Doodle.</span>
+            </div>
+            <div class="chunk">
+              <img id="doodle-logo-strip" src="" alt="Doodle Logo Strip">
+            </div>
+            <div class="chunk">
+              <span class="title">Take it all with you</span>
+              <span class="subtitle">Switch between devices, and pick up where you left off.</span>
+            </div>
+            <div class="chunk">
+              <img id="devices-img" src="" alt="Doodle across devices">
+            </div>
+          </div>
+          <div class="column" id="right-column">
+            <div id="register-box">
+              <form action="/register_new_user" method="post">
+                {% csrf_token %}
+                <div class="form-field">
+                  <label>Name</label>
+                  <input class="name-input" id="first-name-input" type="text" name="first_name" value="" placeholder="First">
+                  <span class="form-space"></span>
+                  <input class="name-input" type="text" name="last_name" value="" placeholder="Last">
+                </div>
+                <div class="form-field">
+                  <label>Email Address</label>
+                  <input class="full-line-input" type="email" name="email" value="" placeholder="@dmail.com">
+                </div>
+                <div class="form-field">
+                  <label>Create a password</label>
+                  <input class="full-line-input" type="password" name="password" value="">
+                </div>
+                <div class="form-field">
+                  <label>Confirm your password</label>
+                  <input class="full-line-input" type="password" name="password-confirm" value="">
+                </div>
+                <div class="form-field">
+                  <label>Birthday</label>
+                  <select id="month-select" name="month">
+                    <option value="">Month</option>
+                    <option value="1">January</option>
+                  </select>
+                  <span class="form-space"></span>
+                  <input id="day-input" type="text" name="day" value="" placeholder="Day">
+                  <span class="form-space"></span>
+                  <input id="year-input" type="text" name="year" value="" placeholder="Year">
+                </div>
+                <div class="form-field">
+                  <label>Gender</label>
+                  <select class="full-line-input" name="gender">
+                    <option value="">I am...</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="opt-out">Rather not say</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label>Mobile Phone</label>
+                  <input class="full-line-input" type="text" name="phone" value="">
+                </div>
+                <div class="form-field">
+                  <label>Location</label>
+                  <select class="full-line-input" name="location">
+                    <option value="USA">United States</option>
+                  </select>
+                </div>
+
+                <input id="next-step-button" class="button" type="submit" name="" value="Next step">
+
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="footer">
+        <div class="footer-item" id="left-links">
+          <ul>
+            <li id="doodle-footer-link">Doodle</li>
+            <li>Privacy & Terms</li>
+            <li>Help</li>
+          </ul>
+        </div>
+        <div class="footer-item" id="language-picker">
+          <label for="language-select">
+            <img src="//ssl.gstatic.com/images/icons/ui/common/universal_language_settings-21.png" alt="Change language">
+          </label>
+          <select id="language-select" name="language-select">
+            <option value="en">English (United States)</option>
+          </select>
+        </div>
+      </div>
+
+
+    </div>
+
+  </body>
+</html>

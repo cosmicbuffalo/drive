@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Meet Doodle Drive - Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500" rel="stylesheet">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'main/css/login_styles.css' %}">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main-content">
+          <div class="chunk" id="logo-chunk">
+            <span id="colored-logo-text">
+              <span class="blue-text">D</span><span class="red-text">o</span><span class="yellow-text">o</span><span class="blue-text">d</span><span class="green-text">l</span><span class="red-text">e</span>
+            </span>
+          </div>
+          <div class="chunk">
+            <h1>One account. All of Doodle.</h1>
+          </div>
+          <div class="chunk">
+            Sign in to continue to Doodle Drive
+          </div>
+          <div id="main-box">
+            <div class="inner-box" id="upper-box-section">
+              <div id="profile-pic">
+                <img src="{% static 'main/img/empty-profile.png' %}" alt="empty profile pic">
+              </div>
+              <form action="{% url 'process_login' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="identifier" value="" placeholder="Email or phone">
+                <input id="next-button" type="submit" name="" value="Next">
+                <a id="find-my-account-link" href="#">Find my account</a>
+              </form>
+            </div>
+            <div class="inner-box" id="lower-box-section">
+              <img src="{% static 'main/img/D-logo-bold.png' %}" alt="Doogle Logo">
+              <div id="lower-box-content">
+                <h4>New look for sign-in coming soon</h4>
+                <p>We're making it faster & easier to sign in to your Doogle Account</p>
+                <a href="#">LEARN MORE</a>
+              </div>
+            </div>
+          </div>
+          <div class="chunk">
+            <a href="{% url 'create_account_page' %}">Create account</a>
+          </div>
+          <div class="chunk">
+            <p>One Doodle Account for everything Doodle</p>
+            <div id="bottom-link-collection">
+              <img src="" alt="Doodle">
+              <img src="" alt="Doodle Mail">
+              <img src="" alt="Doodle Maps">
+              <img src="" alt="DoodTube">
+              <img src="" alt="Doodle Drive">
+              <img src="" alt="Doodle Pics">
+              <img src="" alt="Doodle Play">
+              <img src="" alt="Doodle Browse">
+            </div>
+          </div>
+
+      </div>
+
+      <div id="footer">
+        <div class="footer-item" id="left-links">
+          <ul>
+            <li>About Doodle</li>
+            <li>Privacy</li>
+            <li>Terms</li>
+            <li>Help</li>
+          </ul>
+        </div>
+        <div class="footer-item" id="language-picker">
+          <label for="language-select">
+            <img src="//ssl.gstatic.com/images/icons/ui/common/universal_language_settings-21.png" alt="Change language">
+          </label>
+          <select id="language-select" name="language-select">
+            <option value="en">English (United States)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

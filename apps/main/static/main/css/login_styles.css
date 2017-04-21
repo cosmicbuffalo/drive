@@ -1,0 +1,136 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Montserrat', sans-serif;
+  /*color:white;*/
+  /*text-shadow: 1px 1px 10px rgba(0,0,0,0.4);*/
+}
+
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+ul{
+  /*float: right;*/
+  list-style: none;
+}
+li{
+  display: inline-block;
+  /*margin: 0px 9px;*/
+}
+
+h1{
+  font-weight: 200;
+  font-size: 2.2em;
+}
+
+.button{
+  background-color: #5764f7;
+  display: inline-block;
+  padding: 18px 22px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+#main-content{
+  text-align: center;
+}
+#colored-logo-text{
+  font-size: 2em;
+}
+.blue-text{
+  color:#5764f7;
+}
+.red-text{
+  color:#ea35ac;
+}
+.yellow-text{
+  color:#ff752c;
+}
+.green-text{
+  color:#13c79e;
+}
+
+.chunk{
+  padding: 10px 0px;
+}
+
+#main-box{
+  border-radius: 2px;
+  background-color: #f7f7f7;
+  display: inline-block;
+  text-align: center;
+  width: 354px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+.inner-box{
+  display: inline-block;
+  width: 274px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+#profile-pic{
+  padding-top:40px;
+  padding-bottom: 24px;
+}
+#profile-pic img{
+  width: 94px;
+}
+input{
+  width: 258px;
+  font-size: 16px;
+  /*padding: 0px 8px;*/
+  padding: 10px 8px 9px;
+}
+#next-button{
+  width: 278px;
+  background-color: #5764f7;
+  color:white;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 0px 9px;
+  border: none;
+  border-radius: 3px;
+  margin:6px 0px;
+}
+#find-my-account-link{
+  font-size: .8em;
+
+}
+form{
+  text-align: right;
+}
+#upper-box-section{
+  padding-bottom: 44px;
+}
+#lower-box-section{
+  background-color: white;
+  vertical-align: top;
+  padding-top: 20px;
+  padding-left: 34px;
+}
+#lower-box-section img{
+  width: 32px;
+  vertical-align: top;
+  margin-top: 4px;
+}
+#lower-box-content{
+  width: 225px;
+  text-align: left;
+  font-size: .9em;
+  margin-left: 11px;
+  padding-bottom: 20px;
+}
+#lower-box-content p, #lower-box-content a{
+  font-size: .85em;
+  margin:3px 0px;
+}
+
+
+#lower-box-content{
+  display: inline-block;
+}

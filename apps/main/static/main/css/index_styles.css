@@ -1,0 +1,92 @@
+
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Montserrat', sans-serif;
+  color:white;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.4);
+}
+html, body{
+  height: 100%;
+}
+
+/*body{
+  display: table;
+  margin: 0 auto;
+}*/
+/*#vertical-centering-chunk{
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}*/
+
+#nav-bar{
+  padding: 10px 14px;
+  font-weight: 200;
+  position: absolute;
+  width: 98%;
+  /*border-bottom: 1px solid #E7E7E7;*/
+  /*background-color: #FFFFFF;*/
+}
+.nav-bar-item{
+  display: inline-block;
+}
+#main-logo{
+  font-size: 1.6em;
+  /*font-weight: 400;*/
+}
+a{
+  text-decoration: none;
+}
+
+#doodle-text{
+  font-weight: 400;
+  font-size: 1.2em;
+}
+
+#main-logo-space{
+  width: 3px;
+  display: inline-block;
+}
+
+#nav-link-section{
+  float: right;
+  margin-top: 5px;
+}
+ul{
+  /*float: right;*/
+  list-style: none;
+}
+li{
+  display: inline-block;
+  margin: 0px 9px;
+}
+
+
+#main-content{
+  text-align: center;
+  padding-top: 200px;
+  /*display: inline-block;*/
+}
+
+#center-logo-image{
+  width: 89px;
+}
+
+#center-banner{
+  margin-top: 24px;
+  margin-bottom: 28px;
+}
+
+h1{
+  font-weight: 200;
+  font-size: 3.7em;
+}
+
+.button{
+  background-color: #5764f7;
+  display: inline-block;
+  padding: 18px 22px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+}

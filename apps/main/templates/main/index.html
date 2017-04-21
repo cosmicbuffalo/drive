@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Doodle Drive - Cloud Storage and File Backup</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500" rel="stylesheet">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'main/css/index_styles.css' %}">
+    <style media="screen">
+      body{
+        background-image: url("{% static 'main/img/landing-background.jpeg' %}");
+        background-position: center top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="nav-bar">
+        <div class="nav-bar-item" id="main-logo">
+          <a href="{% url 'index' %}"><span id="doodle-text">Doodle</span><span id="main-logo-space"></span> Drive</a>
+        </div>
+        <div class="nav-bar-item" id="nav-link-section">
+          <ul>
+            <li>Meet Drive</li>
+            <li>Using Drive</li>
+            <li>Pricing</li>
+            <li>Download</li>
+            <li>For Work</li>
+            <li>Help</li>
+          </ul>
+        </div>
+      </div>
+      <div id="vertical-centering-chunk">
+        <div id="main-content">
+          <img id="center-logo-image" src="{% static 'main/img/recolor-logo.png' %}" alt="">
+          <div id="center-banner">
+              <h1>A safe place for all your files</h1>
+          </div>
+          <a href="{% url 'login' %}">
+            <div class="button" id="go-to-drive-button">
+              Go to Doodle Drive
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </body>
+</html>

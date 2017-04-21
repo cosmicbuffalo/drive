@@ -128,9 +128,12 @@ class User(models.Model):
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     salt = models.CharField(max_length=100)
+    master_folder = models.ForeignKey(Folder) #master folder is assigned to user when regis
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
+
+
 
 
 class Folder(models.Model):
@@ -139,9 +142,11 @@ class Folder(models.Model):
     authorized_users = models.ManyToManyField(User, related_name="authorized_folders")
     parent_folder = models.ForeignKey('self', related_name="child_folders")
     is_in_trash = models.BooleanField(default=False)
+    is_master_folder = models.BooleanField(default=False)
     stars = models.ManyToManyField(User, related_name="starred_folders")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 #
 # class Nest_relation(models.Model):
 #     parent_folder = models.ForeignKey(Folder, related_name="parent_folder_relationships")

@@ -1,0 +1,123 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Montserrat', sans-serif;
+  color: #404040;
+}
+ul{
+  /*float: right;*/
+  list-style: none;
+}
+li{
+  display: inline-block;
+  /*margin: 0px 9px;*/
+}
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+#colored-logo-text{
+  font-size: 2em;
+}
+.blue-text{
+  color:#5764f7;
+}
+.red-text{
+  color:#ea35ac;
+}
+.yellow-text{
+  color:#ff752c;
+}
+.green-text{
+  color:#13c79e;
+}
+#nav-bar{
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+  min-width: 977px;
+  box-sizing: border-box;
+  padding:15px 40px 18px;
+}
+.nav-bar-item{
+  display: inline-block;
+}
+#doodle-drive-link-div{
+  float: right;
+}
+.button{
+  /*width: 278px;*/
+  background-color: #5764f7;
+  border: 1px solid #1451b3;
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+  color:white;
+  font-size: 13px;
+  font-weight: 300;
+  padding: 7px 10px 8px;
+  /*border: none;*/
+  border-radius: 2px;
+  margin:7px 0px;
+}
+
+
+#main-content{
+  padding:40px 40px 0px;
+  text-align: center;
+}
+
+.chunk{
+  text-align: center;
+  font-weight: 200;
+  padding-bottom: 40px;
+  width: 897px;
+  display: inline-block;
+}
+
+h1{
+  font-size: 2.3em;
+  font-weight: 200;
+}
+
+#doodle-drive-logo-chunk{
+
+}
+
+
+
+
+
+
+
+
+
+
+#footer{
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  bottom: 0px;
+  border-top: 1px solid #e7e7e7;
+  padding: 6px 40px 4px;
+}
+.footer-item{
+  color: #404040;
+  font-size: .7em;
+  display: inline-block;
+}
+.footer-item li{
+  margin-right: 15px;
+}
+#language-picker{
+  float: right;
+  padding-top: 3px;
+}
+#language-select{
+  vertical-align: top;
+}
+#doodle-footer-link{
+  color:#999;
+}

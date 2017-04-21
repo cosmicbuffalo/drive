@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to Doodle!</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500" rel="stylesheet">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'main/css/create_success_styles.css' %}">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="nav-bar">
+        <div class="nav-bar-item">
+          <span id="colored-logo-text">
+            <span class="blue-text">D</span><span class="red-text">o</span><span class="yellow-text">o</span><span class="blue-text">d</span><span class="green-text">l</span><span class="red-text">e</span>
+          </span>
+        </div>
+        <div id="doodle-drive-link-div" class="nav-bar-item">
+          <form action="{% url 'login' %}">
+            <input class="button" type="submit" name="" value="Doodle Drive">
+          </form>
+        </div>
+      </div>
+
+
+
+      <div id="main-content">
+        <div class="chunk">
+          <h1>Thank you for creating a Doodle Account</h1>
+        </div>
+
+        <div class="chunk" id="doodle-dive-logo-chunk">
+          <img id="doodle-drive-logo" src="{% static 'main/img/recolor-logo.png' %}" alt="Doodle Drive Logo">
+        </div>
+
+        <div class="chunk">
+            <form action="/home">
+              <input class="button" type="submit" name="" value="Enter my Drive">
+            </form>
+        </div>
+
+      </div>
+
+      <div id="footer">
+        <div class="footer-item" id="left-links">
+          <ul>
+            <li id="doodle-footer-link">Doodle</li>
+            <li>Privacy & Terms</li>
+            <li>Help</li>
+          </ul>
+        </div>
+        <div class="footer-item" id="language-picker">
+          <label for="language-select">
+            <img src="//ssl.gstatic.com/images/icons/ui/common/universal_language_settings-21.png" alt="Change language">
+          </label>
+          <select id="language-select" name="language-select">
+            <option value="en">English (United States)</option>
+          </select>
+        </div>
+      </div>
+
+
+    </div>
+
+  </body>
+</html>

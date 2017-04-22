@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
+from .models import *
 
 # --------------------------
 # - HTML RENDERING METHODS -
@@ -33,13 +34,16 @@ def show_create_success_page(request):
 
 def show_home_page_root(request):
 
-    context = {}
+    context = {
+        "media_files": File.objects.all()
 
-    if 'current_user' in request.session.keys():
-        print "Current user success"
 
-        context["folder"] = User.objects.get(pk=request.session.current_user).master_folder
+    }
 
+    # if 'current_user' in request.session.keys():
+    #     print "Current user success"
+
+    #     context["folder"] = 
 
     return render(request, "main/home.html", context)
 

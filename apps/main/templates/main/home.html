@@ -82,8 +82,8 @@
     </div>
 
 
-
-
-    
+    {% for media in media_files%}
+    <img src ="{{media.file_data.url}}">
+    {% endfor %}
   </body>
 </html>

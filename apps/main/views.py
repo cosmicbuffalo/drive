@@ -11,7 +11,6 @@ from .models import *
 def index(request):
     return render(request, "main/index.html")
 
-
 def show_login_page(request):
 
     if 'current_user' in request.session.keys():
@@ -125,6 +124,20 @@ def authenticate_login(request):
         #failed result ->{'result':'failed_authentication', 'messages':[messages]}
 
         return result
+
+# -----------------------
+# - FILE UPLOAD METHOD -
+# -----------------------
+def file_upload(request):
+    print 'yay'
+
+    return redirect('home_root')
+
+
+
+
+
+
 
 
 # CONTINUED....

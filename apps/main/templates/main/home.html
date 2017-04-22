@@ -86,7 +86,9 @@
               <label class="tab-label">Trash</label>
             </div>
           </div>
-
+ {% for media in media_files%}
+    <img src ="{{media.file_data.url}}" width="200">
+    {% endfor %}
         </div>
         <div class="main-content" id="dynamic-home-content">
           <div class="main-content" id="main-table-wrapper">
@@ -124,6 +126,13 @@
                 {% endfor %}
               </tbody>
             </table>
+            <form action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
+              {%csrf_token%}
+              <ul>
+                {{form.as_ul}}
+              </ul>
+              <input type="submit" value ="submit">
+            </form>
           </div>
 
 
@@ -137,8 +146,8 @@
     </div>
 
 
-    {% for media in media_files%}
-    <img src ="{{media.file_data.url}}">
-    {% endfor %}
+
+
+
   </body>
 </html>

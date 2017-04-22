@@ -143,7 +143,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=45)
     email = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
-    salt = models.CharField(max_length=100)
+    salt = models.CharField(max_length=100, default="$2b$12$jP5X3r5Ji0g8BtDRyfYee.")
     birthday = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     phone_number = models.CharField(max_length=15, unique=True, validators=[

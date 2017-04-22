@@ -43,7 +43,7 @@ def show_home_page_root(request):
     # if 'current_user' in request.session.keys():
     #     print "Current user success"
 
-    #     context["folder"] = 
+    #     context["folder"] =
 
     return render(request, "main/home.html", context)
 
@@ -56,7 +56,7 @@ def show_home_page_folder(request, folder_id):
         "folder":Folder.objects.get(pk=folder_id)
     }
     media = {
-        
+
     }
 
     return render(request, "main/home.html", context)

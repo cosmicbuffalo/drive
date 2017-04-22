@@ -4,6 +4,9 @@
   font-family: 'Montserrat', sans-serif;
   color: #404040;
 }
+#wrapper{
+  min-height: 850px;
+}
 ul{
   /*float: right;*/
   list-style: none;

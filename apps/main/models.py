@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from time import time
 from django.db import models
 from django.core.validators import RegexValidator
 import re, bcrypt
@@ -8,6 +8,10 @@ import re, bcrypt
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
 PHONE_REGEX = re.compile(r'^\+?1?\d{9,15}$')
+
+
+def get_upload_file_name(instance, filename):
+    return "uploaded_files/%s_%s" %(str(time()).replace(".","_"), filename)
 
 
 class UserManager(models.Manager):
@@ -162,23 +166,27 @@ class User(models.Model):
 
 
 
+
+
 class Folder(models.Model):
     name = models.CharField(max_length=45)
     owner = models.ForeignKey(User, related_name="owned_folders")
-    authorized_users = models.ManyToManyField(User, related_name="authorized_folders")
-    parent_folder = models.ForeignKey('self', related_name="child_folders")
+    authorized_users = models.ManyToManyField(User, related_name="authorized_folders", blank=True, null=True)
+    parent_folder = models.ForeignKey('self', related_name="child_folders", blank=True, null=True)
     is_in_trash = models.BooleanField(default=False)
     is_master_folder = models.BooleanField(default=False)
     stars = models.ManyToManyField(User, related_name="starred_folders")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
 
 class Root_Folder(models.Model):
     user = models.ForeignKey(User, related_name="master")
     folder = models.ForeignKey(Folder, related_name="master")
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
 
 #
 # class Nest_relation(models.Model):
@@ -186,16 +194,17 @@ class Root_Folder(models.Model):
 #     child_folder = models.ForeignKey(Folder, related_name="child_folder_relationship")
 
 class File(models.Model):
-    file_data = models.FileField() #need to figure out how this works
+    file_data = models.FileField(upload_to=get_upload_file_name)
     file_type = models.CharField(max_length=15)
     owner = models.ForeignKey(User, related_name="owned_files")
-    authorized_users = models.ManyToManyField(User, related_name="authorized_files")
-    parent_folder = models.ForeignKey(Folder, related_name="child_files")
+    authorized_users = models.ManyToManyField(User, related_name="authorized_files",blank=True, null=True)
+    parent_folder = models.ForeignKey(Folder, related_name="child_files",blank=True, null=True)
     is_in_trash = models.BooleanField(default=False)
     stars = models.ManyToManyField(User, related_name="starred_files")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    
 # This class is for a potential bonus feature, tags, that I might implement later
 #
 # class Tag(models.Model):

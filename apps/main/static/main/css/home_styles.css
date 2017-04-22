@@ -4,6 +4,12 @@
   font-family: 'Montserrat', sans-serif;
   color: #404040;
 }
+html, body, #wrapper{
+  height: 100%;
+}
+form{
+  display: inline-block;
+}
 ul{
   /*float: right;*/
   list-style: none;
@@ -41,6 +47,8 @@ a:hover{
 }
 
 #top-bar{
+  z-index: 5;
+  position: absolute;
   /*background-color: #f0f0f0;*/
   border-bottom: 1px solid #e5e5e5;
   width: 100%;
@@ -51,6 +59,8 @@ a:hover{
 }
 .top-bar-row{
   padding:8px;
+  white-space: nowrap;
+
 }
 .top-bar-item{
   display: inline-block;
@@ -65,7 +75,7 @@ a:hover{
   color:white;
   font-size: 13px;
   font-weight: 300;
-  padding: 7px 10px 8px;
+  padding: 7px 30px;
   /*border: none;*/
   border-radius: 2px;
   margin:7px 0px;
@@ -78,4 +88,69 @@ a:hover{
   height: 48px;
   background-color: #f5f5f5;
   border-radius: 2px;
+}
+.icon{
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  margin: 0px 4px;
+}
+#path-menu-div{
+  width: 556px;
+  border: 1px dotted black;
+  /*float: right;*/
+  margin-left: 180px;
+}
+
+#main{
+  position: absolute;
+  top: 130px;
+  background-color: #f5f5f5;
+  min-width: 1000px;
+  width: 100%;
+  height: 100%;
+}
+
+.main-content{
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+}
+#left-bar{
+  float:left;
+  width: 256px;
+}
+#dynamic-home-content{
+  display: block;
+  margin-left: 256px;
+  padding-right: 40px;
+  box-sizing: border-box;
+  height: 100%;
+}
+#main-table-wrapper{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+table{
+  border: 0;
+  width: 100%;
+  box-sizing: content-box;
+  background: white;
+  /*height: 100%;*/
+}
+thead{
+  text-align: left;
+  background-color: #f5f5f5;
+}
+tbody{
+  background-color: white;
+  overflow-y: scroll;
+}
+tr{
+  height: 48px;
+  padding:20px 20px;
+}
+td{
+  vertical-align: middle;
 }

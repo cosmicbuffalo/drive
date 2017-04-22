@@ -157,7 +157,12 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
     objects = UserManager()
+
+
 
 
 
@@ -172,12 +177,17 @@ class Folder(models.Model):
     stars = models.ManyToManyField(User, related_name="starred_folders")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.name + ' ' +"Owner: "+ self.owner + "is_Master_folder: "+self.is_master_folder
 
 class Root_Folder(models.Model):
     user = models.ForeignKey(User, related_name="master")
     folder = models.ForeignKey(Folder, related_name="master")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return "User: " + self.user + "Folder: " + self.folder
 
 
 #
@@ -196,6 +206,9 @@ class File(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return "User: " + self.user + "Folder: " + self.folder
+    
 # This class is for a potential bonus feature, tags, that I might implement later
 #
 # class Tag(models.Model):

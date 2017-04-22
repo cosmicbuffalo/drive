@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^home/(?P<folder_id>\d+)$', views.show_home_page_folder, name="home_folder"),
     # REDIRECT ROUTES
     url(r'^process_login$', views.process_login, name="process_login"),
-    url(r'^process_registration$', views.process_registration, name="process_registration")
+    url(r'^process_registration$', views.process_registration, name="process_registration"),
+    # JSON ROUTES
+    url(r'^validate_identifier$', views.validate_identifier, name="validate_identifier")
 ]

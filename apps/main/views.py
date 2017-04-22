@@ -51,6 +51,9 @@ def show_home_page_folder(request, folder_id):
     context = {
         "folder":Folder.objects.get(pk=folder_id)
     }
+    media = {
+        
+    }
 
     return render(request, "main/home.html", context)
 

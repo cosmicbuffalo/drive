@@ -196,7 +196,7 @@ class Root_Folder(models.Model):
 #     child_folder = models.ForeignKey(Folder, related_name="child_folder_relationship")
 
 class File(models.Model):
-    file_data = models.FileField() #need to figure out how this works
+    file_data = models.FileField()
     file_type = models.CharField(max_length=15)
     owner = models.ForeignKey(User, related_name="owned_files")
     authorized_users = models.ManyToManyField(User, related_name="authorized_files")

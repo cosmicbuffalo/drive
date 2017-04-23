@@ -203,8 +203,6 @@ class File(models.Model):
     stars = models.ManyToManyField(User, related_name="starred_files")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    def __unicode__(self):
-        return self.file_type, self.owner
 
     
 # This class is for a potential bonus feature, tags, that I might implement later

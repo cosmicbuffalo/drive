@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .models import *
+from forms import FileForm
+from django.http import HttpResponseRedirect
 
 # --------------------------
 # - HTML RENDERING METHODS -
@@ -32,10 +34,10 @@ def show_create_success_page(request):
 
 
 def show_home_page_root(request):
-
+    form = FileForm()
     context = {
-        "media_files": File.objects.all()
-
+        "media_files": File.objects.all(),
+        "form" : form
 
     }
 
@@ -129,8 +131,8 @@ def authenticate_login(request):
 # - FILE UPLOAD METHOD -
 # -----------------------
 def file_upload(request):
-    print 'yay'
-
+    if request.method == "POST":
+        print request.POST
     return redirect('home_root')
 
 

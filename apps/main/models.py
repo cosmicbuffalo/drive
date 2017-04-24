@@ -5,13 +5,10 @@ from django.db import models
 from django.core.validators import RegexValidator
 import re, bcrypt
 
+
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
 PHONE_REGEX = re.compile(r'^\+?1?\d{9,15}$')
-
-
-def get_upload_file_name(instance, filename):
-    return "media/%s_%s" %(str(time()).replace(".","_"), filename)
 
 
 class UserManager(models.Manager):
@@ -251,6 +248,11 @@ class Root_Folder(models.Model):
 #     parent_folder = models.ForeignKey(Folder, related_name="parent_folder_relationships")
 #     child_folder = models.ForeignKey(Folder, related_name="child_folder_relationship")
 
+def get_upload_file_name(instance, filename):
+    return "user/%s" %(filename)
+
+
+
 class File(models.Model):
     file_data = models.FileField(upload_to=get_upload_file_name)
     file_type = models.CharField(max_length=15)
@@ -261,12 +263,10 @@ class File(models.Model):
     stars = models.ManyToManyField(User, related_name="starred_files")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
-<<<<<<< HEAD
     
-=======
->>>>>>> 494fa99cc1937fba331b6cbadcc5221b70b3dca1
+    
+
+
 # This class is for a potential bonus feature, tags, that I might implement later
 #
 # class Tag(models.Model):

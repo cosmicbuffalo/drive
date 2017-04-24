@@ -49,6 +49,13 @@
               <option value="">Doodle Slides</option>
               <option value="">More...</option>
             </select>
+            {% block content %}
+            <form action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
+              {%csrf_token%}
+                {{form.as_p}}
+              <input type="submit" value ="submit">
+            </form>
+            {% endblock %}
           </div>
           <div class="top-bar-item top-bar-right-links">
             <img id="view-change-icon" class="icon hover-circle" src="" alt="Grid view">
@@ -86,9 +93,9 @@
               <label class="tab-label">Trash</label>
             </div>
           </div>
- {% for media in media_files%}
+ <!--{% for media in media_files%}
     <img src ="{{media.file_data.url}}" width="200">
-    {% endfor %}
+    {% endfor %}-->
         </div>
         <div class="main-content" id="dynamic-home-content">
           <div class="main-content" id="main-table-wrapper">
@@ -108,7 +115,15 @@
                   <td>Jan 5, 2017 me</td>
                   <td>2 MB</td>
                 </tr>
-                {% for folder in folders %}
+                {% for file in media_files %}
+                  <tr>
+                    <td>{{file.file_data}}</td>
+                    <td>{{file.user.first_name}}</td>
+                    <td>{{file.updated_at}}</td>
+                    <td>-</td>
+                  </tr>
+                {% endfor %}
+                <!--{% for file in media_files %}
                   <tr>
                     <td><img class="icon" src="" alt="Thumbnail"> {{folder.name}}</td>
                     <td>{{folder.owner}}</td>
@@ -123,22 +138,15 @@
                     <td>{{file.updated_at}}</td>
                     <td>{{file.size}}</td>
                   </tr>
-                {% endfor %}
+                {% endfor %}-->
               </tbody>
             </table>
 
-            {% block content %}
-            <form action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
-              {%csrf_token%}
-                {{form.as_p}}
-              <input type="submit" value ="submit">
-            </form>
-            {% endblock %}
           </div>
 
 
 
-
+ <a href= "{{MEDIA_URL }}{{ django_file.url }}">download</a>
 
 
         </div>

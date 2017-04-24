@@ -36,6 +36,7 @@ def show_create_success_page(request):
 def show_home_page_root(request):
     form = FileForm()
     context = {
+        "user": User.objects.all(),
         "media_files": File.objects.all(),
         "form" : form
 
@@ -45,6 +46,7 @@ def show_home_page_root(request):
     #     print "Current user success"
 
     #     context["folder"] =
+    print request.session
 
     return render(request, "main/home.html", context)
 
@@ -135,10 +137,9 @@ def authenticate_login(request):
 def file_upload(request):
     if request.method == "POST":
         form = FileForm(request.POST, request.FILES)
-        user = User.objects.get(id='1')
+        user = User.objects.get(id='1') #replace with sessions!
         File.objects.create(file_data=request.FILES.get('file_data'),file_type='image', owner=user)
-        print request.FILES
-
+        
         
     return redirect('home_root')
 

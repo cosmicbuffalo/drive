@@ -38,6 +38,9 @@
               <div id="identifier-display" class="toggle-transparent transparent">
                 nick.delannoy@gmail.com
               </div>
+
+
+
               <form id="login-form" action="{% url 'process_login' %}" method="post">
                 {% csrf_token %}
                 <!-- Slide toggle first and second input fields on first button click -->
@@ -58,6 +61,9 @@
                 <a id="find-my-account-link" class="slide-out" href="#">Find my account</a>
                 <a id="forgot-password-link" class="slide-in" href="#">Forgot password?</a>
               </form>
+
+
+
             </div>
             <div class="inner-box" id="lower-box-section">
               <img src="{% static 'main/img/D-logo-bold.png' %}" alt="Doogle Logo">

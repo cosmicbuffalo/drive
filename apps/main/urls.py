@@ -14,7 +14,6 @@ urlpatterns = [
     url(r'^process_registration$', views.process_registration, name="process_registration"),
     # JSON ROUTES
     url(r'^validate_identifier$', views.validate_identifier, name="validate_identifier"),
-    
     url(r'^authenticate_login$', views.authenticate_login, name="authenticate_login"),
     # Test Route for File upload
     url(r'^file_upload', views.file_upload,name='file_upload')

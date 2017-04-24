@@ -131,6 +131,64 @@ class UserManager(models.Manager):
 
         return {'result':"Successfully registered new user", 'messages':messages, 'user':user}
 
+
+
+    def validate_identifier(self, identifier):
+
+        print "*****************************************"
+        print "Entered User.objects.validate_identifier"
+        print "Recieved identifier ----->", identifier
+
+        messages = []
+        valid_email = False
+        valid_phone = False
+
+        if EMAIL_REGEX.match(identifier):
+            valid_email = True
+            print "Found valid email address"
+        elif PHONE_REGEX.match(identifier):
+            valid_phone = True
+            print "Found valid phone number"
+        else:
+            messages.append("*Please enter a valid email or phone number!")
+            print "ERROR: identifier didn't match EMAIL or PHONE regexes"
+            return {'result':'failed_validation', 'messages':messages}
+
+        if valid_email:
+            try:
+                print "Attempting to find user with entered email address..."
+                user = User.objects.get(email=identifier)
+                print "Found user ----->", user
+                if user:
+                    print "User exists, returning success result!"
+                    messages.append("User exists for this email address")
+                    return {'result':'success', 'messages':messages, 'identifier_type':'email', 'identifier':identifier}
+            except:
+                messages.append("*No user exists for this email address")
+                return {'result':'failed_validation', 'messages':messages}
+        elif valid_phone:
+            try:
+                print "Attempting to find user with entered phone number..."
+                user = User.objects.get(phone_number=identifier)
+                print "Found user ----->", user
+                if user:
+                    print "User exists, returning success result!"
+                    messages.append("User exists for this phone number")
+                    return {'result':'success', 'messages':messages, 'identifier_type':'phone', 'identifier':identifier}
+            except:
+                messages.append("*No user exists for this phone number")
+                return {'result':'failed_validation', 'messages':messages}
+
+        else:
+            print "Phone number and email both invalid... this print statement should never appear"
+            messages.append("ERROR: Failed validation")
+            {'result':'failed_validation', 'messages':messages}
+
+
+    def authenticate_login(self, postData):
+
+        pass
+
 class User(models.Model):
     MALE = "M"
     FEMALE = "F"
@@ -178,7 +236,7 @@ class Folder(models.Model):
     stars = models.ManyToManyField(User, related_name="starred_folders")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
 
 class Root_Folder(models.Model):
     user = models.ForeignKey(User, related_name="master")
@@ -186,7 +244,7 @@ class Root_Folder(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
 
 #
 # class Nest_relation(models.Model):
@@ -204,7 +262,7 @@ class File(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    
+
 # This class is for a potential bonus feature, tags, that I might implement later
 #
 # class Tag(models.Model):

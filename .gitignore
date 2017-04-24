@@ -1,2 +1,3 @@
 *.pyc
 db.sqlite3
+apps/main/static/main/js/jquery-ui.min.js

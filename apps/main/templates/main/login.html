@@ -7,6 +7,7 @@
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'main/css/login_styles.css' %}">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'main/js/jquery-ui.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'main/js/login_page.js' %}"></script>
   </head>
   <body>
@@ -35,8 +36,8 @@
               <form id="login-form" action="{% url 'process_login' %}" method="post">
                 {% csrf_token %}
                 <!-- Slide toggle first and second input fields on first button click -->
-                <input id="first-input" class="toggle-hidden" type="text" name="identifier" value="" placeholder="Email or phone">
-                <input id="second-input" class="toggle-hidden hidden" type="password" name="password" value="" placeholder="Password">
+                <input id="first-input" class="slide-out" type="text" name="identifier" placeholder="Email or phone">
+                <input id="second-input" class="slide-in" type="password" name="password" placeholder="Password">
                 <div id="messages-area">
                   {% if messages %}
                     {% for message in messages %}
@@ -45,11 +46,11 @@
                   {% endif %}
                 </div>
                 <!-- Slide toggle next button out for sign in button on successful ajax validation -->
-                <input id="next-button" class="button toggle-hidden" type="submit" ajax-target="{% url 'validate_identifier' %}" value="Next">
+                <input id="next-button" class="button slide-out" type="submit" ajax-target="{% url 'validate_identifier' %}" value="Next">
                 <!-- sign in button should send an ajax request to authenticate login, if successful, post to process_login -->
-                <input id="sign-in-button" class="button toggle-hidden hidden" type="submit" ajax-target="{% url 'authenticate_login' %}" ajax-success-target="{% url 'process_login' %}" value="Sign In">
-                <a id="find-my-account-link" class="toggle-hidden" href="#">Find my account</a>
-                <a id="forgot-password-link" class="toggle-hidden hidden" href="#">Forgot password?</a>
+                <input id="sign-in-button" class="button slide-in" type="submit" ajax-target="{% url 'authenticate_login' %}" ajax-success-target="{% url 'process_login' %}" value="Sign In">
+                <a id="find-my-account-link" class="slide-out" href="#">Find my account</a>
+                <a id="forgot-password-link" class="slide-in" href="#">Forgot password?</a>
               </form>
             </div>
             <div class="inner-box" id="lower-box-section">

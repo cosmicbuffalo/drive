@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from time import time
+from datetime import datetime
 from django.db import models
 from django.core.validators import RegexValidator
 import re, bcrypt
+import phonenumbers
 
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
-PHONE_REGEX = re.compile(r'^\+?1?\d{9,15}$')
+PHONE_REGEX = re.compile(r'^\+?1?\d{10}$')
+
 
 
 class UserManager(models.Manager):
@@ -144,17 +147,16 @@ class UserManager(models.Manager):
         }
 
         if len(postData['first_name']) < 2:
-            messages['name_errors'].append("First name must be at least 2 characters!")
+            messages['name_errors'].append("*First name must be at least 2 characters!")
             failed_validation = True
         elif not NAME_REGEX.match(postData['first_name']):
-            messages['name_errors'].append("First name can only contain letters!")
+            messages['name_errors'].append("*First name can only contain letters!")
             failed_validation = True
-
-        if len(postData['last_name']) < 2:
-            messages['name_errors'].append("Last name must be at least 2 characters!")
+        elif len(postData['last_name']) < 2:
+            messages['name_errors'].append("*Last name must be at least 2 characters!")
             failed_validation = True
         elif not NAME_REGEX.match(postData['last_name']):
-            messages['name_errors'].append("Last name can only contain letters!")
+            messages['name_errors'].append("*Last name can only contain letters!")
             failed_validation = True
 
         try:
@@ -163,32 +165,159 @@ class UserManager(models.Manager):
             found_user = False
 
         if len(postData['email']) < 1:
-            messages['email_errors'].append("Email is required!")
+            messages['email_errors'].append("*Email is required!")
             failed_validation = True
         elif not EMAIL_REGEX.match(postData['email']):
-            messages['email_errors'].append("Please enter a valid email!")
+            messages['email_errors'].append("*Please enter a valid email!")
             failed_validation = True
         elif found_user:
-            messages['email_errors'].append("This email is already registered!")
+            messages['email_errors'].append("*This email is already registered!")
             failed_validation = True
 
         if failed_validation:
             return {'result':"failed_validation", 'messages':messages}
 
         if len(postData['password']) < 1:
-            messages['password_errors'].append("Password is required!")
+            messages['password_errors'].append("*Password is required!")
             failed_validation = True
+            print "password is less than 1 character long"
         elif len(postData['password']) < 8:
-            messages['password_errors'].append("Password must be at least 8 characters")
+            messages['password_errors'].append("*Password must be at least 8 characters")
             failed_validation = True
-        elif postData['confirm_password'] != postData['password']:
-            messages['password_confirm_errors'].append("Password confirmation failed")
+            print "password is less than 8 characters long"
+        elif postData['password-confirm'] != postData['password']:
+            messages['password_confirm_errors'].append("*Password confirmation failed")
+            failed_validation = True
+            print "password is not equal to confirmation"
+
+        if failed_validation:
+            return {'result':"failed_validation", 'messages':messages}
+
+
+
+
+        month = postData['month']
+        day = postData['day']
+        year = postData['year']
+
+
+
+
+
+        try:
+            if len(month) < 1:
+                messages['birthday_errors'].append("*Please enter a month")
+                failed_validation = True
+            elif len(month) < 2:
+                month = "0" + month
+            elif int(month) > 12:
+                messages['birthday_errors'].append("*Please enter a valid month")
+                failed_validation = True
+        except:
+            messages['birthday_errors'].append("*Please enter a valid month")
             failed_validation = True
 
         if failed_validation:
             return {'result':"failed_validation", 'messages':messages}
 
-        return {'result':'success', 'messages':messages}
+
+
+
+
+
+        try:
+            if len(day) < 1:
+                messages['birthday_errors'].append("*Please enter a day")
+                failed_validation = True
+            if len(day) < 2:
+                day = "0" + day
+            if int(day) > 31:
+                messages['birthday_errors'].append("*Please enter a valid day")
+                failed_validation = True
+        except:
+            messages['birthday_errors'].append("*Please enter a valid day")
+            failed_validation = True
+
+        if failed_validation:
+            return {'result':"failed_validation", 'messages':messages}
+
+        # print "about to attempt datetime now check"
+        # print datetime.now().year
+
+        if len(year) != 4:
+            print "length of year is not equal to 4"
+            messages['birthday_errors'].append("*Please enter a valid year")
+            failed_validation = True
+        try:
+            print int(year)
+            if int(year) > datetime.now().year:
+                print "year is greater than current year"
+                messages['birthday_errors'].append("*Birthday must be in the past")
+                failed_validation = True
+        except:
+            print "failed year check on except"
+            messages['birthday_errors'].append("*Please enter a valid year")
+            failed_validation = True
+
+        if failed_validation:
+            return {'result':"failed_validation", 'messages':messages}
+
+
+
+        birthday = "{} {} {}".format(month, day, year)
+
+        print "Birthday ------>", birthday
+
+        try:
+            birthday_date = datetime.strptime(birthday, "%m %d %Y").date()
+
+            print birthday_date
+        except:
+            print "something went wrong"
+
+        if birthday_date > datetime.now().date():
+            messages['birthday_errors'].append("*Birthday must be in the past")
+            failed_validation = True
+
+        if failed_validation:
+            return {'result':"failed_validation", 'messages':messages}
+
+        gender = postData['gender']
+        print gender
+
+        if len(gender) < 1:
+            print "gender is empty"
+            messages['gender_errors'].append("*Please select a gender option")
+            failed_validation = True
+        if failed_validation:
+            return {'result':"failed_validation", 'messages':messages}
+
+        phone_number = postData['phone']
+
+
+        if len(phone_number) < 1:
+            messages['phone_errors'].append("*Phone number is required")
+            failed_validation = True
+        elif not PHONE_REGEX.match(phone_number):
+            messages['phone_errors'].append("*Please enter valid E164 format number: +19999999999")
+            failed_validation = True
+
+        if failed_validation:
+            return {'result':"failed_validation", 'messages':messages}
+
+        validated_data = {
+            'first_name':postData['first_name'],
+            'last_name':postData['last_name'],
+            'email':postData['email'],
+            'password':postData['password'],
+            'birthday':birthday_date,
+            'gender': gender,
+            'phone_number':phone_number,
+            'location':postData['location']
+        }
+
+
+        return {'result':'success', 'messages':messages, 'validated_data':validated_data}
 
 
 
@@ -366,8 +495,8 @@ class File(models.Model):
     stars = models.ManyToManyField(User, related_name="starred_files")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
-    
+
+
 
 
 # This class is for a potential bonus feature, tags, that I might implement later

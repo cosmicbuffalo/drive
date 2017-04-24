@@ -87,8 +87,12 @@ def process_login(request):
 
 def process_registration(request):
     if request.method == "POST":
+        print "Entered process_registration method in views.py"
+        print "request.POST ---------->", request.POST
 
-        print request.POST
+        for key in request.POST.keys():
+            print "key: --->", key
+            print "value: ----------->", request.POST[key]
 
     return redirect("create_account_page")
 
@@ -137,6 +141,27 @@ def authenticate_login(request):
 
         return JsonResponse(result)
 
+
+
+# Methods necessary for registration
+
+def validate_registration(request):
+
+    print "Running validate_registration in views.py"
+
+    if request.method == "POST":
+
+        print "request.POST: ---->", request.POST
+
+        result = User.objects.validate_registration(request.POST)
+
+
+        return JsonResponse(result)
+
+
+
+
+
 # -----------------------
 # - FILE UPLOAD METHOD -
 # -----------------------
@@ -145,8 +170,8 @@ def file_upload(request):
         form = FileForm(request.POST, request.FILES)
         user = User.objects.get(id='1') #replace with sessions!
         File.objects.create(file_data=request.FILES.get('file_data'),file_type='image', owner=user)
-        
-        
+
+
     return redirect('home_root')
 
 

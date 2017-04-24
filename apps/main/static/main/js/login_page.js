@@ -122,7 +122,7 @@ $(document).ready(function(){
           // console.log(res.user_id)
           $('#login-form').append("<input id='hidden-user-id-input' type='hidden' name='user_id' value='{}'>".format(res.user_id))
           // console.log("Added hidden input containing res.user_id to login-form")
-          post_data = $('#login-form').serialize()
+          // post_data = $('#login-form').serialize()
           // console.log("serialized login form for post request")
 
           $('#login-form').submit()

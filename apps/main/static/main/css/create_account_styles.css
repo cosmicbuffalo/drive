@@ -135,9 +135,15 @@ h1{
   /*border: 1px solid black;*/
   /*padding-bottom: 17px;*/
 }
-.messages-area{
-  height: 17px;
+div.messages-area{
+  min-height: 17px;
+  font-weight: 400;
+  color: red;
+  font-size: .7em;
 
+}
+.error-message{
+  color: red;
 }
 input[type="text"], input[type="email"], input[type="password"]{
   font-size: .8em;

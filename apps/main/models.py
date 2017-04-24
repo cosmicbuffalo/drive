@@ -187,7 +187,47 @@ class UserManager(models.Manager):
 
     def authenticate_login(self, postData):
 
-        pass
+        print "******************************"
+        print "Entered User.objects.authenticate_login"
+        print "PostData: ", postData
+        print "identifier in postData:", postData['identifier']
+        print "identifier_type in postData:", postData['identifier_type']
+        print "password in postData:", postData['password']
+
+        failed_authentication = False
+        messages = []
+
+        if len(postData['password']) < 8:
+            # print "password is less than 8 characters"
+            messages.append("Password must be at least 8 characters")
+            return {'result':"failed_authentication", 'messages':messages}
+
+        if postData['identifier_type'] == "email":
+            user = User.objects.get(email=postData['identifier'])
+        else:
+            user = User.objects.get(phone_number=postData['identifier'])
+
+        # hashed_password = bcrypt.hashpw(str(postData['password']), str(user.salt))
+
+        # if user.password != hashed_password:
+        if user.password != postData['password']:
+            # print "found_user password doesn't match hashed password"
+            messages.append("Incorrect password! Please try again")
+            failed_authentication = True
+
+
+        if failed_authentication:
+            # print "authentication failed after password check"
+            return {'result':"failed_authentication", 'messages':messages}
+        else:
+            # print "authentication succeeded, should be successfully logged in"
+            messages.append('Successfully logged in!')
+            return {'result':'success', 'messages':messages, 'user_id':user.id}
+
+
+
+
+
 
 class User(models.Model):
     MALE = "M"

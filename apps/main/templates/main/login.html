@@ -26,6 +26,11 @@
           </div>
           <div id="main-box">
             <div class="inner-box" id="upper-box-section">
+              <a href="{% url 'login' %}">
+                <div id="back-button-div" class="mouseover-highlight icon-background toggle-transparent transparent" back-url="{% url 'login' %}">
+                  <img id="back-button" src="https://www.materialui.co/materialIcons/navigation/arrow_back_grey_192x192.png" class="icon" alt="Back">
+                </div>
+              </a>
               <div id="profile-pic">
                 <img src="{% static 'main/img/empty-profile.png' %}" alt="empty profile pic">
               </div>
@@ -36,6 +41,7 @@
               <form id="login-form" action="{% url 'process_login' %}" method="post">
                 {% csrf_token %}
                 <!-- Slide toggle first and second input fields on first button click -->
+                <input id="hidden-identifier-type-input" type="hidden" name="identifier_type" value="">
                 <input id="first-input" class="slide-out" type="text" name="identifier" placeholder="Email or phone">
                 <input id="second-input" class="slide-in" type="password" name="password" placeholder="Password">
                 <div id="messages-area">
@@ -48,7 +54,7 @@
                 <!-- Slide toggle next button out for sign in button on successful ajax validation -->
                 <input id="next-button" class="button slide-out" type="submit" ajax-target="{% url 'validate_identifier' %}" value="Next">
                 <!-- sign in button should send an ajax request to authenticate login, if successful, post to process_login -->
-                <input id="sign-in-button" class="button slide-in" type="submit" ajax-target="{% url 'authenticate_login' %}" ajax-success-target="{% url 'process_login' %}" value="Sign In">
+                <input id="sign-in-button" class="button slide-in" type="submit" ajax-target="{% url 'authenticate_login' %}" value="Sign In">
                 <a id="find-my-account-link" class="slide-out" href="#">Find my account</a>
                 <a id="forgot-password-link" class="slide-in" href="#">Forgot password?</a>
               </form>

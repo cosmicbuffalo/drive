@@ -15,65 +15,65 @@ def get_upload_file_name(instance, filename):
 
 
 class UserManager(models.Manager):
-    def login(self, postData):
-        # print "running login function"
-
-        failed_authentication = False
-        messages = []
-
-        try:
-            found_user = User.objects.get(email=postData['email'])
-        except:
-            found_user = False
-        #
-        # print "found_user:"
-        # print found_user
-
-        if len(postData['email']) < 1:
-            # print "Email is blank"
-            messages.append("Email cannot be left blank!")
-            failed_authentication = True
-        elif not EMAIL_REGEX.match(postData['email']):
-            # print "email doesn't match regex pattern"
-            messages.append("Please enter a valid email!")
-            failed_authentication = True
-        elif not found_user:
-            # print "found_user check came back false"
-            messages.append("No user found with this email address. Please register new user.")
-            failed_authentication = True
-
-        if failed_authentication:
-            # print "authentication failed before password check"
-            return {'result':"failed_authentication", 'messages':messages}
-
-        if len(postData['password']) < 8:
-            # print "password is less than 8 characters"
-            messages.append("Password must be at least 8 characters")
-            return {'result':"failed_authentication", 'messages':messages}
-
-
-        hashed_password = bcrypt.hashpw(str(postData['password']), str(found_user.salt))
-        #
-        # print "hashed password:"
-        # print hashed_password
-        #
-        # print "found_user passoword:"
-        # print found_user.password
-        #
-
-        if found_user.password != hashed_password:
-            # print "found_user password doesn't match hashed password"
-            messages.append("Incorrect password! Please try again")
-            failed_authentication = True
-
-
-        if failed_authentication:
-            # print "authentication failed after password check"
-            return {'result':"failed_authentication", 'messages':messages}
-        else:
-            # print "authentication succeeded, should be successfully logged in"
-            messages.append('Successfully logged in!')
-            return {'result':'success', 'messages':messages, 'user':found_user}
+    # def login(self, postData):
+    #     # print "running login function"
+    #
+    #     failed_authentication = False
+    #     messages = []
+    #
+    #     try:
+    #         found_user = User.objects.get(email=postData['email'])
+    #     except:
+    #         found_user = False
+    #     #
+    #     # print "found_user:"
+    #     # print found_user
+    #
+    #     if len(postData['email']) < 1:
+    #         # print "Email is blank"
+    #         messages.append("Email cannot be left blank!")
+    #         failed_authentication = True
+    #     elif not EMAIL_REGEX.match(postData['email']):
+    #         # print "email doesn't match regex pattern"
+    #         messages.append("Please enter a valid email!")
+    #         failed_authentication = True
+    #     elif not found_user:
+    #         # print "found_user check came back false"
+    #         messages.append("No user found with this email address. Please register new user.")
+    #         failed_authentication = True
+    #
+    #     if failed_authentication:
+    #         # print "authentication failed before password check"
+    #         return {'result':"failed_authentication", 'messages':messages}
+    #
+    #     if len(postData['password']) < 8:
+    #         # print "password is less than 8 characters"
+    #         messages.append("Password must be at least 8 characters")
+    #         return {'result':"failed_authentication", 'messages':messages}
+    #
+    #
+    #     hashed_password = bcrypt.hashpw(str(postData['password']), str(found_user.salt))
+    #     #
+    #     # print "hashed password:"
+    #     # print hashed_password
+    #     #
+    #     # print "found_user passoword:"
+    #     # print found_user.password
+    #     #
+    #
+    #     if found_user.password != hashed_password:
+    #         # print "found_user password doesn't match hashed password"
+    #         messages.append("Incorrect password! Please try again")
+    #         failed_authentication = True
+    #
+    #
+    #     if failed_authentication:
+    #         # print "authentication failed after password check"
+    #         return {'result':"failed_authentication", 'messages':messages}
+    #     else:
+    #         # print "authentication succeeded, should be successfully logged in"
+    #         messages.append('Successfully logged in!')
+    #         return {'result':'success', 'messages':messages, 'user':found_user}
 
     def register(self, postData):
         # print "running register function"
@@ -130,6 +130,69 @@ class UserManager(models.Manager):
 
 
         return {'result':"Successfully registered new user", 'messages':messages, 'user':user}
+
+
+    def validate_registration(self, postData):
+
+        failed_validation = False
+        messages = {
+            'name_errors':[],
+            'email_errors':[],
+            'password_errors':[],
+            'password_confirm_errors':[],
+            'birthday_errors':[],
+            'gender_errors':[],
+            'phone_errors':[],
+            'location_errors':[]
+        }
+
+        if len(postData['first_name']) < 2:
+            messages['name_errors'].append("First name must be at least 2 characters!")
+            failed_validation = True
+        elif not NAME_REGEX.match(postData['first_name']):
+            messages['name_errors'].append("First name can only contain letters!")
+            failed_validation = True
+
+        if len(postData['last_name']) < 2:
+            messages['name_errors'].append("Last name must be at least 2 characters!")
+            failed_validation = True
+        elif not NAME_REGEX.match(postData['last_name']):
+            messages['name_errors'].append("Last name can only contain letters!")
+            failed_validation = True
+
+        try:
+            found_user = User.objects.get(email=postData['email'])
+        except:
+            found_user = False
+
+        if len(postData['email']) < 1:
+            messages['email_errors'].append("Email is required!")
+            failed_validation = True
+        elif not EMAIL_REGEX.match(postData['email']):
+            messages['email_errors'].append("Please enter a valid email!")
+            failed_validation = True
+        elif found_user:
+            messages['email_errors'].append("This email is already registered!")
+            failed_validation = True
+
+        if failed_validation:
+            return {'result':"failed_validation", 'messages':messages}
+
+        if len(postData['password']) < 1:
+            messages['password_errors'].append("Password is required!")
+            failed_validation = True
+        elif len(postData['password']) < 8:
+            messages['password_errors'].append("Password must be at least 8 characters")
+            failed_validation = True
+        elif postData['confirm_password'] != postData['password']:
+            messages['password_confirm_errors'].append("Password confirmation failed")
+            failed_validation = True
+
+        if failed_validation:
+            return {'result':"failed_validation", 'messages':messages}
+
+        return {'result':'success', 'messages':messages}
+
 
 
 
@@ -303,10 +366,6 @@ class File(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> 494fa99cc1937fba331b6cbadcc5221b70b3dca1
 # This class is for a potential bonus feature, tags, that I might implement later
 #
 # class Tag(models.Model):

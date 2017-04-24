@@ -6,6 +6,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500" rel="stylesheet">
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'main/css/create_account_styles.css' %}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- <script type="text/javascript" src="{% static 'main/js/jquery-ui.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'main/js/create_account_page.js' %}"></script>
   </head>
   <body>
     <div id="wrapper">
@@ -45,7 +48,7 @@
           <div class="column" id="right-column">
             <div id="register-box">
               <!-- <form action="/register_new_user" method="post"> -->
-              <form action="/create_success" method="post">
+              <form id="registration-form" action="{% url 'create_success' %}" method="post">
                 {% csrf_token %}
                 <div class="form-field">
                   <label>Name</label>
@@ -53,17 +56,25 @@
                   <span class="form-space"></span>
                   <input class="name-input" type="text" name="last_name" value="" placeholder="Last">
                 </div>
+                <div class="messages-area" id="name-error-div">
+                </div>
                 <div class="form-field">
                   <label>Email Address</label>
                   <input class="full-line-input" type="email" name="email" value="" placeholder="@dmail.com">
+                </div>
+                <div class="messages-area" id="email-error-div">
                 </div>
                 <div class="form-field">
                   <label>Create a password</label>
                   <input class="full-line-input" type="password" name="password" value="">
                 </div>
+                <div class="messages-area" id="password-error-div">
+                </div>
                 <div class="form-field">
                   <label>Confirm your password</label>
                   <input class="full-line-input" type="password" name="password-confirm" value="">
+                </div>
+                <div class="messages-area" id="password-confirm-error-div">
                 </div>
                 <div class="form-field">
                   <label>Birthday</label>
@@ -76,6 +87,8 @@
                   <span class="form-space"></span>
                   <input id="year-input" type="text" name="year" value="" placeholder="Year">
                 </div>
+                <div class="messages-area" id="birthday-error-div">
+                </div>
                 <div class="form-field">
                   <label>Gender</label>
                   <select class="full-line-input" name="gender">
@@ -86,15 +99,21 @@
                     <option value="opt-out">Rather not say</option>
                   </select>
                 </div>
+                <div class="messages-area" id="gender-error-div">
+                </div>
                 <div class="form-field">
                   <label>Mobile Phone</label>
                   <input class="full-line-input" type="text" name="phone" value="">
+                </div>
+                <div class="messages-area" id="phone-error-div">
                 </div>
                 <div class="form-field">
                   <label>Location</label>
                   <select class="full-line-input" name="location">
                     <option value="USA">United States</option>
                   </select>
+                </div>
+                <div class="messages-area" id="location-error-div">
                 </div>
 
                 <input id="next-step-button" class="button" type="submit" name="" value="Next step">

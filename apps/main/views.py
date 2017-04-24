@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect, reverse
 from .models import *
-from forms import FileForm
+from forms import *
 from django.http import HttpResponseRedirect, JsonResponse
 
 # --------------------------
@@ -34,11 +34,13 @@ def show_create_success_page(request):
 
 
 def show_home_page_root(request):
-    form = FileForm()
+    file_form = FileForm()
+    folder_form = FolderForm()
     context = {
         "user": User.objects.all(),
-        "media_files": File.objects.all(),
-        "form" : form
+        "media_files": File.objects.all().order_by("-created_at"),
+        "file_form" : file_form,
+        'folder_form': folder_form
 
     }
 
@@ -171,6 +173,14 @@ def file_upload(request):
         user = User.objects.get(id='1') #replace with sessions!
         File.objects.create(file_data=request.FILES.get('file_data'),file_type='image', owner=user)
 
+
+    return redirect('home_root')
+
+
+def folder_creation(request):
+    if request.method == "POST":
+        form = FolderForm(request.POST)
+        print "yay"
 
     return redirect('home_root')
 

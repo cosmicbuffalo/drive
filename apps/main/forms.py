@@ -9,3 +9,12 @@ class FileForm(forms.ModelForm):
         fields = [
             'file_data',            
         ]
+
+
+class FolderForm(forms.ModelForm):
+
+    class Meta:
+        model = Folder
+        fields = [
+            "name",
+        ]

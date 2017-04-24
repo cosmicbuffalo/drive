@@ -90,10 +90,15 @@ h1{
   color:#404040;
   padding-bottom: 14px;
 }
+#messages-area{
+  text-align: left;
+  color: red;
+  font-size: .7em;
+}
 .transparent{
   visibility: hidden;
 }
-.hidden{
+.slide-in{
   display: none;
 }
 input{
@@ -116,7 +121,7 @@ input{
 #sign-in-button{
   margin-top: 9px;
 }
-#find-my-account-link{
+a.slide-in, a.slide-out{
   font-size: .8em;
 
 }
@@ -132,6 +137,8 @@ input[type="text"]{
 }
 #upper-box-section{
   padding-bottom: 44px;
+  height: 328px;
+  box-sizing: border-box;
 }
 #lower-box-section{
   background-color: white;

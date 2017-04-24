@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect, reverse
 from .models import *
 from forms import FileForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 
 # --------------------------
 # - HTML RENDERING METHODS -
@@ -90,9 +90,11 @@ def process_registration(request):
 def validate_identifier(request):
     if request.method == "POST":
 
-        print request.POST['identifier']
 
-        result = {}
+        print "Recieved identifier ----->", request.POST['identifier']
+
+        result = User.objects.validate_identifier(request.POST['identifier'])
+        print result
         #Logic for this method will check to see if the posted identifier
         #exists in the database and what type it is, either phone or email.
         #If validation is successful, the returned data will include the
@@ -100,7 +102,7 @@ def validate_identifier(request):
         #to be displayed on the next screen.
         #successful result ->{'result':'success', 'messages':[messages], 'identifier_type':'email | phone', 'identifier':identifier}
         #failed result ->{'result':'failed_validation', 'messages':[messages]}
-        return result
+        return JsonResponse(result)
 
 def authenticate_login(request):
     #separating login authentication from login processing for future ajax magic -

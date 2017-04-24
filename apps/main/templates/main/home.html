@@ -54,10 +54,10 @@
               <option value="">More...</option>
             </select>
             {% block content %}
-            <form action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
+            <form id="file-upload-form" action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
               {%csrf_token%}
                 {{file_form.as_p}}
-              <input type="submit" value ="submit">
+              <input id="file-upload-button"type="submit" value ="submit">
             </form>
             <form action="{% url 'folder_creation'%}" method="POST">
               {%csrf_token%}
@@ -117,44 +117,22 @@
                   <th><label class="table-header-label">File size</label></th>
                 </tr>
               </thead>
-              <tbody>
-
+              <tbody id="table-body">
                 {% for file in media_files %}
+                {% if user.id == file.owner_id %}
                   <tr class="file-flash">
                     <td>{{file.file_data}}</td>
                     <td>{{file.owner.first_name}}</td>
                     <td>{{file.updated_at}}</td>
                     <td>{{file.file_data.size|filesizeformat}}</td>
                   </tr>
+                  {% endif %}
                 {% endfor %}
-                <!--{% for file in media_files %}
-                  <tr>
-                    <td><img class="icon" src="" alt="Thumbnail"> {{folder.name}}</td>
-                    <td>{{folder.owner}}</td>
-                    <td>{{folder.updated_at}}</td>
-                    <td>-</td>
-                  </tr>
-                {% endfor %}
-                {% for file in files %}
-                  <tr>
-                    <td><img class="icon" src="" alt="Thumbnail"> {{file.file_name}}</td>
-                    <td>{{file.owner}}</td>
-                    <td>{{file.updated_at}}</td>
-                    <td>{{file.size}}</td>
-                  </tr>
-                {% endfor %}-->
               </tbody>
             </table>
 
           </div>
-
-
-
- <a href= "{{MEDIA_URL }}{{ django_file.url }}">download</a>
-
-
         </div>
-
       </div>
     </div>
 

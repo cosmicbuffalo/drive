@@ -36,8 +36,9 @@ def show_create_success_page(request):
 def show_home_page_root(request):
     file_form = FileForm()
     folder_form = FolderForm()
+    
     context = {
-        "user": User.objects.all(),
+        "user": User.objects.get(id=request.session['current_user']),
         "media_files": File.objects.all().order_by("-created_at"),
         "file_form" : file_form,
         'folder_form': folder_form
@@ -145,17 +146,24 @@ def authenticate_login(request):
 def file_upload(request):
     if request.method == "POST":
         form = FileForm(request.POST, request.FILES)
-        user = User.objects.get(id='1') #replace with sessions!
+        user = User.objects.get(id=request.session['current_user'])
         File.objects.create(file_data=request.FILES.get('file_data'),file_type='image', owner=user)
+        uploaded_file = File.objects.filter(owner_id=request.session['current_user']).order_by('-created_at')[0]
+
+        file_info = {
+            'file_data':uploaded_file.file_data,
+            'owner_name':uploaded_file.owner.first_name,
+            'updated_at':uploaded_file.updated_at,
+            'file_size':uploaded_file.file_data.size|filesizeformat
+        }
         
         
-    return redirect('home_root')
+    return JsonResponse(file_info)
 
 
 def folder_creation(request):
     if request.method == "POST":
         form = FolderForm(request.POST)
-        print "yay"
 
     return redirect('home_root')
 

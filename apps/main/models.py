@@ -352,7 +352,7 @@ class Root_Folder(models.Model):
 #     child_folder = models.ForeignKey(Folder, related_name="child_folder_relationship")
 
 def get_upload_file_name(instance, filename):
-    return "user/%s" %(filename)
+    return "%s" %(filename)
 
 
 

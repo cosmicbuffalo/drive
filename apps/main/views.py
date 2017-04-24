@@ -132,7 +132,12 @@ def authenticate_login(request):
 # -----------------------
 def file_upload(request):
     if request.method == "POST":
-        print request.POST
+        form = FileForm(request.POST, request.FILES)
+        user = User.objects.get(id='1')
+        File.objects.create(file_data=request.FILES.get('file_data'),file_type='image', owner=user)
+        print request.FILES
+
+        
     return redirect('home_root')
 
 

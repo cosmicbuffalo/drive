@@ -11,7 +11,7 @@ PHONE_REGEX = re.compile(r'^\+?1?\d{9,15}$')
 
 
 def get_upload_file_name(instance, filename):
-    return "uploaded_files/%s_%s" %(str(time()).replace(".","_"), filename)
+    return "media/%s_%s" %(str(time()).replace(".","_"), filename)
 
 
 class UserManager(models.Manager):
@@ -303,6 +303,10 @@ class File(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 494fa99cc1937fba331b6cbadcc5221b70b3dca1
 # This class is for a potential bonus feature, tags, that I might implement later
 #
 # class Tag(models.Model):

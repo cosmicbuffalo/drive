@@ -68,13 +68,22 @@ def show_home_page_folder(request, folder_id):
 # - LOGIN/REGISTRATION METHODS -
 # ------------------------------
 
+def logout(request):
+    request.session.clear()
+    return redirect('login')
+
 def process_login(request):
     if request.method == "POST":
 
-        print request.POST
+        print "Entered process_login method"
+
+        print "request.POST: --------> ", request.POST
+        print "current user: -------->", request.POST['user_id']
+
+        request.session['current_user'] = request.POST['user_id']
 
 
-    return redirect('/login')
+    return redirect('/home')
 
 def process_registration(request):
     if request.method == "POST":
@@ -112,24 +121,21 @@ def authenticate_login(request):
     #function of the .ajax call which will then decide whether or not to call
     #process login to populate the session and redirect. The User manager class
     #will need to be updated for this too.
+    print "running authenticate_login in views.py"
     if request.method == "POST":
 
-        post_data = {
-            'identifier_type':request.POST['identifier_type'], #obtained from hidden input on form
-            'identifier':request.POST['identifier'],
-            'password':request.POST['password']
-        }
+        print "request.POST: ---->", request.POST
 
         #result = User.objects.authenticate_login(post_data)
 
-        result = {}
+        result = User.objects.authenticate_login(request.POST)
         #Logic for this method will use the UserManager to authenticate the login.
         #If successful, the return result will pass only the user_id for handling
         #in the process login method.
         #successful result ->{'result':'success', 'messages':[messages], 'user_id':user_id}
         #failed result ->{'result':'failed_authentication', 'messages':[messages]}
 
-        return result
+        return JsonResponse(result)
 
 # -----------------------
 # - FILE UPLOAD METHOD -

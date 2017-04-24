@@ -79,7 +79,7 @@ h1{
   padding-right: 40px;
 }
 #profile-pic{
-  padding-top:40px;
+  /*padding-top:40px;*/
   padding-bottom: 4px;
 }
 #profile-pic img{
@@ -95,6 +95,23 @@ h1{
   color: red;
   font-size: .7em;
 }
+#back-button-div{
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  padding:8px;
+  position: relative;
+  top: 30px;
+  right: 10px;
+}
+.icon{
+  width: 24px;
+  height: 24px;
+}
+/*.icon-background{
+  border-radius: 50%;
+  background-color:
+}*/
 .transparent{
   visibility: hidden;
 }

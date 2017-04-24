@@ -5,6 +5,7 @@ urlpatterns = [
     # TEMPLATE RENDERING ROUTES
     url(r'^$', views.index, name='index'),
     url(r'^login$', views.show_login_page, name='login'),
+    url(r'^logout$', views.logout, name="logout"),
     url(r'^create_account$', views.show_create_account_page, name="create_account_page"),
     url(r'^create_success$', views.show_create_success_page, name="create_success"),
     url(r'^home$', views.show_home_page_root, name="home_root"),

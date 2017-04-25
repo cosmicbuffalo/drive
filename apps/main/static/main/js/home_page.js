@@ -1,21 +1,23 @@
 $ (document).ready(function(){
 
+//row selection methods...
+    $(".file-flash").click(function() {
+        var selected = $(this).hasClass("selected");
+        $(".file-flash").removeClass("selected");
+        if(!selected)
+            $(this).addClass("selected");
+    });
+
+    $('.file-flash a').on('click', function(){
+        var selected = $(this).hasClass("selected");
+        $(".file-flash").removeClass("selected");
+        if(!selected)
+            $(this).addClass("selected");
+    })
 
 
-  //row selection methods...
-  $(".file-flash").click(function() {
-      var selected = $(this).hasClass("highlight");
-      $(".file-flash").removeClass("highlight");
-      if(!selected)
-          $(this).addClass("highlight");
-  });
 
-  $('.file-flash a').on('click', function(){
-      var selected = $(this).hasClass("highlight");
-      $(".file-flash").removeClass("highlight");
-      if(!selected)
-          $(this).addClass("highlight");
-  })
+
 
 
   //file upload AJAX
@@ -50,6 +52,7 @@ $ (document).ready(function(){
   })
 
 
+
   //tool bar button functionality
   // $('.tool-bar-link').on('click', function(){
   //
@@ -59,6 +62,18 @@ $ (document).ready(function(){
   //
   //
   //   })
+
+
+
+    //         }
+
+
+    //     })
+
+
+
+
+    // })
 
 
 

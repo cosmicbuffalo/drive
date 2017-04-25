@@ -115,9 +115,6 @@
               <label class="tab-label">Trash</label>
             </div>
           </div>
- <!--{% for media in media_files%}
-    <img src ="{{media.file_data.url}}" width="200">
-    {% endfor %}-->
         </div>
         <div class="main-content" id="dynamic-home-content">
           <div class="main-content" id="main-table-wrapper">
@@ -133,7 +130,7 @@
               <tbody id="table-body">
                 {% for folder in folders %}
                 {% if folder.is_master_folder == 0 %}
-                <tr class="file-flash" folder-id='{{folder.id}}'>
+                <tr class="file-flash" folder-id='{{folder.id}}' item-type="file">
                   <td>{{folder.name}}</td>
                   <td>{{folder.owner.first_name}}</td>
                   <td>{{folder.updated_at}}</td>

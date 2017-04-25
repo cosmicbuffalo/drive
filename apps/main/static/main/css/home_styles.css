@@ -166,11 +166,11 @@ tr{
 td{
   vertical-align: middle;
 }
-tr.highlight td{
+tr.selected td{
 border-color:#4285f4
 
 }
-#table-body tr.highlight {
+#table-body tr.selected {
   background-color: #4285f4;
 
   color: white;

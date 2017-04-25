@@ -68,19 +68,18 @@
             </form>
             {% endblock %}
           </div>
-          <div id="tool-bar-controls" class="top-bar-item">
+          <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
             <div id="selection-tools" class="top-bar-item">
-              <img id="link-icon" class="icon hover-circle" src="" alt="Get shareable link">
-              <img id="share-icon" class="icon hover-circle" src="" alt="Share {selected}">
-              <img id="preview-icon" class="icon hover-circle" src="" alt="Preview">
-              <a id="move_to_trash" class="tool-bar-link" href="{% url 'remove_selected' %}"><img id="trash-icon" class="icon hover-circle" src="{% static 'main/img/delete_grey_24x24.png' %}" alt="Remove"></a>
-              <img id="add-icon" class="icon hover-circle" src="" alt="Add to my Drive">
-              <img id="more-icon" class="icon hover-circle" src="" alt="More actions">
+              <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" file-name="insert_link.png" alt="Get shareable link">
+              <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.png' %}" file-name="person_add.png" alt="Share {selected}">
+              <img id="preview-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/visibility.png' %}" file-name="visibility.png" alt="Preview">
+              <a id="move_to_trash" class="tool-bar-link" href="{% url 'remove_selected' %}"><img id="delete-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/delete.png' %}" file-name="delete.png" alt="Remove"></a>
+              <img id="more-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/more_vert.png' %}" alt="More actions">
             </div>
             <div class="top-bar-item top-bar-right-links">
-              <img id="view-change-icon" class="icon hover-circle" src="" alt="Grid view">
-              <img id="view-details-icon" class="icon round hover-circle" src="" alt="View details">
-              <img id="account-image-icon" class="icon round hover-circle" src="" alt="Settings">
+              <img id="view-change-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/view_module.png' %}" alt="Grid view">
+              <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.png' %}" alt="View details">
+              <img id="account-image-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" alt="Settings">
             </div>
           </div>
 

@@ -89,6 +89,7 @@ a:hover{
 }
 #selection-tools{
   /*display: none;*/
+  border-right: 1px solid #e5e5e5;
 }
 #search-bar-div{
   width: 722px;

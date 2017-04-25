@@ -50,6 +50,7 @@ a:hover{
 
 #top-bar{
   /*z-index: 5;*/
+  background-color: white;
   position: absolute;
   border-bottom: 1px solid #e5e5e5;
   width: 100%;
@@ -83,6 +84,12 @@ a:hover{
 .top-bar-right-links{
   float: right;
 }
+#tool-bar-controls{
+  float: right;
+}
+#selection-tools{
+  /*display: none;*/
+}
 #search-bar-div{
   width: 722px;
   height: 48px;
@@ -90,13 +97,15 @@ a:hover{
   border-radius: 2px;
 }
 .icon{
-  width: 40px;
-  height: 40px;
-  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding:8px;
+  box-sizing: content-box;
   margin: 0px 4px;
 }
 #path-menu-div{
-  width: 556px;
+  max-width: 556px;
+  max-width: 309px;
   border: 1px dotted black;
   /*float: right;*/
   margin-left: 180px;

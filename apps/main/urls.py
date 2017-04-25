@@ -19,6 +19,10 @@ urlpatterns = [
     url(r'^validate_identifier$', views.validate_identifier, name="validate_identifier"),
     url(r'^authenticate_login$', views.authenticate_login, name="authenticate_login"),
     url(r'^validate_registration$', views.validate_registration, name="validate_registration"),
+
+    #FILE MANIPULATION ROUTES (JSON)
+    url(r'^remove_selected', views.move_selected_to_trash, name="remove_selected"),
+
     # Test Route for File upload
     url(r'^file_upload', views.file_upload,name='file_upload')
 

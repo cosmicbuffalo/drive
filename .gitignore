@@ -1,4 +1,13 @@
 *.pyc
 db.sqlite3
 jquery-ui.min.js
+document.png
+folder.png
+materialize.js
+materialize.min.js
+materialize.css
+materialize.min.css
+
+
+
 media/

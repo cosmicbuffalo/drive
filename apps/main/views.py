@@ -213,14 +213,24 @@ def move_selected_to_trash(request, list_of_selected):
 # -----------------------
 def file_upload(request):
     if request.method == "POST":
+        
         form = FileForm(request.POST, request.FILES)
         file_name = request.FILES['file_data'].name
         if ".txt" in file_name:
-            file_type="text"
-        elif ".png" in file_name or ".img" in filename or '.jpg' in filename:
-            file_type ="image"
-        elif ".mp4" in file_name:
-            file_type="video"
+            file_type = "text"
+        if ".png" in file_name:
+            file_type = "image"
+        if ".img" in file_name:
+            file_type = "image" 
+         
+        if '.jpg' in file_name: 
+            file_type = "image"
+
+        if '.gif' in file_name:
+            file_type = "image"
+
+        if ".mp4" in file_name:
+            file_type = "video"
         
                 
         user = User.objects.get(id=request.session['current_user'])

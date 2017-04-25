@@ -5,7 +5,7 @@ from datetime import datetime
 from django.db import models
 from django.core.validators import RegexValidator
 import re, bcrypt
-import phonenumbers
+# import phonenumbers
 
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -387,7 +387,7 @@ class File(models.Model):
     file_data = models.FileField(upload_to=get_upload_file_name)
     file_type = models.CharField(max_length=15)
     owner = models.ForeignKey(User, related_name="owned_files")
-    authorized_users = models.ManyToManyField(User, related_name="authorized_files",blank=True, null=True)
+    authorized_users = models.ManyToManyField(User, related_name="authorized_files", blank=True, null=True)
     parent_folder = models.ForeignKey(Folder, related_name="child_files",blank=True, null=True)
     is_in_trash = models.BooleanField(default=False)
     stars = models.ManyToManyField(User, related_name="starred_files")

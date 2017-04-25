@@ -6,7 +6,20 @@ $ (document).ready(function(){
             $(this).addClass("highlight");
     });
 
+    $('.file-flash a').on('click', function(){
+        var selected = $(this).hasClass("highlight");
+        $(".file-flash").removeClass("highlight");
+        if(!selected)
+            $(this).addClass("highlight");
+    })
+
+
+
+
+
+
     $('#file-upload-button').on('click',function(){
+        
         event.preventDefault()
         $.ajax({
             url: $('#file-upload-form').attr('action'),

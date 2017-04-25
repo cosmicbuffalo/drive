@@ -68,6 +68,10 @@ a:hover{
   vertical-align: top;
   height: 48px;
 }
+#new-button{
+  padding: 7px 30px;
+  font-weight: 300;
+}
 .button{
   /*width: 278px;*/
   background-color: #5764f7;
@@ -75,15 +79,88 @@ a:hover{
   text-shadow: 0 1px rgba(0,0,0,0.1);
   color:white;
   font-size: 13px;
-  font-weight: 300;
-  padding: 7px 30px;
   /*border: none;*/
   border-radius: 2px;
   margin:7px 0px;
 }
+.account-info-button{
+  background: none;
+  padding: 2px 10px 4px;
+  color: #696969;
+  font-weight: 200;
+  border: 1px solid #c4c4c4;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+#sign-out-button{
+  float: right;
+  margin-right: 20px;
+}
 .top-bar-right-links{
   float: right;
 }
+#account-dropdown{
+  font-size: .9em;
+}
+#account-dropdown-top{
+  padding:20px;
+  width: 329px;
+  box-sizing: border-box;
+  /*vertical-align: top;*/
+}
+#change-profile-photo-div{
+  display: inline-block;
+}
+#account-dropdown-profile-pic{
+  width: 96px;
+}
+#account-info-div{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 17px;
+
+}
+#account-name, .email-text{
+  display: block;
+}
+#account-name{
+  font-weight: 500;
+  margin-bottom: -4px;
+}
+.email-text{
+  font-size: .9em;
+}
+#my-account-button{
+  margin-top: 14px;
+  padding: 2px 10px 4px;
+  display: inline-block;
+}
+#my-account-button:hover{
+  text-decoration: none;
+}
+
+.dropdown-content li:hover{
+  cursor: default;
+}
+
+.dropdown-content li.white-background:hover{
+  background-color: white !important;
+
+}
+.dropdown-content li.grey-background{
+  background-color: #f5f5f5
+}
+.dropdown-content li.grey-background:hover{
+  background-color: #f5f5f5 !important;
+}
+#other-account-list{
+  max-height: 231px;
+  overflow-y: scroll;
+}
+
 #tool-bar-controls{
   float: right;
 }

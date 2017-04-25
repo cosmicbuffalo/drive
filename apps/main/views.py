@@ -38,6 +38,8 @@ def show_home_page_root(request):
     folder_form = FolderForm()
     if 'current_user' in request.session.keys():
         print "Current user in session: ---->", request.session['current_user']
+    else:
+        return redirect('login')
 
 
 
@@ -78,6 +80,10 @@ def show_home_page_folder(request, folder_id):
 
 def logout(request):
     request.session.clear()
+
+    if request.method == "POST":
+        return JsonResponse({'redirect':True, 'redirect_url':'/login'})
+
     return redirect('login')
 
 def process_login(request):
@@ -221,8 +227,8 @@ def file_upload(request):
             file_type ="image"
         elif ".mp4" in file_name:
             file_type="video"
-        
-                
+
+
         user = User.objects.get(id=request.session['current_user'])
         File.objects.create(file_data=request.FILES.get('file_data'),file_type=file_type, owner=user)
         # uploaded_file = File.objects.filter(owner_id=request.session['current_user']).order_by('-created_at')[0]

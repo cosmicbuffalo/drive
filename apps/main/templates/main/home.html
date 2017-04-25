@@ -6,8 +6,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500" rel="stylesheet">
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'main/css/home_styles.css' %}">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'main/js/jquery-ui.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     <script type="text/javascript" src="{% static 'main/js/home_page.js' %}"></script>
   </head>
   <body>
@@ -30,7 +32,32 @@
           <div class="top-bar-item top-bar-right-links">
             <img id="doodle-apps-icon" class="icon" src="" alt="Doodle apps">
             <img id="notifications-icon" class="icon round" src="" alt="Notfications">
-            <img id="account-image-icon" class="icon round" src="" alt="Doodle Account">
+            <a class="dropdown-button" href="#" data-activates="account-dropdown" belowOrigin="True"><img id="account-image-icon" class="icon round" src="" alt="Doodle Account"></a>
+            <ul id='account-dropdown' class='dropdown-content'>
+              <li class="white-background">
+                <div id="account-dropdown-top" class="dropdown-menu-section">
+                  <div id="change-profile-photo-div">
+                    <img id="account-dropdown-profile-pic" src="{% static 'main/img/empty-profile.png' %}" alt="Change profile picture">
+                  </div>
+                  <div id="account-info-div">
+                    <span id="account-name">{{user.first_name}} {{user.last_name}}</span>
+                    <span id="account-email" class="email-text">{{user.email}}</span>
+                    <a href="#">Doodle+ Profile</a> - <a href="#">Privacy</a>
+                    <br>
+                    <a id="my-account-button" class="button" href="#">My Account</a>
+                  </div>
+                </div>
+              </li>
+              <li class="divider"></li>
+              <li id="other-account-list" class="grey-background">
+
+              </li>
+              <li class="divider"></li>
+              <li class="grey-background">
+                <div class="account-info-button button" href="#">Add Account</div>
+                <div id="sign-out-button" class="account-info-button button" href="{% url 'logout' %}">Sign out</div>
+              </li>
+            </ul>
           </div>
 
         </div>

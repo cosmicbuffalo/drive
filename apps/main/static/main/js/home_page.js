@@ -15,7 +15,40 @@ $ (document).ready(function(){
     // })
   })
 
+  $('.dropdown-button').dropdown({
+      inDuration: 100,
+      outDuration: 100,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 14, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+  );
 
+  $('#account-dropdown.dropdown-content').on('click', function(){
+    event.stopPropagation();
+  })
+  // $('#account-dropdown').on('mouseover', function(){
+  //   console.log("hovering over dropdown")
+  //   event.stopPropagation();
+  // })
+  $('#sign-out-button').on('click', function(){
+    post_data = {}
+    post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretoken')[0].value
+    $.post({
+      url:$(this).attr('href'),
+      dataType:'json',
+      data:post_data,
+      success:function(res){
+        console.log(res)
+        if (res.redirect !== undefined && res.redirect){
+          window.location.href = res.redirect_url
+        }
+      }
+    })
+  })
 
 
 

@@ -34,6 +34,8 @@
           </div>
 
         </div>
+
+
         <div class="top-bar-row" id="top-bar-lower">
 
           <div class="top-bar-item" id="new-button-div">
@@ -66,11 +68,22 @@
             </form>
             {% endblock %}
           </div>
-          <div class="top-bar-item top-bar-right-links">
-            <img id="view-change-icon" class="icon hover-circle" src="" alt="Grid view">
-            <img id="view-details-icon" class="icon round hover-circle" src="" alt="View details">
-            <img id="account-image-icon" class="icon round hover-circle" src="" alt="Settings">
+          <div id="tool-bar-controls" class="top-bar-item">
+            <div id="selection-tools" class="top-bar-item">
+              <img id="link-icon" class="icon hover-circle" src="" alt="Get shareable link">
+              <img id="share-icon" class="icon hover-circle" src="" alt="Share {selected}">
+              <img id="preview-icon" class="icon hover-circle" src="" alt="Preview">
+              <a id="move_to_trash" class="tool-bar-link" href="{% url 'remove_selected' %}"><img id="trash-icon" class="icon hover-circle" src="{% static 'main/img/delete_grey_24x24.png' %}" alt="Remove"></a>
+              <img id="add-icon" class="icon hover-circle" src="" alt="Add to my Drive">
+              <img id="more-icon" class="icon hover-circle" src="" alt="More actions">
+            </div>
+            <div class="top-bar-item top-bar-right-links">
+              <img id="view-change-icon" class="icon hover-circle" src="" alt="Grid view">
+              <img id="view-details-icon" class="icon round hover-circle" src="" alt="View details">
+              <img id="account-image-icon" class="icon round hover-circle" src="" alt="Settings">
+            </div>
           </div>
+
         </div>
       </div>
 

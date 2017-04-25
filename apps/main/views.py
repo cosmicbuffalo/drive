@@ -192,6 +192,20 @@ def validate_registration(request):
 
 
 
+# -----------------------------
+# - FILE MANIPULATION METHODS -
+# -----------------------------
+
+def move_selected_to_trash(request, list_of_selected):
+
+    for selected_item in list_of_selected:
+        print selected_item
+
+
+    return JsonResponse({'redirect':True, 'redirect_url':'/home'})
+
+
+
 
 
 # -----------------------
@@ -226,7 +240,7 @@ def folder_creation(request):
         root_folder.child_folders.add(Folder.objects.create(name=request.POST.get('name'), owner = user))
 
 
-        
+
 
 
 

@@ -116,7 +116,20 @@ $(document).ready(function(){
           $.post({
             url:$('#registration-form').attr('action'),
             data:post_data,
-            dataType: "json"
+            dataType: "json",
+            success: function(res){
+              console.log("*****************************")
+              console.log("entered success function")
+              console.log("res = ")
+              console.log(res)
+
+              if (res.redirect !== undefined && res.redirect) {
+                window.location.href = res.redirect_url;
+              }
+
+
+
+            }
           })
 
 

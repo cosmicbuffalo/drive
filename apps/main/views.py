@@ -36,7 +36,11 @@ def show_create_success_page(request):
 def show_home_page_root(request):
     file_form = FileForm()
     folder_form = FolderForm()
-    
+    if 'current_user' in request.session.keys():
+        print "Current user in session: ---->", request.session['current_user']
+
+
+
     context = {
         "user": User.objects.get(id=request.session['current_user']),
         "media_files": File.objects.all().order_by("-created_at"),
@@ -97,8 +101,22 @@ def process_registration(request):
         for key in request.POST.keys():
             print "key: --->", key
             print "value: ----------->", request.POST[key]
+        try:
+            result = User.objects.register_user(request.POST)
+            print result
+        except:
+            print "something went wrong, failed to create user"
+            return JsonResponse({'result':'ERROR'})
 
-    return redirect("create_account_page")
+        if result['result'] == "ERROR":
+            print "register_user returned error result"
+            return JsonResponse({'result':'ERROR'})
+
+        request.session['current_user'] = result['user'].id
+
+        print "current_user in session:",  request.session['current_user']
+
+    return JsonResponse({'redirect':True,'redirect_url':'/home'})
 
 
 # -----------------------
@@ -182,8 +200,8 @@ def file_upload(request):
             'updated_at':uploaded_file.updated_at,
             'file_size':uploaded_file.file_data.size|filesizeformat
         }
-        
-        
+
+
     return JsonResponse(file_info)
 
 

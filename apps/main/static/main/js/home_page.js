@@ -1,5 +1,4 @@
 $ (document).ready(function(){
-
   //tool bar button functionality
   $('.tool-bar-link').on('click', function(){
 

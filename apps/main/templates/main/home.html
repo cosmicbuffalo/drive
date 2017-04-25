@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
   <head>
     <meta charset="utf-8">
     <title>My Drive</title>
@@ -59,20 +60,21 @@
               </li>
             </ul>
           </div>
-
         </div>
 
 
-        <div class="top-bar-row" id="top-bar-lower">
 
-          <div class="top-bar-item" id="new-button-div">
-            <form action="#" method="post">
-              {% csrf_token %}
-              <input class="button" id="new-button" type="submit" name="" value="NEW">
-            </form>
-          </div>
-          <div class="top-bar-item" id="path-menu-div">
-            <select class="path-menu" name="">
+
+      <div class="top-bar-row" id="top-bar-lower">
+
+        <div class="top-bar-item" id="new-button-div">
+          <form action="#" method="post">
+            {% csrf_token %}
+            <input class="button" id="new-button" type="submit" name="" value="NEW">
+          </form>
+        </div>
+        <div class="top-bar-item" id="path-menu-div">
+          <select class="path-menu" name="">
               <option value="">My Drive</option>
               <option value="">New Folder</option>
               <option value="">Upload files...</option>
@@ -81,110 +83,132 @@
               <option value="">Doodle Sheets</option>
               <option value="">Doodle Slides</option>
               <option value="">More...</option>
-            </select>
-            {% block content %}
-            <form id="file-upload-form" action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
-              {%csrf_token%}
-                {{file_form.as_p}}
-              <input id="file-upload-button"type="submit" value ="submit">
-            </form>
-            <form action="{% url 'folder_creation'%}" method="POST">
-              {%csrf_token%}
-                {{folder_form.as_p}}
-              <input type="submit" value ="submit">
-            </form>
-            {% endblock %}
-          </div>
-          <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
-            <div id="selection-tools" class="top-bar-item">
-              <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" file-name="insert_link.png" alt="Get shareable link">
-              <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.png' %}" file-name="person_add.png" alt="Share {selected}">
-              <img id="preview-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/visibility.png' %}" file-name="visibility.png" alt="Preview">
-              <a id="move_to_trash" class="tool-bar-link" href="{% url 'remove_selected' %}"><img id="delete-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/delete.png' %}" file-name="delete.png" alt="Remove"></a>
-              <img id="more-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/more_vert.png' %}" alt="More actions">
-            </div>
-            <div class="top-bar-item top-bar-right-links">
-              <img id="view-change-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/view_module.png' %}" alt="Grid view">
-              <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.png' %}" alt="View details">
-              <img id="account-image-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" alt="Settings">
-            </div>
-          </div>
-
+            </select> {% block content %}
+          <form id="file-upload-form" action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
+            {%csrf_token%} {{file_form.as_p}}
+            <input id="file-upload-button" type="submit" value="submit">
+          </form>
+          <form action="{% url 'folder_creation'%}" method="POST">
+            {%csrf_token%} {{folder_form.as_p}}
+            <input type="submit" value="submit">
+          </form>
+          {% endblock %}
         </div>
-      </div>
-
-      <div id="main">
-        <div class="main-content" id="left-bar">
-          <div class="left-bar-section" id="left-bar-top">
-            <div class="left-bar-tab dropdown-menu" id="drive-heirarchy-div">
-              <img class="icon" src="" alt="My Drive icon">
-              <label class="tab-label">My Drive</label>
-            </div>
-            <div class="left-bar-tab">
-              <img class="icon" src="" alt="Shared with me icon">
-              <label class="tab-label">Shared with me</label>
-            </div>
-            <div class="left-bar-tab">
-              <img class="icon" src="" alt="Recent icon">
-              <label class="tab-label">Recent</label>
-            </div>
-            <div class="left-bar-tab">
-              <img class="icon" src="" alt="Doogle Photos icon">
-              <label class="tab-label">Doodle Photos</label>
-            </div>
-            <div class="left-bar-tab">
-              <img class="icon" src="" alt="Starred icon">
-              <label class="tab-label">Starred</label>
-            </div>
-            <div class="left-bar-tab">
-              <img class="icon" src="" alt="Trash icon">
-              <label class="tab-label">Trash</label>
-            </div>
+        <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
+          <div id="selection-tools" class="top-bar-item">
+            <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" file-name="insert_link.png"
+              alt="Get shareable link">
+            <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.png' %}" file-name="person_add.png"
+              alt="Share {selected}">
+            <img id="preview-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/visibility.png' %}" file-name="visibility.png"
+              alt="Preview">
+            <a id="move_to_trash" class="tool-bar-link" href="{% url 'remove_selected' %}"><img id="delete-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/delete.png' %}" file-name="delete.png"
+                alt="Remove"></a>
+            <img id="more-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/more_vert.png' %}" alt="More actions">
+          </div>
+          <div class="top-bar-item top-bar-right-links">
+            <img id="view-change-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/view_module.png' %}" alt="Grid view">
+            <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.png' %}" alt="View details">
+            <img id="account-image-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" alt="Settings">
           </div>
         </div>
-        <div class="main-content" id="dynamic-home-content">
-          <div class="main-content" id="main-table-wrapper">
-            <table cellspacing=0 id="main-table">
-              <thead>
-                <tr class="header-row">
-                  <th><label class="table-header-label">Name</label></th>
-                  <th><label class="table-header-label">Owner</label></th>
-                  <th><label class="table-header-label">Last modified</label></th>
-                  <th><label class="table-header-label">File size</label></th>
-                </tr>
-              </thead>
-              <tbody id="table-body">
-                {% for folder in folders %}
-                {% if folder.is_master_folder == 0 %}
-                <tr folder-id='{{folder.id}}' item-type="file">
-                  <td>{{folder.name}}</td>
-                  <td>{{folder.owner.first_name}}</td>
-                  <td>{{folder.updated_at}}</td>
-                  <td>-</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-                {% for file in media_files %}
-                {% if user.id == file.owner_id %}
-                  <tr item-id='{{file.id}}'item-type="file">
-                    <td><a href="{{ file.file_data.url }}">{{file.file_data}}</a></td>
-                    <td>{{file.owner.first_name}}</td>
-                    <td>{{file.updated_at}}</td>
-                    <td>{{file.file_data.size|filesizeformat}}</td>
-                  </tr>
-                  {% endif %}
-                {% endfor %}
-              </tbody>
-            </table>
 
-          </div>
-        </div>
       </div>
     </div>
 
+    <div id="main">
+      <div class="main-content" id="left-bar">
+        <div class="left-bar-section" id="left-bar-top">
+          <div class="left-bar-tab dropdown-menu" id="drive-heirarchy-div">
+            <img class="icon" src="" alt="My Drive icon">
+            <label class="tab-label">My Drive</label>
+          </div>
+          <div class="left-bar-tab">
+            <img class="icon" src="" alt="Shared with me icon">
+            <label class="tab-label">Shared with me</label>
+          </div>
+          <div class="left-bar-tab">
+            <img class="icon" src="" alt="Recent icon">
+            <label class="tab-label">Recent</label>
+          </div>
+          <div class="left-bar-tab">
+            <img class="icon" src="" alt="Doogle Photos icon">
+            <label class="tab-label">Doodle Photos</label>
+          </div>
+          <div class="left-bar-tab">
+            <img class="icon" src="" alt="Starred icon">
+            <label class="tab-label">Starred</label>
+          </div>
+          <div class="left-bar-tab">
+            <img class="icon" src="" alt="Trash icon">
+            <label class="tab-label">Trash</label>
+          </div>
+        </div>
+      </div>
+      <div class="main-content" id="dynamic-home-content">
+        <div class="main-content" id="main-table-wrapper">
+          <table cellspacing=0 id="main-table">
+            <thead>
+              <tr class="header-row">
+                <th><label class="table-header-label">Name</label></th>
+                <th><label class="table-header-label">Owner</label></th>
+                <th><label class="table-header-label">Last modified</label></th>
+                <th><label class="table-header-label">File size</label></th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              {% for folder in folders %}
+                {% if folder.is_master_folder == 0 %}
+                  <tr folder-id='{{folder.id}}' item-type="folder">
+                    <td>
+                      <div class="round-image-border">
+                        <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png" alt="">
+                      </div>
+                      <div class="folder-text">
+                        {{folder.name}}
+                      </div>
+                    </td>
+                    <td>{{folder.owner.first_name}}</td>
+                    <td>{{folder.updated_at}}</td>
+                    <td>-</td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+              {% for file in media_files %}
+                  {% if user.id == file.owner_id %}
+                    <tr item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
+                      <td class="radius">
+                        <div class="round-image-border">
+                          {% if file.file_type == "image" %}
+                          <img class="thumbnail table-image materialboxed" width="300" src="{{file.file_data.url}}">
+                          {%elif file.file_type == "text" %}
+                          <img class="table-image" src="{% static 'main/img/icons/grey/document.png' %}" file-name="document.png" alt="">
+                    {% endif %}
+                    </div>
+                      <div class="folder-text">
+                    <a href="{{file.file_data.url}}">
+                      {{file.file_data}}
+                        </a>
+                        </div>
+                      </td>
+                      <td>{{file.owner.first_name}}</td>
+                      <td>{{file.updated_at}}</td>
+                      <td>{{file.file_data.size|filesizeformat}}</td>
+                    </tr>
+                    {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
 
-  </body>
+
+</body>
+
 </html>

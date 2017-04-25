@@ -117,9 +117,9 @@
         </div>
         <div class="main-content" id="dynamic-home-content">
           <div class="main-content" id="main-table-wrapper">
-            <table cellspacing=0>
+            <table cellspacing=0 id="main-table">
               <thead>
-                <tr>
+                <tr class="header-row">
                   <th><label class="table-header-label">Name</label></th>
                   <th><label class="table-header-label">Owner</label></th>
                   <th><label class="table-header-label">Last modified</label></th>
@@ -129,7 +129,7 @@
               <tbody id="table-body">
                 {% for folder in folders %}
                 {% if folder.is_master_folder == 0 %}
-                <tr class="file-flash" folder-id='{{folder.id}}' item-type="file">
+                <tr folder-id='{{folder.id}}' item-type="file">
                   <td>{{folder.name}}</td>
                   <td>{{folder.owner.first_name}}</td>
                   <td>{{folder.updated_at}}</td>
@@ -139,7 +139,7 @@
                 {% endfor %}
                 {% for file in media_files %}
                 {% if user.id == file.owner_id %}
-                  <tr class="file-flash" item-id='{{file.id}}'item-type="file">
+                  <tr item-id='{{file.id}}'item-type="file">
                     <td><a href="{{ file.file_data.url }}">{{file.file_data}}</a></td>
                     <td>{{file.owner.first_name}}</td>
                     <td>{{file.updated_at}}</td>

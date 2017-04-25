@@ -40,6 +40,7 @@ def show_home_page_root(request):
     context = {
         "user": User.objects.get(id=request.session['current_user']),
         "media_files": File.objects.all().order_by("-created_at"),
+        'folders': Folder.objects.filter(owner__id= request.session['current_user']).order_by("-created_at"),
         "file_form" : file_form,
         'folder_form': folder_form
 
@@ -190,6 +191,17 @@ def file_upload(request):
 def folder_creation(request):
     if request.method == "POST":
         form = FolderForm(request.POST)
+        user = User.objects.get(id= request.session['current_user'])
+
+        root_folder = Root_Folder.objects.get(user=user).folder
+
+        root_folder.child_folders.add(Folder.objects.create(name=request.POST.get('name'), owner = user))
+
+
+        
+
+
+
 
     return redirect('home_root')
 

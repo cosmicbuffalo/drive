@@ -118,10 +118,20 @@
                 </tr>
               </thead>
               <tbody id="table-body">
+                {% for folder in folders %}
+                {% if folder.is_master_folder == 0 %}
+                <tr class="file-flash" folder-id='{{folder.id}}'>
+                  <td>{{folder.name}}</td>
+                  <td>{{folder.owner.first_name}}</td>
+                  <td>{{folder.updated_at}}</td>
+                  <td>-</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
                 {% for file in media_files %}
                 {% if user.id == file.owner_id %}
-                  <tr class="file-flash">
-                    <td>{{file.file_data}}</td>
+                  <tr class="file-flash" item-id='{{file.id}}'item-type="file">
+                    <td><a href="{{ file.file_data.url }}">{{file.file_data}}</a></td>
                     <td>{{file.owner.first_name}}</td>
                     <td>{{file.updated_at}}</td>
                     <td>{{file.file_data.size|filesizeformat}}</td>

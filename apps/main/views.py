@@ -113,6 +113,16 @@ def process_registration(request):
 
         request.session['current_user'] = result['user'].id
 
+        print "creating new root folder for registered user"
+        new_user_root_folder = Folder.objects.create(
+                                                        name="{}_root".format(result['user'].id),
+                                                        owner=result['user'],
+                                                        is_master_folder=True
+                                                    )
+        print "assigning Root_Folder relationship for new root folder of registered user"
+        Root_Folder.objects.create(user=result['user'], folder=new_user_root_folder)
+
+        print "success"
         print "current_user in session:",  request.session['current_user']
 
     return JsonResponse({'redirect':True,'redirect_url':'/home'})

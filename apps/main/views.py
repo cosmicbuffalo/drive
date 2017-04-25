@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+import glob
 from django.shortcuts import render, redirect, reverse
 from .models import *
 from forms import *
@@ -200,21 +200,28 @@ def validate_registration(request):
 def file_upload(request):
     if request.method == "POST":
         form = FileForm(request.POST, request.FILES)
+        file_name = request.FILES['file_data'].name
+        if ".txt" in file_name:
+            file_type="text"
+        elif ".png" in file_name or ".img" in filename or '.jpg' in filename:
+            file_type ="image"
+        elif ".mp4" in file_name:
+            file_type="video"
+        
+                
         user = User.objects.get(id=request.session['current_user'])
-        File.objects.create(file_data=request.FILES.get('file_data'),file_type='image', owner=user)
-        uploaded_file = File.objects.filter(owner_id=request.session['current_user']).order_by('-created_at')[0]
+        File.objects.create(file_data=request.FILES.get('file_data'),file_type=file_type, owner=user)
+        # uploaded_file = File.objects.filter(owner_id=request.session['current_user']).order_by('-created_at')[0]
 
-        file_info = {
-            'file_data':uploaded_file.file_data,
-            'owner_name':uploaded_file.owner.first_name,
-            'updated_at':uploaded_file.updated_at,
-            'file_size':uploaded_file.file_data.size|filesizeformat
-        }
+        # file_info = {
+        #     'file_data':uploaded_file.file_data,
+        #     'owner_name':uploaded_file.owner.first_name,
+        #     'updated_at':uploaded_file.updated_at,
+        #     'file_size':uploaded_file.file_data.size|filesizeformat
+        # }
+    # return JsonResponse(file_info)
 
-
-    return JsonResponse(file_info)
-
-
+    return redirect("home_root")
 
 def folder_creation(request):
     if request.method == "POST":

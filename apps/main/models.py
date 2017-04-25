@@ -320,6 +320,21 @@ class UserManager(models.Manager):
         return {'result':'success', 'messages':messages, 'validated_data':validated_data}
 
 
+    def register_user(self, postData):
+
+        salt = bcrypt.gensalt()
+
+        hashed_password = bcrypt.hashpw(str(postData['password']), str(salt))
+
+        try:
+            user = User.objects.create(first_name=postData['first_name'], last_name=postData['last_name'], email=postData['email'], password=hashed_password, salt=salt, birthday=postData['birthday'], gender=postData['gender'], phone_number=postData['phone_number'])
+            print "successfully created new user"
+        except:
+            print "failed to create new user"
+            return {'result':'ERROR'}
+
+        return {'result':'success', 'user':user}
+
 
 
     def validate_identifier(self, identifier):

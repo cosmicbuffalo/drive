@@ -329,17 +329,14 @@ tbody{
 tr{
   height: 48px;
   padding:20px 20px;
-  
+
 }
 
 td{
   padding: 6px 0px 0px 5px !important;
-  
-}
-tr.selected td{
-border-color:#5764f7
 
 }
+
 #table-body tr.selected {
   background-color: #5764f7;
   color: white;
@@ -418,4 +415,11 @@ td{
 }
 tr{
   border-bottom: 1px solid #ebebeb;
+}
+tr.selected{
+  border-bottom: 1px solid #5764f7;
+}
+tr.header-row :first-child label{
+  padding-left: 9px;
+  font-weight: bold;
 }

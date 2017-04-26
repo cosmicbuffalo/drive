@@ -14,7 +14,7 @@ $ (document).ready(function(){
     // })
   })
 
-  $('.dropdown-button').dropdown({
+  $('#account-dropdown-button').dropdown({
       inDuration: 100,
       outDuration: 100,
       constrainWidth: false, // Does not change width of dropdown to that of the activator
@@ -25,6 +25,24 @@ $ (document).ready(function(){
       stopPropagation: false // Stops event propagation
     }
   );
+  $('#new-button').dropdown({
+      inDuration: 100,
+      outDuration: 100,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 14, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+  );
+  //
+  // $('#file-upload-button').on('click', function(){
+  //   $('#file-input').trigger('click');
+  // })
+
+
+
 
   $('#account-dropdown.dropdown-content').on('click', function(){
     event.stopPropagation();

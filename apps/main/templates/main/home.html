@@ -36,7 +36,7 @@
                 <img id="notifications-icon" class="icon round" src="{% static 'main/img/icons/notifications.png' %}" alt="Notfications">
               </div>
             </div>
-            <a class="dropdown-button" href="#" data-activates="account-dropdown" belowOrigin="True">
+            <a id="account-dropdown-button" class="dropdown-button" href="#" data-activates="account-dropdown" belowOrigin="True">
               <img id="account-image-icon" class="icon round" src="{% static 'main/img/empty-profile.png' %}" alt="Doodle Account">
             </a>
             <ul id='account-dropdown' class='dropdown-content' style="top:57px;">
@@ -75,8 +75,48 @@
         <div class="top-bar-item" id="new-button-div">
           <form action="#" method="post">
             {% csrf_token %}
-            <input class="button" id="new-button" type="submit" name="" value="NEW">
+            <a class="button dropdown-button" id="new-button" data-activates="new-button-dropdown">NEW</a>
           </form>
+          <ul id="new-button-dropdown" class="dropdown-content">
+            <div class="top-bottom-spacer"></div>
+            <li id="new-folder-button" class="dropdown-item">
+              <img class="icon" src="{% static 'main/img/icons/grey/new_folder.png' %}" alt="New folder">
+              <drop-label>New folder...</drop-label>
+              <!-- <form action="{% url 'folder_creation'%}" method="POST">
+                {% csrf_token %}
+                {{folder_form.as_p}}
+                <input type="submit" value="submit">
+              </form> -->
+            </li>
+            <li class="divider spacer-divider"></li>
+            <li id="file-upload-button" class="dropdown-item">
+              <img class="icon" src="{% static 'main/img/icons/grey/file_upload.png' %}" alt="File upload">
+              <drop-label>File upload</drop-label>
+              <form id="file-upload-form" action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input id="file-input" type="file" name="uploaded_file">
+              </form>
+
+            </li>
+            <li class="dropdown-item">
+              <img class="icon" src="{% static 'main/img/icons/grey/folder_upload.png' %}" alt="Folder upload">
+              <drop-label>Folder upload</drop-label>
+            </li>
+            <li class="divider spacer-divider"></li>
+            <li class="dropdown-item">
+              <drop-label>Doodle Docs</drop-label>
+            </li>
+            <li class="dropdown-item">
+              <drop-label>Doodle Sheets</drop-label>
+            </li>
+            <li class="dropdown-item">
+              <drop-label>Doodle Slides</drop-label>
+            </li>
+            <li class="dropdown-item">
+              <drop-label>more</drop-label>
+            </li>
+            <div class="top-bottom-spacer"></div>
+          </ul>
         </div>
         <div class="top-bar-item" id="path-menu-div">
           <select class="path-menu" name="">
@@ -89,16 +129,7 @@
               <option value="">Doodle Slides</option>
               <option value="">More...</option>
             </select> {% block content %}
-          <form id="file-upload-form" action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %} 
-            {{file_form.as_p}}
-            <input id="file-upload-button" type="submit" value="submit">
-          </form>
-          <form action="{% url 'folder_creation'%}" method="POST">
-            {% csrf_token %}
-            {{folder_form.as_p}}
-            <input type="submit" value="submit">
-          </form>
+
           {% endblock %}
         </div>
         <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
@@ -116,7 +147,7 @@
           <div class="top-bar-item top-bar-right-links">
             <img id="view-change-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/view_module.png' %}" alt="Grid view">
             <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.png' %}" alt="View details">
-            <img id="account-image-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" alt="Settings">
+            <img id="settings-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" alt="Settings">
           </div>
         </div>
 

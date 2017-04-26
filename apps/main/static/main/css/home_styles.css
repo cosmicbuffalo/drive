@@ -22,6 +22,9 @@ a{
 a:hover{
   text-decoration: underline;
 }
+a.dropdown-button:hover{
+  text-decoration: none;
+}
 #logo-chunk{
   padding:0px 29px 0px 16px;
 }
@@ -61,16 +64,47 @@ a:hover{
 .top-bar-row{
   padding:8px;
   white-space: nowrap;
-
+}
+#top-bar-lower{
+  padding-top: 4px;
 }
 .top-bar-item{
   display: inline-block;
   vertical-align: top;
   height: 48px;
 }
+#new-button-div{
+  padding-left: 18px;
+  padding-top: 17px;
+}
 #new-button{
   padding: 7px 30px;
   font-weight: 300;
+  color: white !important;
+}
+li.spacer-divider{
+  margin:7px 0px
+}
+li.dropdown-item{
+  min-height: 32px !important;
+  height: 32px;
+  width: 321px !important;
+  padding-left: 10px;
+}
+li img.icon{
+  padding-top: 4px;
+}
+drop-label{
+  display: inline-block;
+  padding-top: 6px;
+  font-size: .9em;
+}
+#new-button-dropdown div.top-bottom-spacer{
+  height: 16px;
+}
+#file-upload-form{
+  position: absolute;
+  top:-200px;
 }
 .button{
   /*width: 278px;*/
@@ -121,6 +155,8 @@ a:hover{
 #account-image-icon{
   width: 30px;
   height: 30px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 #account-dropdown{
   font-size: .9em;
@@ -320,7 +356,7 @@ border-color:#4285f4
   padding-left: 8px;
 }
 
-a{
+tr a{
   color: #404040 !important;
 }
 

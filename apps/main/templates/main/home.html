@@ -24,16 +24,22 @@
             <span class="top-bar-item" id="top-bar-drive-link">Drive</span>
           </div>
           <div class="top-bar-item" id="search-bar-div">
-            <img id="search-bar-icon" class="icon" src="" alt="Search Icon">
+            <img id="search-bar-icon" class="icon" src="{% static 'main/img/icons/grey/search.png' %}" alt="Search Icon">
             <form class="search" action="#" method="post">
-              <input type="text" name="search-field" value="" placeholder="Search Drive">
+              <input id="search-field" type="text" name="search-field" value="" placeholder="Search Drive">
             </form>
           </div>
           <div class="top-bar-item top-bar-right-links">
-            <img id="doodle-apps-icon" class="icon" src="" alt="Doodle apps">
-            <img id="notifications-icon" class="icon round" src="" alt="Notfications">
-            <a class="dropdown-button" href="#" data-activates="account-dropdown" belowOrigin="True"><img id="account-image-icon" class="icon round" src="" alt="Doodle Account"></a>
-            <ul id='account-dropdown' class='dropdown-content'>
+            <div id="apps-and-notifications-wrapper">
+              <img id="doodle-apps-icon" class="icon" src="{% static 'main/img/icons/grey/apps.png' %}" alt="Doodle apps">
+              <div id="notification-icon-sizer">
+                <img id="notifications-icon" class="icon round" src="{% static 'main/img/icons/notifications.png' %}" alt="Notfications">
+              </div>
+            </div>
+            <a class="dropdown-button" href="#" data-activates="account-dropdown" belowOrigin="True">
+              <img id="account-image-icon" class="icon round" src="{% static 'main/img/empty-profile.png' %}" alt="Doodle Account">
+            </a>
+            <ul id='account-dropdown' class='dropdown-content' style="top:57px;">
               <li class="white-background">
                 <div id="account-dropdown-top" class="dropdown-menu-section">
                   <div id="change-profile-photo-div">

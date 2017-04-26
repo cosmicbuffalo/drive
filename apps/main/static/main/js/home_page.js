@@ -1,5 +1,10 @@
 $ (document).ready(function(){
+    
   //tool bar button functionality
+  $('#new-folder-button').on('click', function(){
+      console.log('working')
+        $('#modal1').modal();
+  })
   $('.tool-bar-link').on('click', function(){
 
     event.preventDefault()

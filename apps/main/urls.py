@@ -13,7 +13,7 @@ urlpatterns = [
     # REDIRECT ROUTES
     url(r'^process_login$', views.process_login, name="process_login"),
     url(r'^process_registration$', views.process_registration, name="process_registration"),
-    url(r'^folder_creation/(?P<folder_id>\d+)$', views.folder_creation,name='folder_creation'),
+    url(r'^folder_creation/(?P<folder_id>\d+)$', views.folder_creation, name='folder_creation'),
     # JSON ROUTES
     url(r'^validate_identifier$', views.validate_identifier, name="validate_identifier"),
     url(r'^authenticate_login$', views.authenticate_login, name="authenticate_login"),

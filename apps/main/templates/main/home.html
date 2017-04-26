@@ -81,7 +81,7 @@
             <li id="new-folder-button" class="dropdown-item">
               <img class="icon" src="{% static 'main/img/icons/grey/new_folder.png' %}" alt="New folder">
               <drop-label>New folder...</drop-label>
-              <!-- <form action="{% url 'folder_creation'%}" method="POST">
+              <!-- <form action="{% url 'folder_creation' folder_id=parent_folder.id %}" method="POST">
                 {% csrf_token %}
                 {{folder_form.as_p}}
                 <input type="submit" value="submit">
@@ -91,11 +91,6 @@
             <li id="file-upload-button" class="dropdown-item">
               <img class="icon" src="{% static 'main/img/icons/grey/file_upload.png' %}" alt="File upload">
               <drop-label>File upload</drop-label>
-              <form id="file-upload-form" action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input id="file-input" type="file" name="uploaded_file">
-              </form>
-
             </li>
             <li class="dropdown-item">
               <img class="icon" src="{% static 'main/img/icons/grey/folder_upload.png' %}" alt="Folder upload">
@@ -127,7 +122,7 @@
               <option value="">Doodle Sheets</option>
               <option value="">Doodle Slides</option>
               <option value="">More...</option>
-            </select> {% block content %}
+            </select>
         </div>
         <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
           <div id="selection-tools" class="top-bar-item">
@@ -242,6 +237,13 @@
     </div>
   </div>
 
+
+  <div id="invis-elements">
+    <form id="file-upload-form" action="{% url 'file_upload' folder_id=parent_folder.id %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input id="file-input" type="file" name="file_data">
+    </form>
+  </div>
 
 
 

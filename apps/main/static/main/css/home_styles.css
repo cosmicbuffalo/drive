@@ -304,16 +304,19 @@ tbody{
 tr{
   height: 48px;
   padding:20px 20px;
+  
 }
 td{
   vertical-align: middle;
+  padding: 6px 0px 0px 5px !important;
+  
 }
 tr.selected td{
-border-color:#4285f4
+border-color:#5764f7
 
 }
 #table-body tr.selected {
-  background-color: #4285f4;
+  background-color: #5764f7;
 
   color: white;
   }

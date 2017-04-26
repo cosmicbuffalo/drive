@@ -69,7 +69,6 @@
 
 
 
-
       <div class="top-bar-row" id="top-bar-lower">
 
         <div class="top-bar-item" id="new-button-div">
@@ -94,7 +93,7 @@
             {{file_form.as_p}}
             <input id="file-upload-button" type="submit" value="submit">
           </form>
-          <form action="{% url 'folder_creation'%}" method="POST">
+          <form action="{% url 'folder_creation' folder_id=parent_folder.id %}" method="POST">
             {% csrf_token %}
             {{folder_form.as_p}}
             <input type="submit" value="submit">
@@ -204,6 +203,8 @@
                     </tr>
                     {% endif %}
               {% endfor %}
+              
+
             </tbody>
           </table>
 

@@ -64,15 +64,22 @@ def show_home_page_root(request):
 
 def show_home_page_folder(request, folder_id):
 
-    if 'current_user' in request.session.keys():
-        print "Current user success"
+    file_form = FileForm()
+    folder_form = FolderForm()
     
     folder = Folder.objects.get(id=folder_id)
-    print folder
-    folder2 = Folder.objects.filter(parent_folder=folder).order_by('-created_at')
-    print folder2
+    # folder2 = Folder.objects.filter(parent_folder=folder).order_by('-created_at')
+
+   
     context = {
+        "user": User.objects.get(id=request.session['current_user']),
+        "media_files": File.objects.filter(parent_folder=folder).order_by('-created_at'),
         "folders": Folder.objects.filter(parent_folder=folder).order_by('-created_at'),
+        'parent_folder' : folder,
+        "file_form" : file_form,
+        'folder_form': folder_form,
+
+        
     }
     
     return render(request, "main/home.html", context)
@@ -256,24 +263,18 @@ def file_upload(request, folder_id):
         # }
     # return JsonResponse(file_info)
 
-    return redirect("home_root")
+    return redirect(reverse("home_folder", kwargs={'folder_id':folder_id}))
 
-def folder_creation(request):
+def folder_creation(request, folder_id):
     if request.method == "POST":
-        form = FolderForm(request.POST)
         user = User.objects.get(id= request.session['current_user'])
 
-        root_folder = Root_Folder.objects.get(user=user).folder
+        parent_folder = Folder.objects.get(id=folder_id)
 
-        root_folder.child_folders.add(Folder.objects.create(name=request.POST.get('name'), owner = user))
+        parent_folder.child_folders.add(Folder.objects.create(name=request.POST.get('name'), owner=user))
 
-
-    return redirect('home_root')
-
-
-def enter_folder(request, id):
-
-    return redirect('home_root')
+        # Folder.objects.create(name=request.POST.get('name'), owner=user, parent_folder=parent_folder)
+    return redirect(reverse("home_folder", kwargs={'folder_id':folder_id}))
 
 
 

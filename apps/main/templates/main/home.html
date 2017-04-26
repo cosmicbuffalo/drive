@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <title>My Drive</title>
@@ -91,11 +90,13 @@
               <option value="">More...</option>
             </select> {% block content %}
           <form id="file-upload-form" action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
-            {%csrf_token%} {{file_form.as_p}}
+            {% csrf_token %} 
+            {{file_form.as_p}}
             <input id="file-upload-button" type="submit" value="submit">
           </form>
           <form action="{% url 'folder_creation'%}" method="POST">
-            {%csrf_token%} {{folder_form.as_p}}
+            {% csrf_token %}
+            {{folder_form.as_p}}
             <input type="submit" value="submit">
           </form>
           {% endblock %}
@@ -192,7 +193,7 @@
                     {% endif %}
                     </div>
                       <div class="folder-text">
-                    <a href="{{file.file_data.url}}">
+                    <a href="{{ MEDIA_URL }}{{file.file_data.url}}" download>
                       {{file.file_data}}
                         </a>
                         </div>

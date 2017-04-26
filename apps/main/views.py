@@ -41,14 +41,16 @@ def show_home_page_root(request):
     else:
         return redirect('login')
 
+    parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
 
 
     context = {
         "user": User.objects.get(id=request.session['current_user']),
-        "media_files": File.objects.all().order_by("-created_at"),
-        'folders': Folder.objects.filter(owner__id= request.session['current_user']).order_by("-created_at"),
+        "media_files": File.objects.filter(parent_folder=Root_Folder.objects.get(user_id=request.session['current_user']).folder).order_by('-created_at'),
+        'folders': Folder.objects.filter(parent_folder=parent_folder).order_by('-created_at'),
         "file_form" : file_form,
-        'folder_form': folder_form
+        'folder_form': folder_form,
+        "parent_folder" : parent_folder,
 
     }
 
@@ -62,16 +64,24 @@ def show_home_page_root(request):
 
 def show_home_page_folder(request, folder_id):
 
-    if 'current_user' in request.session.keys():
-        print "Current user success"
+    file_form = FileForm()
+    folder_form = FolderForm()
+    
+    folder = Folder.objects.get(id=folder_id)
+    # folder2 = Folder.objects.filter(parent_folder=folder).order_by('-created_at')
 
+   
     context = {
-        "folder":Folder.objects.get(pk=folder_id)
-    }
-    media = {
+        "user": User.objects.get(id=request.session['current_user']),
+        "media_files": File.objects.filter(parent_folder=folder).order_by('-created_at'),
+        "folders": Folder.objects.filter(parent_folder=folder).order_by('-created_at'),
+        'parent_folder' : folder,
+        "file_form" : file_form,
+        'folder_form': folder_form,
 
+        
     }
-
+    
     return render(request, "main/home.html", context)
 
 # ------------------------------
@@ -215,9 +225,10 @@ def move_selected_to_trash(request, list_of_selected):
 # -----------------------
 # - FILE UPLOAD METHOD -
 # -----------------------
-def file_upload(request):
+def file_upload(request, folder_id):
+    print "didnt run method"
     if request.method == "POST":
-
+        print"Fired"
         form = FileForm(request.POST, request.FILES)
         file_name = request.FILES['file_data'].name
         if ".txt" in file_name:
@@ -236,8 +247,12 @@ def file_upload(request):
         if ".mp4" in file_name:
             file_type = "video"
 
+        folder = Folder.objects.get(id=folder_id)
         user = User.objects.get(id=request.session['current_user'])
-        File.objects.create(file_data=request.FILES.get('file_data'),file_type=file_type, owner=user)
+
+        File.objects.create(file_data=request.FILES.get('file_data'),file_type=file_type, owner=user, parent_folder=folder)
+        
+        
         # uploaded_file = File.objects.filter(owner_id=request.session['current_user']).order_by('-created_at')[0]
 
         # file_info = {
@@ -248,21 +263,18 @@ def file_upload(request):
         # }
     # return JsonResponse(file_info)
 
-    return redirect("home_root")
+    return redirect(reverse("home_folder", kwargs={'folder_id':folder_id}))
 
-def folder_creation(request):
+def folder_creation(request, folder_id):
     if request.method == "POST":
-        form = FolderForm(request.POST)
         user = User.objects.get(id= request.session['current_user'])
 
-        root_folder = Root_Folder.objects.get(user=user).folder
+        parent_folder = Folder.objects.get(id=folder_id)
 
-        root_folder.child_folders.add(Folder.objects.create(name=request.POST.get('name'), owner = user))
+        parent_folder.child_folders.add(Folder.objects.create(name=request.POST.get('name'), owner=user))
 
-
-    return redirect('home_root')
-
-
+        # Folder.objects.create(name=request.POST.get('name'), owner=user, parent_folder=parent_folder)
+    return redirect(reverse("home_folder", kwargs={'folder_id':folder_id}))
 
 
 

@@ -111,7 +111,7 @@
             <div class="top-bottom-spacer"></div>
           </ul>
         </div>
-        <div class="top-bar-item" id="path-menu-div">
+        <!-- <div class="top-bar-item" id="path-menu-div">
           <select class="path-menu" name="">
               <option value="">My Drive</option>
               <option value="">New Folder</option>
@@ -122,7 +122,7 @@
               <option value="">Doodle Slides</option>
               <option value="">More...</option>
             </select>
-        </div>
+        </div> -->
         <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
           <div id="selection-tools" class="top-bar-item">
             <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" file-name="insert_link.png"
@@ -144,34 +144,38 @@
 
       </div>
     </div>
-  
+
     <div id="main">
       <div class="main-content" id="left-bar">
-        <div class="left-bar-section" id="left-bar-top">
-          <div class="left-bar-tab dropdown-menu" id="drive-heirarchy-div">
-            <img class="icon" src="" alt="My Drive icon">
-            <label class="tab-label">My Drive</label>
-          </div>
-          <div class="left-bar-tab">
-            <img class="icon" src="" alt="Shared with me icon">
-            <label class="tab-label">Shared with me</label>
-          </div>
-          <div class="left-bar-tab">
-            <img class="icon" src="" alt="Recent icon">
-            <label class="tab-label">Recent</label>
-          </div>
-          <div class="left-bar-tab">
-            <img class="icon" src="" alt="Doogle Photos icon">
-            <label class="tab-label">Doodle Photos</label>
-          </div>
-          <div class="left-bar-tab">
-            <img class="icon" src="" alt="Starred icon">
-            <label class="tab-label">Starred</label>
-          </div>
-          <div class="left-bar-tab">
-            <img class="icon" src="" alt="Trash icon">
-            <label class="tab-label">Trash</label>
-          </div>
+        <div id="left-bar-top" class="left-bar-section" >
+          <ul id="left-bar-tab-menu">
+            <div class="top-bottom-spacer"></div>
+            <li class="left-bar-tab dropdown-menu" id="drive-heirarchy-div">
+              <img class="icon" src="{% static 'main/img/icons/grey/storage.png' %}" alt="My Drive icon">
+              <label class="tab-label">My Drive</label>
+            </li>
+            <li class="left-bar-tab">
+              <img class="icon" src="{% static 'main/img/icons/grey/group.png' %}" alt="Shared with me icon">
+              <label class="tab-label">Shared with me</label>
+            </li>
+            <li class="left-bar-tab">
+              <img class="icon" src="{% static 'main/img/icons/grey/recent.png' %}" alt="Recent icon">
+              <label class="tab-label">Recent</label>
+            </li>
+            <li class="left-bar-tab">
+              <img class="icon" src="{% static 'main/img/icons/grey/photos.png' %}" alt="Doogle Photos icon">
+              <label class="tab-label">Doodle Photos</label>
+            </li>
+            <li class="left-bar-tab">
+              <img class="icon" src="{% static 'main/img/icons/grey/star.png' %}" alt="Starred icon">
+              <label class="tab-label">Starred</label>
+            </li>
+            <li class="left-bar-tab">
+              <img class="icon" src="{% static 'main/img/icons/grey/delete.png' %}" alt="Trash icon">
+              <label class="tab-label">Trash</label>
+            </li>
+            <div class="top-bottom-spacer"></div>
+          </ul>
         </div>
       </div>
       <div class="main-content" id="dynamic-home-content">
@@ -185,50 +189,52 @@
                 <th><label class="table-header-label">File size</label></th>
               </tr>
             </thead>
-            <tbody id="table-body">
-              {% for folder in folders %}
-                  <tr folder-id='{{folder.id}}' item-type="folder">
-                    <td>
-                      <div class="round-image-border">
-                        <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png" alt="">
-                      </div>
-                      <div class="folder-text">
-                        <a href="{% url 'home_folder' folder_id=folder.id %}">
-                          {{folder.name}}
-                        </a>
-                      </div>
-                    </td>
-                    <td>{{folder.owner.first_name}}</td>
-                    <td>{{folder.updated_at}}</td>
-                    <td>-</td>
-                  </tr>
-              {% endfor %}
-              {% for file in media_files %}
-                  {% if user.id == file.owner_id %}
-                    <tr item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
-                      <td class="radius">
+            <div id="tbody-wrapper">
+              <tbody id="table-body">
+                {% for folder in folders %}
+                    <tr folder-id='{{folder.id}}' item-type="folder">
+                      <td>
                         <div class="round-image-border">
-                          {% if file.file_type == "image" %}
-                          <img class="thumbnail table-image materialboxed" width="300" src="{{file.file_data.url}}">
-                          {%elif file.file_type == "text" %}
-                          <img class="table-image" src="{% static 'main/img/icons/grey/document.png' %}" file-name="document.png" alt="">
-                    {% endif %}
-                    </div>
-                      <div class="folder-text">
-                    <a href="{{ MEDIA_URL }}{{file.file_data.url}}" download>
-                      {{file.file_data}}
-                        </a>
+                          <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png" alt="">
+                        </div>
+                        <div class="folder-text">
+                          <a href="{% url 'home_folder' folder_id=folder.id %}">
+                            {{folder.name}}
+                          </a>
                         </div>
                       </td>
-                      <td>{{file.owner.first_name}}</td>
-                      <td>{{file.updated_at}}</td>
-                      <td>{{file.file_data.size|filesizeformat}}</td>
+                      <td>{{folder.owner.first_name}}</td>
+                      <td>{{folder.updated_at}}</td>
+                      <td>-</td>
                     </tr>
-                    {% endif %}
-              {% endfor %}
+                {% endfor %}
+                {% for file in media_files %}
+                    {% if user.id == file.owner_id %}
+                      <tr item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
+                        <td class="radius">
+                          <div class="round-image-border">
+                            {% if file.file_type == "image" %}
+                            <img class="thumbnail table-image materialboxed" width="300" src="{{file.file_data.url}}">
+                            {%elif file.file_type == "text" %}
+                            <img class="table-image" src="{% static 'main/img/icons/grey/document.png' %}" file-name="document.png" alt="">
+                      {% endif %}
+                      </div>
+                        <div class="folder-text">
+                      <a href="{{ MEDIA_URL }}{{file.file_data.url}}" download>
+                        {{file.file_data}}
+                          </a>
+                          </div>
+                        </td>
+                        <td>{{file.owner.first_name}}</td>
+                        <td>{{file.updated_at}}</td>
+                        <td>{{file.file_data.size|filesizeformat}}</td>
+                      </tr>
+                      {% endif %}
+                {% endfor %}
+              </tbody>
+            </div>
 
 
-            </tbody>
           </table>
 
         </div>
@@ -241,6 +247,7 @@
          <form action="{% url 'folder_creation' folder_id=parent_folder.id%}" method="POST">
           {% csrf_token %}
           {{folder_form.as_p}}
+
           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
           <input type="submit"  class="btn-flat"value="Create!">
         </form> 

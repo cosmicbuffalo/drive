@@ -1,5 +1,5 @@
 $ (document).ready(function(){
-    
+
   //tool bar button functionality
   $('#new-folder-button').on('click', function(){
         $('#modal1').modal();
@@ -91,25 +91,34 @@ $ (document).ready(function(){
     })
   })
 
+//LEFT BAR TAB METHODS...
+  $('#left-bar-tab-menu li').on('click', function(){
+
+    console.log("clicked left bar tab")
+    console.log($(this))
+    $('#left-bar-tab-menu li').removeClass('selected')
+    $(this).addClass('selected')
+
+  })
 
 
 
 
 //row selection methods...
-    $(".file-flash").click(function() {
-        var selected = $(this).hasClass("selected");
-        $(".file-flash").removeClass("selected");
-        if(!selected)
-            $(this).addClass("selected");
-    });
+  $(".file-flash").click(function() {
+      var selected = $(this).hasClass("selected");
+      $(".file-flash").removeClass("selected");
+      if(!selected)
+          $(this).addClass("selected");
+  });
 
-    $('.file-flash a').on('click', function(){
-        var selected = $(this).hasClass("selected");
-        $(".file-flash").removeClass("selected");
-        if(!selected)
-        
-            $(this).addClass("selected");
-    })
+  $('.file-flash a').on('click', function(){
+      var selected = $(this).hasClass("selected");
+      $(".file-flash").removeClass("selected");
+      if(!selected)
+          $(this).addClass("selected");
+  })
+
 
 
 

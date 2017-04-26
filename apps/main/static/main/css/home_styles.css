@@ -99,7 +99,7 @@ drop-label{
   padding-top: 6px;
   font-size: .9em;
 }
-#new-button-dropdown div.top-bottom-spacer{
+div.top-bottom-spacer{
   height: 16px;
 }
 #file-upload-form{
@@ -272,6 +272,26 @@ drop-label{
   float:left;
   width: 256px;
 }
+#left-bar-tab-menu{
+  padding-right: 40px;
+}
+#left-bar-tab-menu li{
+  padding: 4px 0px 1px 12px;
+}
+.tab-label{
+  font-size: .85rem;
+  font-weight: bold;
+  color: #3f3f3f;
+  padding-top: 8px;
+  display: inline-block;
+}
+#left-bar-tab-menu li:hover{
+  cursor: pointer;
+  background-color: rgba(228,228,228,0.65);
+}
+#left-bar-tab-menu li.selected{
+  background-color: #e4e4e4;
+}
 #dynamic-home-content{
   display: block;
   margin-left: 256px;
@@ -297,6 +317,11 @@ thead{
   text-align: left;
   background-color: #f5f5f5;
 }
+thead tr th label{
+  font-weight: 400;
+  color: rgba(63,63,63,0.9);
+  font-size: .9rem;
+}
 tbody{
   background-color: white;
   overflow-y: scroll;
@@ -306,8 +331,8 @@ tr{
   padding:20px 20px;
   
 }
+
 td{
-  vertical-align: middle;
   padding: 6px 0px 0px 5px !important;
   
 }
@@ -317,9 +342,8 @@ border-color:#5764f7
 }
 #table-body tr.selected {
   background-color: #5764f7;
-
   color: white;
-  }
+}
 
 .selected{
   background: #4285f4;
@@ -371,14 +395,13 @@ tr a{
   color: rgba(0,0,0,0.87) !important;
   font-size: 1.0em !important;
   display: inline-block !important;
-  line-height: 0 !important; 
-  padding: 0px 0px 0px 0px !important; 
+  line-height: 0 !important;
+  padding: 0px 0px 0px 0px !important;
   position: relative;
   top: 5px;
-
-
-
-
+}
+#folder-create-overide:hover{
+  text-decoration: none;
 }
 #folder-create-overide drop-label{
   padding-top: 10px;
@@ -386,4 +409,13 @@ tr a{
 
 #new-folder-icon{
   padding-top: 0px;
+}
+td, th{
+  border-radius: 0px !important;
+}
+td{
+  font-size: .85em;
+}
+tr{
+  border-bottom: 1px solid #ebebeb;
 }

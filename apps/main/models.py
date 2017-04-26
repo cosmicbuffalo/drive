@@ -347,7 +347,8 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     objects = UserManager()
-
+    def __str__(self):
+        return " Email: %s" %(self.email)
 
 
 
@@ -365,7 +366,7 @@ class Folder(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return " Name: %s || Parent: %s" %(self.name,self.parent_folder)
+        return " Name: %s || Parent: %s || Owner: %s " %(self.name,self.parent_folder, self.owner)
 
 
 class Root_Folder(models.Model):

@@ -89,7 +89,7 @@
               <option value="">Doodle Slides</option>
               <option value="">More...</option>
             </select> {% block content %}
-          <form id="file-upload-form" action="{% url 'file_upload'%}" method="POST" enctype="multipart/form-data">
+          <form id="file-upload-form" action="{% url 'file_upload' folder_id=parent_folder.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %} 
             {{file_form.as_p}}
             <input id="file-upload-button" type="submit" value="submit">
@@ -165,21 +165,21 @@
             </thead>
             <tbody id="table-body">
               {% for folder in folders %}
-                {% if folder.is_master_folder == 0 %}
                   <tr folder-id='{{folder.id}}' item-type="folder">
                     <td>
                       <div class="round-image-border">
                         <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png" alt="">
                       </div>
                       <div class="folder-text">
-                        {{folder.name}}
+                        <a href="{% url 'home_folder' folder_id=folder.id %}">
+                          {{folder.name}}
+                        </a>
                       </div>
                     </td>
                     <td>{{folder.owner.first_name}}</td>
                     <td>{{folder.updated_at}}</td>
                     <td>-</td>
                   </tr>
-                {% endif %}
               {% endfor %}
               {% for file in media_files %}
                   {% if user.id == file.owner_id %}

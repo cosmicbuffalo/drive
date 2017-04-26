@@ -41,10 +41,17 @@ $ (document).ready(function(){
       stopPropagation: false // Stops event propagation
     }
   );
-  //
-  // $('#file-upload-button').on('click', function(){
-  //   $('#file-input').trigger('click');
-  // })
+
+  $('#file-input').on('change', function(){
+    console.log("triggered file input on change")
+    $('#file-upload-form').submit();
+  })
+  $('#file-upload-button').on('click', function(){
+    // event.preventDefault()
+    console.log("Clicked file upload button")
+    $('#file-input').trigger('click');
+
+  })
 
 
 

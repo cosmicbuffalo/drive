@@ -82,16 +82,13 @@
               <img id="new-folder-icon"class="icon" src="{% static 'main/img/icons/grey/new_folder.png' %}" alt="New folder">
               <drop-label>New folder...</drop-label>
               </a>
+
             </li>
             <li class="divider spacer-divider"></li>
             <li id="file-upload-button" class="dropdown-item">
               <img class="icon" src="{% static 'main/img/icons/grey/file_upload.png' %}" alt="File upload">
-              <drop-label></drop-label>
-              <form id="file-upload-form" action="{% url 'file_upload' folder_id=parent_folder.id%}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input id="file-input" type="file" name="uploaded_file">
-              </form>
 
+              <drop-label>File upload</drop-label>
             </li>
             <li class="dropdown-item">
 
@@ -249,6 +246,13 @@
         </form> 
       </div>
     </div>
+
+  <div id="invis-elements">
+    <form id="file-upload-form" action="{% url 'file_upload' folder_id=parent_folder.id %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input id="file-input" type="file" name="file_data">
+    </form>
+  </div>
 
 
 

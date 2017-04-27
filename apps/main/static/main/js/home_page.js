@@ -17,7 +17,7 @@ $ (document).ready(function(){
     }
   })
 
-  $('.tool-bar-link').on('click', function(){
+  $('#move_to_trash').on('click', function(){
 
     var post_data ={}
     var num_rows = 0
@@ -145,6 +145,15 @@ $ (document).ready(function(){
     })
   })
 ////// WRITE THE DELETE route like above, look at the html too!
+    $('#trash-tab').on('click', function(){
+        $.get({
+            url: $(this).attr('href'),
+            success: function(res){
+            replaceTableBody(res)
+
+            }
+        })
+    })
 
 
   //---------------------------
@@ -173,6 +182,31 @@ $ (document).ready(function(){
         $('#preview-button').css('display', 'none')
       }
   })
+//-----------------------------
+//----TILED VIEW SELECTIOn-----
+//-----------------------------
+   var lastSelectedRow;
+  $('#table-body').on('click','div.folder-container', function(){
+      var tiles = $('.folder-container')
+      console.log("triggered row selection handler")
+      RowClick($(this),false,tiles)
+      $('#selection-tools').css('display', 'inline-block')
+      var selected = $('tr.selected')
+      if (selected.length == 1){
+        // console.log("There is one row selected")
+        selected_type = $(selected[0])[0].attributes['item-type'].value
+        // console.log(selected_type)
+        if (selected_type != "folder"){
+          $('#preview-button').css('display', 'inline-block')
+        }else{
+          $('#preview-button').css('display', 'none')
+        }
+      } else{
+        // console.log("there are... " + String(selected.length) + " rows selected")
+        $('#preview-button').css('display', 'none')
+      }
+  })
+
 
 
   //---------------------------

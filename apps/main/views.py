@@ -36,6 +36,7 @@ def show_create_success_page(request):
 def show_home_page_root(request):
     file_form = FileForm()
     folder_form = FolderForm()
+    request.session["current_view"] = "grid"
     if 'current_user' in request.session.keys():
         print "Current user in session: ---->", request.session['current_user']
     else:
@@ -87,7 +88,18 @@ def render_contents_of_folder(request, folder_id):
     }
     return render(request, 'main/table_body_partial.html', context)
 
+def render_trash_contents(request):
+    folder_form = FolderForm()
+    parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
 
+    context= {
+        'media_files':File.objects.filter(owner_id = request.session['current_user'], is_in_trash=True).order_by('-updated_at'),
+        'folders':Folder.objects.filter(owner_id = request.session['current_user'], is_in_trash=True).order_by('-updated_at'),
+        'folder_form': folder_form,
+        "parent_folder" : parent_folder,
+
+    }
+    return render(request, 'main/table_body_partial.html', context)
 
 
 

@@ -1,6 +1,10 @@
 {% load staticfiles %}
 <td id="container-cell" colspan="4" style="padding:0px">
   <div id="tbody-content-wrapper">
+
+{% if request.session.current_view == "table" %}
+
+
     <table id="tbody-content-table">
 
         {% for folder in folders %}
@@ -43,6 +47,35 @@
         {% endfor %}
 
     </table>
+  {% elif request.session.current_view == "grid" %}
+    <div class = 'tile-div'>
+      <h6>Folders</h6>
+    {% for folder in folders %}
+      <div  class="folder-container" folder-id='{{folder.id}}' item-type="folder">
+        <div class="round-image-border">
+          <img class="image-padding" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
+        </div>
+        <div class="folder-text">
+          <a href="{% url 'get_folder_contents' folder_id=folder.id %}">
+            {{folder.name}}
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+  {% endif %}
+
+
+
   </div>
   <div id="invis-elements">
     <div id="modal1" class="modal">
@@ -63,3 +96,4 @@
     </form>
   </div>
 </td>
+

@@ -262,19 +262,42 @@ div.top-bottom-spacer{
 }
 
 #breadcrumb-div{
-
+  font-size: 1em;
   max-width: 556px;
   min-width: 309px;
   /*border: 1px dotted black;*/
   /*float: right;*/
   margin-left: 144px;
-  padding-top: 14px;
+  padding-top: 10px;
 }
 .breadcrumb{
+  font-size: 1.3em !important;
   color: #757575 !important;
+  font-weight: 300;
+}
+.crumb-hover{
+  padding: 2px 6px 1px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.crumb-hover:hover{
+  background-color: #ebebeb;
+}
+.breadcrumb:before{
+  content: url('/static/main/img/icons/grey/breadcrumb_arrow_large.png') !important;
+  font-size: 30px !important;
+  margin:0 4px 0 0 !important;
+
 }
 .breadcrumb:last-child{
   color:#3f3f3f !important;
+  font-weight: 400;
+}
+.breadcrumb:last-child .crumb-hover:after{
+  content: url('/static/main/img/icons/black/carrot_down.png');
+  position: relative;
+  top: 4px;
+  left: 3px;
 }
 
 #main{
@@ -503,7 +526,7 @@ tr.header-row :first-child label{
   width: 185px;
   border-radius: 3%;
   margin-left: 10px;
-  
+
 
 }
 .image-padding{

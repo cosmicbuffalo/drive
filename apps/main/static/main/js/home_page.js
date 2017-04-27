@@ -140,7 +140,9 @@ $ (document).ready(function(){
       url: $(this).attr('href'),
       success:function(res){
         // console.log(res)
+        $('#breadcrumb-div').html('<a class="breadcrumb" href="#"><span class="crumb-hover">My Drive</span></a>')
         replaceTableBody(res)
+
       }
     })
   })
@@ -216,10 +218,14 @@ $ (document).ready(function(){
   $('#table-body').on('click','.folder-text a', function(){
     console.log("You just clicked a folder link!")
     event.preventDefault()
+    var folder_name = $(this)[0].innerText
+    console.log(folder_name)
+
     $.get({
       url: $(this).attr('href'),
       success:function(res){
         replaceTableBody(res)
+        $('#breadcrumb-div').append('<a class="breadcrumb" href=' + $(this).attr('href') + '><span class="crumb-hover">' + folder_name + '</span></a>')
       }
     })
   })
@@ -230,6 +236,7 @@ $ (document).ready(function(){
     success:function(res){
       // console.log(res)
       replaceTableBody(res)
+      $('#breadcrumb-div').html('<a class="breadcrumb" href="#"><span class="crumb-hover">My Drive</span></a>')
     }
   })
 

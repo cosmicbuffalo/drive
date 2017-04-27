@@ -4,20 +4,33 @@ $ (document).ready(function(){
   $('#new-folder-button').on('click', function(){
         $('#modal1').modal();
   })
+  $('#preview-button').on('click', function(){
+    console.log("Clicked preview button")
+    var rows = $('tr.selected')
+    console.log(rows)
+    console.log(rows.length)
+    if (rows.length == 1){
+      console.log(rows[0])
+      img = $('tr.selected :first-child div img')
+      console.log(img)
+      img.trigger('click')
+
+    }
+
+  })
   $('.tool-bar-link').on('click', function(){
+    console.log("clicked tool-bar-link")
     var delete_list =[]
     event.preventDefault()
     for(var i = 0; i < $('.selected').length; i=i+1){
         var id = ($('.selected')[i].attributes[0].value)
         var type = ($('.selected')[i].attributes[1].value)
-        
+
         delete_list.push({
             "type": type,
             'id': id
         })
     }
-    
-
     // $.post({
     //   url:$(this).attr('href'),
     //   data:JSON.stringify($('.selected'))
@@ -26,7 +39,7 @@ $ (document).ready(function(){
     // })
   })
 // ***********************************************************
- 
+
 
 
 
@@ -123,17 +136,18 @@ $ (document).ready(function(){
 
 
 var lastSelectedRow;
-var trs = $('#main-table tr')
+var trs = $('#tbody-content-table tr')
 
 
-    $('tr').on('click', function(){
+    $('#tbody-content-table tr').on('click', function(){
         RowClick($(this),false,trs)
+        $('#selection-tools').css('display', 'inline-block')
 
     })
 })
 
 var lastSelectedRow;
-var trs = $('#main-table tr')
+var trs = $('#tbody-content-table tr')
 // disable text selection
 document.onselectstart = function() {
     return false;

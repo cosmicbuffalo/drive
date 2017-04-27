@@ -22,6 +22,9 @@ a{
 a:hover{
   text-decoration: underline;
 }
+#selection-tools a:hover{
+  text-decoration: none;
+}
 a.dropdown-button:hover{
   text-decoration: none;
 }
@@ -144,6 +147,9 @@ div.top-bottom-spacer{
   border-radius: 50%;
   margin: 4px 6px;
 }
+#notifications-icon:hover{
+  background-color: black;
+}
 #notification-icon-sizer{
   display: inline-block;
   padding: 6px;
@@ -222,7 +228,8 @@ div.top-bottom-spacer{
   float: right;
 }
 #selection-tools{
-  /*display: none;*/
+  display: none;
+  /*display: inline-block;*/
   border-right: 1px solid #e5e5e5;
 }
 #search-bar-div{
@@ -245,6 +252,11 @@ div.top-bottom-spacer{
   box-sizing: content-box;
   margin: 0px 4px;
 }
+#tool-bar-controls .icon:hover{
+  background-color: #e4e4e4;
+  border-radius: 50%;
+}
+
 #path-menu-div{
   max-width: 556px;
   max-width: 309px;
@@ -305,6 +317,13 @@ div.top-bottom-spacer{
   background-color: white;
   overflow-y: scroll;
 }
+#main-table{
+  height: 100%;
+}
+#container-cell{
+  padding:0px;
+  vertical-align: top;
+}
 table{
   border: 0;
   width: 100%;
@@ -322,17 +341,23 @@ thead tr th label{
   color: rgba(63,63,63,0.9);
   font-size: .9rem;
 }
-tbody{
-  background-color: white;
-  overflow-y: scroll;
-}
 tr{
   height: 48px;
   padding:20px 20px;
 
 }
-
-td{
+#tbody-content-wrapper{
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 20px;
+  border-right: 1px solid #ebebeb;
+  border-left: 1px solid #ebebeb;
+  background-color: white;
+  border-radius: 2px;
+}
+#tbody-content-table td{
   padding: 6px 0px 0px 5px !important;
 
 }
@@ -413,10 +438,10 @@ td, th{
 td{
   font-size: .85em;
 }
-tr{
+#tbody-content-table tr{
   border-bottom: 1px solid #ebebeb;
 }
-tr.selected{
+#tbody-content-table tr.selected{
   border-bottom: 1px solid #5764f7;
 }
 tr.header-row :first-child label{

@@ -192,70 +192,7 @@
             </thead>
 
             <tbody id="table-body">
-              <td id="container-cell" colspan="4" style="padding:0px">
-                <div id="tbody-content-wrapper">
-                  <table id="tbody-content-table">
-
-                      {% for folder in folders %}
-                        <tr class="item-row" folder-id='{{folder.id}}' item-type="folder">
-                          <td>
-                            <div class="round-image-border">
-                              <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
-                            </div>
-                            <div class="folder-text">
-                              <a href="{% url 'get_folder_contents' folder_id=folder.id %}">
-                                {{folder.name}}
-                              </a>
-                            </div>
-                          </td>
-                          <td class="owner-cell">{{folder.owner.first_name}}</td>
-                          <td>{{folder.updated_at}}</td>
-                          <td>-</td>
-                        </tr>
-                      {% endfor %}
-                      {% for file in media_files %}
-                        <tr class="item-row" item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
-                          <td class="radius">
-                            <div class="round-image-border">
-                              {% if file.file_type == "image" %}
-                                <img class="thumbnail table-image materialboxed" width="300" src="{{file.file_data.url}}">
-                              {% elif file.file_type == "text" %}
-                                <img class="table-image" src="{% static 'main/img/icons/grey/document.png' %}" file-name="document.png" alt="">
-                              {% endif %}
-                            </div>
-                            <div class="folder-text">
-                              <a href="{{ MEDIA_URL }}{{file.file_data.url}}" download>
-                                {{file.file_data}}
-                              </a>
-                            </div>
-                          </td>
-                          <td class="owner-cell">{{file.owner.first_name}}</td>
-                          <td>{{file.updated_at}}</td>
-                          <td>{{file.file_data.size|filesizeformat}}</td>
-                        </tr>
-                      {% endfor %}
-
-                  </table>
-                </div>
-                <div id="invis-elements">
-                  <div id="modal1" class="modal">
-                    <div class="modal-content">
-                      <h4>Create Folder</h4>
-                      <form action="{% url 'folder_creation' folder_id=parent_folder.id%}" method="POST">
-                        {% csrf_token %}
-                        {{folder_form.as_p}}
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
-                        <input type="submit" class="btn-flat" value="Create!">
-                      </form>
-                    </div>
-                  </div>
-
-                  <form id="file-upload-form" action="{% url 'file_upload' folder_id=parent_folder.id %}" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input id="file-input" type="file" name="file_data">
-                  </form>
-                </div>
-              </td>
+              
             </tbody>
 
           </table>

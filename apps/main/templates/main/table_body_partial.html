@@ -5,7 +5,7 @@
 
         {% for folder in folders %}
           <tr class="item-row" folder-id='{{folder.id}}' item-type="folder">
-            <td>
+            <td class="name-cell">
               <div class="round-image-border">
                 <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
               </div>
@@ -16,13 +16,13 @@
               </div>
             </td>
             <td class="owner-cell">{{folder.owner.first_name}}</td>
-            <td>{{folder.updated_at}}</td>
-            <td>-</td>
+            <td class="updated-at-cell">{{folder.updated_at}}</td>
+            <td class="size-cell folder-size">-</td>
           </tr>
         {% endfor %}
         {% for file in media_files %}
           <tr class="item-row" item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
-            <td class="radius">
+            <td class="name-cell">
               <div class="round-image-border">
                 {% if file.file_type == "image" %}
                   <img class="thumbnail table-image materialboxed" width="300" src="{{file.file_data.url}}">
@@ -37,8 +37,8 @@
               </div>
             </td>
             <td class="owner-cell">{{file.owner.first_name}}</td>
-            <td>{{file.updated_at}}</td>
-            <td>{{file.file_data.size|filesizeformat}}</td>
+            <td class="updated-at-cell">{{file.updated_at}}</td>
+            <td class="size-cell">{{file.file_data.size|filesizeformat}}</td>
           </tr>
         {% endfor %}
 

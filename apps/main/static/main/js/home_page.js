@@ -190,7 +190,14 @@ $ (document).ready(function(){
     })
   })
 
-
+  //Initialize first view of root folder
+  $.get({
+    url: $('#my-drive-tab').attr('href'),
+    success:function(res){
+      // console.log(res)
+      replaceTableBody(res)
+    }
+  })
 
 
 })//END OF DOCUMENT.READY FUNCTION

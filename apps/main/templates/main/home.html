@@ -164,7 +164,7 @@
               <img class="icon" src="{% static 'main/img/icons/grey/star.png' %}" alt="Starred icon">
               <label class="tab-label">Starred</label>
             </li>
-            <li class="left-bar-tab">
+            <li class="left-bar-tab" id="trash-tab" href= '{% url "get_trash_contents" %}' >
               <img class="icon" src="{% static 'main/img/icons/grey/delete.png' %}" alt="Trash icon">
               <label class="tab-label">Trash</label>
             </li>

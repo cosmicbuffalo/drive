@@ -161,8 +161,12 @@ div.top-bottom-spacer{
 #account-image-icon{
   width: 30px;
   height: 30px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 1px;
+  margin: 9px;
+  border-radius: 50%;
+}
+#account-image-icon:hover{
+  background-color: black;
 }
 #account-dropdown{
   font-size: .9em;

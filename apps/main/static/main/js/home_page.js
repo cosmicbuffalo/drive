@@ -37,8 +37,8 @@ $ (document).ready(function(){
     }
 
 
-post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretoken')[0].value
-post_data["num_rows"] = num_rows
+    post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretoken')[0].value
+    post_data["num_rows"] = num_rows
     $.post({
         url:'/move_to_trash',
         data: post_data,
@@ -46,12 +46,12 @@ post_data["num_rows"] = num_rows
         success: function(res){
             console.log(res)
         }
-        
+
 
     })
 
   })
- 
+
 // DO A PAGE RELOAD!!!!!!!!
 
 
@@ -102,16 +102,13 @@ post_data["num_rows"] = num_rows
     }
   );
 
-  $('#file-input').on('change', function(){
-    console.log("triggered file input on change")
-    $('#file-upload-form').submit();
-  })
+
   $('#file-upload-button').on('click', function(){
     // event.preventDefault()
     console.log("Clicked file upload button")
     $('#file-input').trigger('click');
-
   })
+  assignFileUploadHandler();
 
 
 
@@ -255,45 +252,22 @@ function clearAll(rows) {
 
 function replaceTableBody(new_html){
   console.log("replacing html...")
+  $('#selection-tools').fadeOut(300)
   $('#table-body').fadeOut(300, function(){
     $('#table-body').html(new_html)
     $('#table-body').delay(100).fadeIn(300, function(){
       console.log('done')
+      $('.materialboxed').materialbox();
+      assignFileUploadHandler()
+
     })
   })
 }
 
+function assignFileUploadHandler(){
+  $('#file-input').on('change', function(){
+    console.log("triggered file input on change")
+    $('#file-upload-form').submit();
+  })
 
-
-
-// function matchTableHeadersToRows(){
-//   var header = $('thead tr')[0]
-//   var body = $('#tbody-content-table tr')[0]
-//   console.log(header)
-//   console.log(body)
-//   console.log(header.cells[0].width)
-// }
-
-
-
-
-
-// folder_ids = []
-// file_ids = []
-// for item in list:
-// if item.type == folder
-//     folder_ids.append(item.id)
-//     Folder.objects.get(id = item.id).is_in_trash=true
-// [
-//     {'type':'folder', 'id':folder_id},
-//     {'type':'folder', 'id':folder_id},
-//     {'type':'file', 'id':folder_id},
-//     {'type':'folder', 'id':folder_id},
-//     {'type':'file', 'id':folder_id},
-
-//     ]
-
-//     things_to_delete = Folder.objects.filter(id__in=folder_ids)|File.objects.filter(id__in=file_ids)
-
-//     for thing in things_to_delete:
-//         thing.is_in_trash = true
+}

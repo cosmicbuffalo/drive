@@ -44,4 +44,22 @@
 
     </table>
   </div>
+  <div id="invis-elements">
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Create Folder</h4>
+        <form action="{% url 'folder_creation' folder_id=parent_folder.id%}" method="POST">
+          {% csrf_token %}
+          {{folder_form.as_p}}
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+          <input type="submit" class="btn-flat" value="Create!">
+        </form>
+      </div>
+    </div>
+
+    <form id="file-upload-form" action="{% url 'file_upload' folder_id=parent_folder.id %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input id="file-input" type="file" name="file_data">
+    </form>
+  </div>
 </td>

@@ -63,22 +63,35 @@ def show_home_page_root(request):
     return render(request, "main/home.html", context)
 
 def render_root_folder_contents(request):
+<<<<<<< HEAD
     
+=======
+    folder_form = FolderForm()
+>>>>>>> 8ecab390aa74ab924dc1601aaf26cf7127d0ea53
     parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
     request.session['current_folder'] = parent_folder.id
     context = {
         'media_files':File.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
         'folders': Folder.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
+        'folder_form': folder_form,
+        "parent_folder" : parent_folder,
     }
 
     return render(request, 'main/table_body_partial.html', context)
 
 def render_contents_of_folder(request, folder_id):
+<<<<<<< HEAD
     request.session['current_folder'] = folder_id
 
+=======
+    folder_form = FolderForm()
+    parent_folder = Folder.objects.get(id=folder_id)
+>>>>>>> 8ecab390aa74ab924dc1601aaf26cf7127d0ea53
     context = {
         'media_files':File.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at'),
-        'folders':Folder.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at')
+        'folders':Folder.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at'),
+        'folder_form': folder_form,
+        "parent_folder" : parent_folder,
     }
     return render(request, 'main/table_body_partial.html', context)
 
@@ -298,6 +311,7 @@ def move_to_trash(request):
     if request.method == "POST":
         if 'num_rows' in request.POST.keys():
             num_rows = int(request.POST['num_rows'])
+
             for count in range(num_rows):
                 # print count
                 type_value = str(count) + str('[type]')
@@ -310,9 +324,7 @@ def move_to_trash(request):
                     folder = Folder.objects.get(id=request.POST[id_value])
                     folder.is_in_trash = True
                     folder.save()
-                # work on finsihing up
-            
-    
     return JsonResponse({"result":"success", "current_folder": request.session['current_folder']})
+
 
 # CONTINUED....

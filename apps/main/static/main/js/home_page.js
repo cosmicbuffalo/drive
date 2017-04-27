@@ -199,6 +199,13 @@ $ (document).ready(function(){
     }
   })
 
+  //--------------------------
+  //----- BEAUTIFICATION -----
+  //--------------------------
+
+
+
+
 
 })//END OF DOCUMENT.READY FUNCTION
 

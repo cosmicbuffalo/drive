@@ -23,19 +23,22 @@ $ (document).ready(function(){
   $('.tool-bar-link').on('click', function(){
 
     var post_data ={}
-
+    var num_rows = 0
     event.preventDefault()
     for(var i = 0; i < $('.selected').length; i=i+1){
-        var id = ($('.selected')[i].attributes[0].value)
-        var type = ($('.selected')[i].attributes[1].value)
+        console.log($('.selected')[i].attributes)
+
+        var id = ($('.selected')[i].attributes[1].value)
+        var type = ($('.selected')[i].attributes[2].value)
 
 
-        post_data[i]= {"type": type,'id': id, 'position': i}
+        post_data[i]= {"type": type,'id': id,}
+        num_rows +=1
     }
 
 
 post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretoken')[0].value
-
+post_data["num_rows"] = num_rows
     $.post({
         url:'/move_to_trash',
         data: post_data,
@@ -47,7 +50,7 @@ post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretok
 
     })
 
-
+  })
  
 // DO A PAGE RELOAD!!!!!!!!
 

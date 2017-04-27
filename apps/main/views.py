@@ -303,15 +303,21 @@ def folder_creation(request, folder_id):
 
 def move_to_trash(request):
     if request.method == "POST":
-        for key in request.POST.keys():
-            count = 1
-            type_value = str(count) + str('[type]')
-            id_value = str(count) + str('[id]')
-            print "value: ----------->", request.POST[type_value]
-            print "value: ----------->", request.POST[id_value]
-            # work on finsihing up
-            
+        print request.POST
 
+        if 'num_rows' in request.POST.keys():
+
+            num_rows = int(request.POST['num_rows'])
+            print "Number of rows ---->", num_rows
+        
+            for count in range(num_rows):
+                # print count
+                type_value = str(count) + str('[type]')
+                id_value = str(count) + str('[id]')
+                print "value: ----------->", request.POST[type_value]
+                print "value: ----------->", request.POST[id_value]
+                # work on finsihing up
+            
     
     return JsonResponse(request.POST)
 

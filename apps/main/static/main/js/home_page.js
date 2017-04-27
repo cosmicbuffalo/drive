@@ -1,11 +1,8 @@
 $ (document).ready(function(){
 
-  // matchTableHeadersToRows();
-  //tool bar button functionality
-
-  $('#new-folder-button').on('click', function(){
-        $('#modal1').modal();
-  })
+//---------------------------
+//------ TOOLBAR STUFF ------
+//---------------------------
 
   $('#preview-button').on('click', function(){
     console.log("Clicked preview button")
@@ -59,31 +56,11 @@ $ (document).ready(function(){
 
   })
 
-// DO A PAGE RELOAD!!!!!!!!
-
 
 
   //-------------------------
-  //-----  AJAX MAGIC  ------
+  //-----  AJAX MENUS  ------
   //-------------------------
-
-  // $('.folder-text a').on('click', function(){
-  //   console.log("You just clicked a folder link!")
-  //   event.preventDefault()
-  //   $.get({
-  //     url: $(this).attr('href'),
-  //     success:function(res){
-  //       console.log(res)
-  //       $('#table-body').fadeOut(500, function(){
-  //         $('#table-body').html(res)
-  //         $('#table-body').delay(100).fadeIn(300, function(){
-  //           assignClickHandlers();
-  //         })
-  //       })
-  //     }
-  //   })
-  // })
-
 
 
   $('#account-dropdown-button').dropdown({
@@ -117,7 +94,9 @@ $ (document).ready(function(){
   })
   assignFileUploadHandler();
 
-
+  $('#new-folder-button').on('click', function(){
+        $('#modal1').modal();
+  })
 
 
   $('#account-dropdown.dropdown-content').on('click', function(){
@@ -140,7 +119,12 @@ $ (document).ready(function(){
     })
   })
 
-//LEFT BAR TAB METHODS...
+
+  //------------------------------
+  //---- NAVIGATION TAB STUFF ----
+  //------------------------------
+
+
   $('#left-bar-tab-menu li').on('click', function(){
 
     console.log("clicked left bar tab")
@@ -160,6 +144,12 @@ $ (document).ready(function(){
       }
     })
   })
+
+
+
+  //---------------------------
+  //------ ROW SELECTION ------
+  //---------------------------
 
 
   var lastSelectedRow;
@@ -184,6 +174,11 @@ $ (document).ready(function(){
       }
   })
 
+
+  //---------------------------
+  //---- FOLDER NAVIGATION ----
+  //---------------------------
+
   $('#table-body').on('click','.folder-text a', function(){
     console.log("You just clicked a folder link!")
     event.preventDefault()
@@ -191,7 +186,6 @@ $ (document).ready(function(){
       url: $(this).attr('href'),
       success:function(res){
         replaceTableBody(res)
-        // assignSelectionHandler();
       }
     })
   })
@@ -199,10 +193,17 @@ $ (document).ready(function(){
 
 
 
-})
+})//END OF DOCUMENT.READY FUNCTION
 
-// var lastSelectedRow;
-// var trs = $('#tbody-content-table tr')
+
+
+
+//----------------------------
+//----- HELPER FUCNTIONS -----
+//----------------------------
+
+
+
 // disable text selection
 document.onselectstart = function() {
     return false;

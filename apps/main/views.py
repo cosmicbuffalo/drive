@@ -63,11 +63,7 @@ def show_home_page_root(request):
     return render(request, "main/home.html", context)
 
 def render_root_folder_contents(request):
-<<<<<<< HEAD
-    
-=======
     folder_form = FolderForm()
->>>>>>> 8ecab390aa74ab924dc1601aaf26cf7127d0ea53
     parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
     request.session['current_folder'] = parent_folder.id
     context = {
@@ -80,13 +76,9 @@ def render_root_folder_contents(request):
     return render(request, 'main/table_body_partial.html', context)
 
 def render_contents_of_folder(request, folder_id):
-<<<<<<< HEAD
     request.session['current_folder'] = folder_id
-
-=======
     folder_form = FolderForm()
     parent_folder = Folder.objects.get(id=folder_id)
->>>>>>> 8ecab390aa74ab924dc1601aaf26cf7127d0ea53
     context = {
         'media_files':File.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at'),
         'folders':Folder.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at'),

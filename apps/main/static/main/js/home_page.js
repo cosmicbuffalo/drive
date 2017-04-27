@@ -160,7 +160,7 @@ $ (document).ready(function(){
       }
     })
   })
-
+////// WRITE THE DELETE route like above, look at the html too!
 
   var lastSelectedRow;
   $('#table-body').on('click', 'tr.item-row', function(){

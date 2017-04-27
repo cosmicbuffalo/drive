@@ -22,6 +22,9 @@ a{
 a:hover{
   text-decoration: underline;
 }
+#selection-tools a:hover{
+  text-decoration: none;
+}
 a.dropdown-button:hover{
   text-decoration: none;
 }
@@ -32,17 +35,17 @@ a.dropdown-button:hover{
   font-size: 1.7em;
   padding-top: 7px;
 }
-.blue-text{
-  color:#5764f7;
+.blue-logo-text{
+  color:#5764f7 !important;
 }
-.red-text{
-  color:#ea35ac;
+.red-logo-text{
+  color:#ea35ac !important;
 }
-.yellow-text{
-  color:#ff752c;
+.yellow-logo-text{
+  color:#ff752c !important;
 }
-.green-text{
-  color:#13c79e;
+.green-logo-text{
+  color:#13c79e !important;
 }
 #top-bar-drive-link{
   font-size: 1.6em;
@@ -144,6 +147,9 @@ div.top-bottom-spacer{
   border-radius: 50%;
   margin: 4px 6px;
 }
+#notifications-icon:hover{
+  background-color: black;
+}
 #notification-icon-sizer{
   display: inline-block;
   padding: 6px;
@@ -222,7 +228,8 @@ div.top-bottom-spacer{
   float: right;
 }
 #selection-tools{
-  /*display: none;*/
+  display: none;
+  /*display: inline-block;*/
   border-right: 1px solid #e5e5e5;
 }
 #search-bar-div{
@@ -245,6 +252,11 @@ div.top-bottom-spacer{
   box-sizing: content-box;
   margin: 0px 4px;
 }
+#tool-bar-controls .icon:hover{
+  background-color: #e4e4e4;
+  border-radius: 50%;
+}
+
 #path-menu-div{
   max-width: 556px;
   max-width: 309px;
@@ -303,7 +315,14 @@ div.top-bottom-spacer{
   width: 100%;
   height: 100%;
   background-color: white;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
+}
+#main-table{
+  height: 100%;
+}
+#container-cell{
+  padding:0px;
+  vertical-align: top;
 }
 table{
   border: 0;
@@ -316,30 +335,35 @@ table{
 thead{
   text-align: left;
   background-color: #f5f5f5;
+  border-bottom: 1px solid #ebebeb !important;
 }
 thead tr th label{
   font-weight: 400;
   color: rgba(63,63,63,0.9);
   font-size: .9rem;
 }
-tbody{
-  background-color: white;
-  overflow-y: scroll;
-}
 tr{
   height: 48px;
   padding:20px 20px;
-  
-}
 
-td{
+}
+#tbody-content-wrapper{
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 20px;
+  border-right: 1px solid #ebebeb;
+  border-left: 1px solid #ebebeb;
+  background-color: white;
+  border-radius: 2px;
+  overflow-y: scroll;
+}
+#tbody-content-table td{
   padding: 6px 0px 0px 5px !important;
-  
-}
-tr.selected td{
-border-color:#5764f7
 
 }
+
 #table-body tr.selected {
   background-color: #5764f7;
   color: white;
@@ -413,9 +437,25 @@ tr a{
 td, th{
   border-radius: 0px !important;
 }
+#main-table th{
+  display: inline-block;
+}
+#main-table th:first-child {
+  padding-right: 484px;
+}
+td.owner-cell{
+  width: 100px;
+}
 td{
   font-size: .85em;
 }
-tr{
+#tbody-content-table tr{
   border-bottom: 1px solid #ebebeb;
+}
+#tbody-content-table tr.selected{
+  border-bottom: 1px solid #5764f7;
+}
+tr.header-row :first-child label{
+  padding-left: 9px;
+  font-weight: bold;
 }

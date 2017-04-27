@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>My Drive</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500" rel="stylesheet">
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'main/css/home_styles.css' %}">
-    <script type="text/javascript" src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'main/js/jquery-ui.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="{% static 'main/css/materialize.min.css' %}">
-    <script type="text/javascript" src="{% static 'main/js/home_page.js' %}"></script>
-  </head>
-  <body>
-    <div id="wrapper">
 
-      <div id="top-bar">
-        <div class="top-bar-row" id="top-bar-upper">
-          <div class="top-bar-item" id="logo-chunk">
-            <span id="colored-logo-text" class="top-bar-item">
-              <span class="blue-text">D</span><span class="red-text">o</span><span class="yellow-text">o</span><span class="blue-text">d</span><span class="green-text">l</span><span class="red-text">e</span>
-            </span>
-            <span class="top-bar-item" id="top-bar-drive-link">Drive</span>
-          </div>
-          <div class="top-bar-item" id="search-bar-div">
-            <img id="search-bar-icon" class="icon" src="{% static 'main/img/icons/grey/search.png' %}" alt="Search Icon">
-            <form class="search" action="#" method="post">
-              <input id="search-field" type="text" name="search-field" value="" placeholder="Search Drive">
-            </form>
-          </div>
-          <div class="top-bar-item top-bar-right-links">
-            <div id="apps-and-notifications-wrapper">
-              <img id="doodle-apps-icon" class="icon" src="{% static 'main/img/icons/grey/apps.png' %}" alt="Doodle apps">
-              <div id="notification-icon-sizer">
-                <img id="notifications-icon" class="icon round" src="{% static 'main/img/icons/notifications.png' %}" alt="Notfications">
-              </div>
-            </div>
-            <a id="account-dropdown-button" class="dropdown-button" href="#" data-activates="account-dropdown" belowOrigin="True">
-              <img id="account-image-icon" class="icon round" src="{% static 'main/img/empty-profile.png' %}" alt="Doodle Account">
-            </a>
-            <ul id='account-dropdown' class='dropdown-content' style="top:57px;">
-              <li class="white-background">
-                <div id="account-dropdown-top" class="dropdown-menu-section">
-                  <div id="change-profile-photo-div">
-                    <img id="account-dropdown-profile-pic" src="{% static 'main/img/empty-profile.png' %}" alt="Change profile picture">
-                  </div>
-                  <div id="account-info-div">
-                    <span id="account-name">{{user.first_name}} {{user.last_name}}</span>
-                    <span id="account-email" class="email-text">{{user.email}}</span>
-                    <a href="#">Doodle+ Profile</a> - <a href="#">Privacy</a>
-                    <br>
-                    <a id="my-account-button" class="button" href="#">My Account</a>
-                  </div>
-                </div>
-              </li>
-              <li class="divider"></li>
-              <li id="other-account-list" class="grey-background">
+<head>
+  <meta charset="utf-8">
+  <title>My Drive</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500" rel="stylesheet">
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'main/css/home_styles.css' %}">
+  <script type="text/javascript" src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'main/js/jquery-ui.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="{% static 'main/css/materialize.min.css' %}">
+  <script type="text/javascript" src="{% static 'main/js/home_page.js' %}"></script>
+</head>
 
-              </li>
-              <li class="divider"></li>
-              <li class="grey-background">
-                <div class="account-info-button button" href="#">Add Account</div>
-                <div id="sign-out-button" class="account-info-button button" href="{% url 'logout' %}">Sign out</div>
-              </li>
-            </ul>
-          </div>
+<body>
+  <div id="wrapper">
+
+    <div id="top-bar">
+      <div class="top-bar-row" id="top-bar-upper">
+        <div class="top-bar-item" id="logo-chunk">
+          <span id="colored-logo-text" class="top-bar-item">
+            <span class="blue-logo-text">D</span><span class="red-logo-text">o</span><span class="yellow-logo-text">o</span><span class="blue-logo-text">d</span><span class="green-logo-text">l</span><span class="red-logo-text">e</span>
+          </span>
+          <span class="top-bar-item" id="top-bar-drive-link">Drive</span>
         </div>
+        <div class="top-bar-item" id="search-bar-div">
+          <img id="search-bar-icon" class="icon" src="{% static 'main/img/icons/grey/search.png' %}" alt="Search Icon">
+          <form class="search" action="#" method="post">
+            <input id="search-field" type="text" name="search-field" value="" placeholder="Search Drive">
+          </form>
+        </div>
+        <div class="top-bar-item top-bar-right-links">
+          <div id="apps-and-notifications-wrapper">
+            <img id="doodle-apps-icon" class="icon" src="{% static 'main/img/icons/grey/apps.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/apps.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/apps.png' %}'"alt="Doodle apps">
+            <div id="notification-icon-sizer">
+              <img id="notifications-icon" class="icon round" src="{% static 'main/img/icons/notifications.png' %}" alt="Notfications">
+            </div>
+          </div>
+          <a id="account-dropdown-button" class="dropdown-button" href="#" data-activates="account-dropdown" belowOrigin="True">
+            <img id="account-image-icon" class="icon round" src="{% static 'main/img/empty-profile.png' %}" alt="Doodle Account">
+          </a>
+          <ul id='account-dropdown' class='dropdown-content' style="top:57px;">
+            <li class="white-background">
+              <div id="account-dropdown-top" class="dropdown-menu-section">
+                <div id="change-profile-photo-div">
+                  <img id="account-dropdown-profile-pic" src="{% static 'main/img/empty-profile.png' %}" alt="Change profile picture">
+                </div>
+                <div id="account-info-div">
+                  <span id="account-name">{{user.first_name}} {{user.last_name}}</span>
+                  <span id="account-email" class="email-text">{{user.email}}</span>
+                  <a href="#">Doodle+ Profile</a> - <a href="#">Privacy</a>
+                  <br>
+                  <a id="my-account-button" class="button" href="#">My Account</a>
+                </div>
+              </div>
+            </li>
+            <li class="divider"></li>
+            <li id="other-account-list" class="grey-background">
+
+            </li>
+            <li class="divider"></li>
+            <li class="grey-background">
+              <div class="account-info-button button" href="#">Add Account</div>
+              <div id="sign-out-button" class="account-info-button button" href="{% url 'logout' %}">Sign out</div>
+            </li>
+          </ul>
+        </div>
+      </div>
 
 
 
@@ -78,20 +80,19 @@
           </form>
           <ul id="new-button-dropdown" class="dropdown-content">
             <div class="top-bottom-spacer"></div>
-            <li id="new-folder-button" class="dropdown-item"><a id="folder-create-overide"href="#modal1">
-              <img id="new-folder-icon"class="icon" src="{% static 'main/img/icons/grey/new_folder.png' %}" alt="New folder">
-              <drop-label>New folder...</drop-label>
+            <li id="new-folder-button" class="dropdown-item">
+              <a id="folder-create-overide" href="#modal1">
+                <img id="new-folder-icon" class="icon" src="{% static 'main/img/icons/grey/new_folder.png' %}" alt="New folder">
+                <drop-label>New folder...</drop-label>
               </a>
 
             </li>
             <li class="divider spacer-divider"></li>
             <li id="file-upload-button" class="dropdown-item">
               <img class="icon" src="{% static 'main/img/icons/grey/file_upload.png' %}" alt="File upload">
-
               <drop-label>File upload</drop-label>
             </li>
             <li class="dropdown-item">
-
               <img class="icon" src="{% static 'main/img/icons/grey/folder_upload.png' %}" alt="Folder upload">
               <drop-label>Folder upload</drop-label>
             </li>
@@ -124,21 +125,21 @@
             </select>
         </div> -->
         <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
-          <div id="selection-tools" class="top-bar-item">
-            <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" file-name="insert_link.png"
-              alt="Get shareable link">
-            <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.png' %}" file-name="person_add.png"
-              alt="Share {selected}">
-            <img id="preview-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/visibility.png' %}" file-name="visibility.png"
-              alt="Preview">
-            <a id="move_to_trash" class="tool-bar-link" href="{% url 'remove_selected' %}"><img id="delete-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/delete.png' %}" file-name="delete.png"
-                alt="Remove"></a>
-            <img id="more-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/more_vert.png' %}" alt="More actions">
+          <div id="selection-tools">
+            <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/insert_link.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/insert_link.png' %}'" file-name="insert_link.png" alt="Get shareable link">
+            <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/person_add.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/person_add.png' %}'" alt="Share {selected}">
+            <a id="preview-button" href="#">
+              <img id="preview-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/visibility.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/visibility.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/visibility.png' %}'" alt="Preview">
+            </a>
+            <a id="move_to_trash" class="tool-bar-link" href="{% url 'remove_selected' %}">
+              <img id="delete-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/delete.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/delete.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/delete.png' %}'" alt="Remove">
+            </a>
+            <img id="more-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/more_vert.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/more_vert.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/more_vert.png' %}'"alt="More actions">
           </div>
           <div class="top-bar-item top-bar-right-links">
-            <img id="view-change-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/view_module.png' %}" alt="Grid view">
-            <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.png' %}" alt="View details">
-            <img id="settings-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" alt="Settings">
+            <img id="view-change-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/view_module.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/view_module.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/view_module.png' %}'"alt="Grid view">
+            <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/info.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/info.png' %}'"alt="View details">
+            <img id="settings-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/settings.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/settings.png' %}'"alt="Settings">
           </div>
         </div>
 
@@ -147,10 +148,10 @@
 
     <div id="main">
       <div class="main-content" id="left-bar">
-        <div id="left-bar-top" class="left-bar-section" >
+        <div id="left-bar-top" class="left-bar-section">
           <ul id="left-bar-tab-menu">
             <div class="top-bottom-spacer"></div>
-            <li class="left-bar-tab dropdown-menu" id="drive-heirarchy-div">
+            <li class="left-bar-tab dropdown-menu" id="my-drive-tab" href="{% url 'get_home_contents' %}">
               <img class="icon" src="{% static 'main/img/icons/grey/storage.png' %}" alt="My Drive icon">
               <label class="tab-label">My Drive</label>
             </li>
@@ -189,51 +190,55 @@
                 <th><label class="table-header-label">File size</label></th>
               </tr>
             </thead>
-            <div id="tbody-wrapper">
-              <tbody id="table-body">
-                {% for folder in folders %}
-                    <tr folder-id='{{folder.id}}' item-type="folder">
-                      <td>
-                        <div class="round-image-border">
-                          <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png" alt="">
-                        </div>
-                        <div class="folder-text">
-                          <a href="{% url 'home_folder' folder_id=folder.id %}">
-                            {{folder.name}}
-                          </a>
-                        </div>
-                      </td>
-                      <td>{{folder.owner.first_name}}</td>
-                      <td>{{folder.updated_at}}</td>
-                      <td>-</td>
-                    </tr>
-                {% endfor %}
-                {% for file in media_files %}
-                    {% if user.id == file.owner_id %}
-                      <tr item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
-                        <td class="radius">
-                          <div class="round-image-border">
-                            {% if file.file_type == "image" %}
-                            <img class="thumbnail table-image materialboxed" width="300" src="{{file.file_data.url}}">
-                            {%elif file.file_type == "text" %}
-                            <img class="table-image" src="{% static 'main/img/icons/grey/document.png' %}" file-name="document.png" alt="">
-                      {% endif %}
-                      </div>
-                        <div class="folder-text">
-                      <a href="{{ MEDIA_URL }}{{file.file_data.url}}" download>
-                        {{file.file_data}}
-                          </a>
-                          </div>
-                        </td>
-                        <td>{{file.owner.first_name}}</td>
-                        <td>{{file.updated_at}}</td>
-                        <td>{{file.file_data.size|filesizeformat}}</td>
-                      </tr>
-                      {% endif %}
-                {% endfor %}
-              </tbody>
-            </div>
 
+            <tbody id="table-body">
+              <td id="container-cell" colspan="4" style="padding:0px">
+                <div id="tbody-content-wrapper">
+                  <table id="tbody-content-table">
+
+                      {% for folder in folders %}
+                        <tr class="item-row" folder-id='{{folder.id}}' item-type="folder">
+                          <td>
+                            <div class="round-image-border">
+                              <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
+                            </div>
+                            <div class="folder-text">
+                              <a href="{% url 'get_folder_contents' folder_id=folder.id %}">
+                                {{folder.name}}
+                              </a>
+                            </div>
+                          </td>
+                          <td class="owner-cell">{{folder.owner.first_name}}</td>
+                          <td>{{folder.updated_at}}</td>
+                          <td>-</td>
+                        </tr>
+                      {% endfor %}
+                      {% for file in media_files %}
+                        <tr class="item-row" item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
+                          <td class="radius">
+                            <div class="round-image-border">
+                              {% if file.file_type == "image" %}
+                                <img class="thumbnail table-image materialboxed" width="300" src="{{file.file_data.url}}">
+                              {% elif file.file_type == "text" %}
+                                <img class="table-image" src="{% static 'main/img/icons/grey/document.png' %}" file-name="document.png" alt="">
+                              {% endif %}
+                            </div>
+                            <div class="folder-text">
+                              <a href="{{ MEDIA_URL }}{{file.file_data.url}}" download>
+                                {{file.file_data}}
+                              </a>
+                            </div>
+                          </td>
+                          <td class="owner-cell">{{file.owner.first_name}}</td>
+                          <td>{{file.updated_at}}</td>
+                          <td>{{file.file_data.size|filesizeformat}}</td>
+                        </tr>
+                      {% endfor %}
+
+                  </table>
+                </div>
+              </td>
+            </tbody>
 
           </table>
 
@@ -241,20 +246,21 @@
       </div>
     </div>
   </div>
-  <div id="modal1" class="modal">
+
+
+  <div id="invis-elements">
+    <div id="modal1" class="modal">
       <div class="modal-content">
         <h4>Create Folder</h4>
-         <form action="{% url 'folder_creation' folder_id=parent_folder.id%}" method="POST">
+        <form action="{% url 'folder_creation' folder_id=parent_folder.id%}" method="POST">
           {% csrf_token %}
           {{folder_form.as_p}}
-
           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
-          <input type="submit"  class="btn-flat"value="Create!">
-        </form> 
+          <input type="submit" class="btn-flat" value="Create!">
+        </form>
       </div>
     </div>
 
-  <div id="invis-elements">
     <form id="file-upload-form" action="{% url 'file_upload' folder_id=parent_folder.id %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <input id="file-input" type="file" name="file_data">

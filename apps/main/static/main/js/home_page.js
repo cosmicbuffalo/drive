@@ -1,16 +1,35 @@
 $ (document).ready(function(){
 
+  // matchTableHeadersToRows();
   //tool bar button functionality
+
   $('#new-folder-button').on('click', function(){
         $('#modal1').modal();
   })
+
+  $('#preview-button').on('click', function(){
+    console.log("Clicked preview button")
+    var rows = $('tr.selected')
+    console.log(rows)
+    console.log(rows.length)
+    if (rows.length == 1){
+      console.log(rows[0])
+      img = $('tr.selected :first-child div img')
+      console.log(img)
+      img.trigger('click')
+    }
+  })
+
   $('.tool-bar-link').on('click', function(){
+
     var post_data ={}
+
     event.preventDefault()
     for(var i = 0; i < $('.selected').length; i=i+1){
         var id = ($('.selected')[i].attributes[0].value)
         var type = ($('.selected')[i].attributes[1].value)
-        
+
+
         post_data[i]= {"type": type,'id': id, 'position': i}
     }
 
@@ -27,18 +46,33 @@ post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretok
         
 
     })
-    
 
-    // $.post({
-    //   url:$(this).attr('href'),
-    //   data:JSON.stringify($('.selected'))
-    //
-    //
-    // })
-  })
-// ***********************************************************
+
  
 // DO A PAGE RELOAD!!!!!!!!
+
+
+
+  //-------------------------
+  //-----  AJAX MAGIC  ------
+  //-------------------------
+
+  // $('.folder-text a').on('click', function(){
+  //   console.log("You just clicked a folder link!")
+  //   event.preventDefault()
+  //   $.get({
+  //     url: $(this).attr('href'),
+  //     success:function(res){
+  //       console.log(res)
+  //       $('#table-body').fadeOut(500, function(){
+  //         $('#table-body').html(res)
+  //         $('#table-body').delay(100).fadeIn(300, function(){
+  //           assignClickHandlers();
+  //         })
+  //       })
+  //     }
+  //   })
+  // })
 
 
 
@@ -82,10 +116,7 @@ post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretok
   $('#account-dropdown.dropdown-content').on('click', function(){
     event.stopPropagation();
   })
-  // $('#account-dropdown').on('mouseover', function(){
-  //   console.log("hovering over dropdown")
-  //   event.stopPropagation();
-  // })
+
   $('#sign-out-button').on('click', function(){
     post_data = {}
     post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretoken')[0].value
@@ -112,39 +143,59 @@ post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretok
 
   })
 
+  $('#my-drive-tab').on('click', function(){
+    console.log("Clicked my drive")
+    $.get({
+      url: $(this).attr('href'),
+      success:function(res){
+        // console.log(res)
+        replaceTableBody(res)
+      }
+    })
+  })
 
 
+  var lastSelectedRow;
+  $('#table-body').on('click', 'tr.item-row', function(){
+      var rows = $('#tbody-content-table tr')
+      console.log("triggered row selection handler")
+      RowClick($(this),false,rows)
+      $('#selection-tools').css('display', 'inline-block')
+      var selected = $('tr.selected')
+      if (selected.length == 1){
+        // console.log("There is one row selected")
+        selected_type = $(selected[0])[0].attributes['item-type'].value
+        // console.log(selected_type)
+        if (selected_type != "folder"){
+          $('#preview-button').css('display', 'inline-block')
+        }else{
+          $('#preview-button').css('display', 'none')
+        }
+      } else{
+        // console.log("there are... " + String(selected.length) + " rows selected")
+        $('#preview-button').css('display', 'none')
+      }
+  })
 
-//row selection methods...
-  $(".file-flash").click(function() {
-      var selected = $(this).hasClass("selected");
-      $(".file-flash").removeClass("selected");
-      if(!selected)
-          $(this).addClass("selected");
-  });
-
-  $('.file-flash a').on('click', function(){
-      var selected = $(this).hasClass("selected");
-      $(".file-flash").removeClass("selected");
-      if(!selected)
-          $(this).addClass("selected");
+  $('#table-body').on('click','.folder-text a', function(){
+    console.log("You just clicked a folder link!")
+    event.preventDefault()
+    $.get({
+      url: $(this).attr('href'),
+      success:function(res){
+        replaceTableBody(res)
+        // assignSelectionHandler();
+      }
+    })
   })
 
 
 
 
-var lastSelectedRow;
-var trs = $('#main-table tr')
-
-
-    $('tr').on('click', function(){
-        RowClick($(this),false,trs)
-
-    })
 })
 
-var lastSelectedRow;
-var trs = $('#main-table tr')
+// var lastSelectedRow;
+// var trs = $('#tbody-content-table tr')
 // disable text selection
 document.onselectstart = function() {
     return false;
@@ -199,46 +250,31 @@ function clearAll(rows) {
     }
 }
 
+function replaceTableBody(new_html){
+  console.log("replacing html...")
+  $('#table-body').fadeOut(300, function(){
+    $('#table-body').html(new_html)
+    $('#table-body').delay(100).fadeIn(300, function(){
+      console.log('done')
+    })
+  })
+}
+
+
+
+
+// function matchTableHeadersToRows(){
+//   var header = $('thead tr')[0]
+//   var body = $('#tbody-content-table tr')[0]
+//   console.log(header)
+//   console.log(body)
+//   console.log(header.cells[0].width)
+// }
 
 
 
 
 
-
-
-
-  //file upload AJAX
-
-  // $('#file-upload-button').on('click',function(){
-
-  //
-  //     event.preventDefault()
-  //     $.ajax({
-  //         url: $('#file-upload-form').attr('action'),
-  //         method: 'post',
-  //         data: data,
-  //         cache: false,
-  //         processData: false,
-  //         contentType: false,
-  //         success: function(response){
-  //             console.log("Entered success function, Response is ...")
-  //             console.log(response)
-  //
-  //             htmlString = ""
-  //             htmlString += "<tr class='file-flash'><td>"
-  //             htmlString += response.file_data
-  //             htmlString += "</td><td>"
-  //             htmlString += response.owner_name
-  //             htmlString +="</td><td>"
-  //             htmlString += response.updated_at
-  //             htmlString +="</td><td>"
-  //             htmlString += response.file_size
-  //             htmlString +="</td></tr>"
-  //
-  //             $('#table-body').append(htmlString)
-  //         }
-  //     })
-  // })
 // folder_ids = []
 // file_ids = []
 // for item in list:

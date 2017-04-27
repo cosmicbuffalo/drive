@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^create_success$', views.show_create_success_page, name="create_success"),
     url(r'^home$', views.show_home_page_root, name="home_root"),
     url(r'^home/(?P<folder_id>\d+)$', views.show_home_page_folder, name="home_folder"),
+    url(r'^home_body$', views.render_root_folder_contents, name="get_home_contents"),
+    url(r'^folder_body/(?P<folder_id>\d+)$', views.render_contents_of_folder, name="get_folder_contents"),
     # REDIRECT ROUTES
     url(r'^process_login$', views.process_login, name="process_login"),
     url(r'^process_registration$', views.process_registration, name="process_registration"),

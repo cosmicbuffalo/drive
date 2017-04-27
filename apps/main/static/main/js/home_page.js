@@ -45,6 +45,13 @@ post_data["num_rows"] = num_rows
         dataType:'json',
         success: function(res){
             console.log(res)
+            $.get({
+                url: "/folder_body/" + res.current_folder,
+                success:function(new_html){
+                    replaceTableBody(new_html)
+                    // assignSelectionHandler();
+                }
+            })
         }
         
 
@@ -259,6 +266,7 @@ function replaceTableBody(new_html){
     $('#table-body').html(new_html)
     $('#table-body').delay(100).fadeIn(300, function(){
       console.log('done')
+      $('.materialboxed').materialbox();
     })
   })
 }

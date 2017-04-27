@@ -42,7 +42,7 @@ def show_home_page_root(request):
         return redirect('login')
 
     parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
-
+    request.session['current_folder'] = parent_folder.id
 
     context = {
         "user": User.objects.get(id=request.session['current_user']),
@@ -63,9 +63,9 @@ def show_home_page_root(request):
     return render(request, "main/home.html", context)
 
 def render_root_folder_contents(request):
-
+    
     parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
-
+    request.session['current_folder'] = parent_folder.id
     context = {
         'media_files':File.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
         'folders': Folder.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
@@ -74,6 +74,7 @@ def render_root_folder_contents(request):
     return render(request, 'main/table_body_partial.html', context)
 
 def render_contents_of_folder(request, folder_id):
+    request.session['current_folder'] = folder_id
 
     context = {
         'media_files':File.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at'),
@@ -90,15 +91,16 @@ def show_home_page_folder(request, folder_id):
 
     file_form = FileForm()
     folder_form = FolderForm()
-
+    
     folder = Folder.objects.get(id=folder_id)
+    request.session['current_folder'] = folder_id
     # folder2 = Folder.objects.filter(parent_folder=folder).order_by('-created_at')
 
 
     context = {
         "user": User.objects.get(id=request.session['current_user']),
-        "media_files": File.objects.filter(parent_folder=folder).order_by('-created_at'),
-        "folders": Folder.objects.filter(parent_folder=folder).order_by('-created_at'),
+        "media_files": File.objects.filter(parent_folder=folder).exclude(is_in_trash=True).order_by('-created_at'),
+        "folders": Folder.objects.filter(parent_folder=folder).exclude(is_in_trash=True).order_by('-created_at'),
         'parent_folder' : folder,
         "file_form" : file_form,
         'folder_form': folder_form,
@@ -236,15 +238,6 @@ def validate_registration(request):
 # - FILE MANIPULATION METHODS -
 # -----------------------------
 
-def move_selected_to_trash(request, list_of_selected):
-
-    for selected_item in list_of_selected:
-        print selected_item
-
-
-    return JsonResponse({'redirect':True, 'redirect_url':'/home'})
-
-
 
 # -----------------------
 # - FILE UPLOAD METHOD -
@@ -303,22 +296,23 @@ def folder_creation(request, folder_id):
 
 def move_to_trash(request):
     if request.method == "POST":
-        print request.POST
-
         if 'num_rows' in request.POST.keys():
-
             num_rows = int(request.POST['num_rows'])
-            print "Number of rows ---->", num_rows
-        
             for count in range(num_rows):
                 # print count
                 type_value = str(count) + str('[type]')
                 id_value = str(count) + str('[id]')
-                print "value: ----------->", request.POST[type_value]
-                print "value: ----------->", request.POST[id_value]
+                if request.POST[type_value] == "file":
+                    file = File.objects.get(id=request.POST[id_value])
+                    file.is_in_trash = True
+                    file.save()
+                elif request.POST[type_value] == "folder":
+                    folder = Folder.objects.get(id=request.POST[id_value])
+                    folder.is_in_trash = True
+                    folder.save()
                 # work on finsihing up
             
     
-    return JsonResponse(request.POST)
+    return JsonResponse({"result":"success", "current_folder": request.session['current_folder']})
 
 # CONTINUED....

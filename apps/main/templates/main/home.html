@@ -151,7 +151,7 @@
         <div id="left-bar-top" class="left-bar-section">
           <ul id="left-bar-tab-menu">
             <div class="top-bottom-spacer"></div>
-            <li class="left-bar-tab dropdown-menu" id="drive-heirarchy-div">
+            <li class="left-bar-tab dropdown-menu" id="my-drive-tab" href="{% url 'get_home_contents' %}">
               <img class="icon" src="{% static 'main/img/icons/grey/storage.png' %}" alt="My Drive icon">
               <label class="tab-label">My Drive</label>
             </li>
@@ -203,12 +203,12 @@
                               <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
                             </div>
                             <div class="folder-text">
-                              <a href="{% url 'home_folder' folder_id=folder.id %}">
+                              <a href="{% url 'get_folder_contents' folder_id=folder.id %}">
                                 {{folder.name}}
                               </a>
                             </div>
                           </td>
-                          <td>{{folder.owner.first_name}}</td>
+                          <td class="owner-cell">{{folder.owner.first_name}}</td>
                           <td>{{folder.updated_at}}</td>
                           <td>-</td>
                         </tr>
@@ -229,7 +229,7 @@
                               </a>
                             </div>
                           </td>
-                          <td>{{file.owner.first_name}}</td>
+                          <td class="owner-cell">{{file.owner.first_name}}</td>
                           <td>{{file.updated_at}}</td>
                           <td>{{file.file_data.size|filesizeformat}}</td>
                         </tr>

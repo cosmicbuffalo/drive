@@ -32,17 +32,17 @@ a.dropdown-button:hover{
   font-size: 1.7em;
   padding-top: 7px;
 }
-.blue-text{
-  color:#5764f7;
+.blue-logo-text{
+  color:#5764f7 !important;
 }
-.red-text{
-  color:#ea35ac;
+.red-logo-text{
+  color:#ea35ac !important;
 }
-.yellow-text{
-  color:#ff752c;
+.yellow-logo-text{
+  color:#ff752c !important;
 }
-.green-text{
-  color:#13c79e;
+.green-logo-text{
+  color:#13c79e !important;
 }
 #top-bar-drive-link{
   font-size: 1.6em;

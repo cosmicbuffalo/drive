@@ -322,7 +322,30 @@ div.top-bottom-spacer{
   /*overflow-y: scroll;*/
 }
 #main-table{
+  table-layout: fixed;
   height: 100%;
+}
+.name-cell{
+  width: 50%
+}
+.owner-cell{
+  width: 10%;
+}
+.updated-at-cell{
+  width: 20%;
+}
+.size-cell{
+  width: 10%
+}
+th.header-adjust label{
+  position: relative;
+  left: -13px;
+}
+th.updated-at-cell label{
+  left: -17px;
+}
+th.size-cell label{
+  left: -22px;
 }
 #container-cell{
   padding:0px;
@@ -441,11 +464,7 @@ tr a{
 td, th{
   border-radius: 0px !important;
 }
-#main-table th{
-  display: inline-block;
-}
-#main-table th:first-child {
-  padding-right: 484px;
+
 }
 td.owner-cell{
   width: 100px;

@@ -46,8 +46,8 @@ def show_home_page_root(request):
 
     context = {
         "user": User.objects.get(id=request.session['current_user']),
-        "media_files": File.objects.filter(parent_folder=Root_Folder.objects.get(user_id=request.session['current_user']).folder).order_by('-created_at'),
-        'folders': Folder.objects.filter(parent_folder=parent_folder).order_by('-created_at'),
+        "media_files": File.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
+        'folders': Folder.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
         "file_form" : file_form,
         'folder_form': folder_form,
         "parent_folder" : parent_folder,
@@ -62,15 +62,39 @@ def show_home_page_root(request):
 
     return render(request, "main/home.html", context)
 
+def render_root_folder_contents(request):
+
+    parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
+
+    context = {
+        'media_files':File.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
+        'folders': Folder.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
+    }
+
+    return render(request, 'main/table_body_partial.html', context)
+
+def render_contents_of_folder(request, folder_id):
+
+    context = {
+        'media_files':File.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at'),
+        'folders':Folder.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at')
+    }
+    return render(request, 'main/table_body_partial.html', context)
+
+
+
+
+
+
 def show_home_page_folder(request, folder_id):
 
     file_form = FileForm()
     folder_form = FolderForm()
-    
+
     folder = Folder.objects.get(id=folder_id)
     # folder2 = Folder.objects.filter(parent_folder=folder).order_by('-created_at')
 
-   
+
     context = {
         "user": User.objects.get(id=request.session['current_user']),
         "media_files": File.objects.filter(parent_folder=folder).order_by('-created_at'),
@@ -79,9 +103,9 @@ def show_home_page_folder(request, folder_id):
         "file_form" : file_form,
         'folder_form': folder_form,
 
-        
+
     }
-    
+
     return render(request, "main/home.html", context)
 
 # ------------------------------
@@ -251,8 +275,8 @@ def file_upload(request, folder_id):
         user = User.objects.get(id=request.session['current_user'])
 
         File.objects.create(file_data=request.FILES.get('file_data'),file_type=file_type, owner=user, parent_folder=folder)
-        
-        
+
+
         # uploaded_file = File.objects.filter(owner_id=request.session['current_user']).order_by('-created_at')[0]
 
         # file_info = {

@@ -197,7 +197,7 @@
                   <table id="tbody-content-table">
 
                       {% for folder in folders %}
-                        <tr folder-id='{{folder.id}}' item-type="folder">
+                        <tr class="item-row" folder-id='{{folder.id}}' item-type="folder">
                           <td>
                             <div class="round-image-border">
                               <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
@@ -214,7 +214,7 @@
                         </tr>
                       {% endfor %}
                       {% for file in media_files %}
-                        <tr item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
+                        <tr class="item-row" item-id='{{file.id}}' item-type="file" file-type="{{file.file_type}}">
                           <td class="radius">
                             <div class="round-image-border">
                               {% if file.file_type == "image" %}

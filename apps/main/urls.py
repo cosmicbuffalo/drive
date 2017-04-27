@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^validate_identifier$', views.validate_identifier, name="validate_identifier"),
     url(r'^authenticate_login$', views.authenticate_login, name="authenticate_login"),
     url(r'^validate_registration$', views.validate_registration, name="validate_registration"),
+    url(r'^move_to_trash$', views.move_to_trash, name="move_to_trash"),
 
     #FILE MANIPULATION ROUTES (JSON)
     url(r'^remove_selected', views.move_selected_to_trash, name="remove_selected"),

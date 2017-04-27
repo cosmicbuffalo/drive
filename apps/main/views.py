@@ -277,8 +277,18 @@ def folder_creation(request, folder_id):
     return redirect(reverse("home_folder", kwargs={'folder_id':folder_id}))
 
 
+def move_to_trash(request):
+    if request.method == "POST":
+        for key in request.POST.keys():
+            count = 1
+            type_value = str(count) + str('[type]')
+            id_value = str(count) + str('[id]')
+            print "value: ----------->", request.POST[type_value]
+            print "value: ----------->", request.POST[id_value]
+            # work on finsihing up
+            
 
-
-
+    
+    return JsonResponse(request.POST)
 
 # CONTINUED....

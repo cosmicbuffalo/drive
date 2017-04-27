@@ -5,17 +5,28 @@ $ (document).ready(function(){
         $('#modal1').modal();
   })
   $('.tool-bar-link').on('click', function(){
-    var delete_list =[]
+    var post_data ={}
     event.preventDefault()
     for(var i = 0; i < $('.selected').length; i=i+1){
         var id = ($('.selected')[i].attributes[0].value)
         var type = ($('.selected')[i].attributes[1].value)
         
-        delete_list.push({
-            "type": type,
-            'id': id
-        })
+        post_data[i]= {"type": type,'id': id, 'position': i}
     }
+
+
+post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretoken')[0].value
+
+    $.post({
+        url:'/move_to_trash',
+        data: post_data,
+        dataType:'json',
+        success: function(res){
+            console.log(res)
+        }
+        
+
+    })
     
 
     // $.post({
@@ -27,7 +38,7 @@ $ (document).ready(function(){
   })
 // ***********************************************************
  
-
+// DO A PAGE RELOAD!!!!!!!!
 
 
 

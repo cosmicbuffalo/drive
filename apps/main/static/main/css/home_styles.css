@@ -261,12 +261,20 @@ div.top-bottom-spacer{
   border-radius: 50%;
 }
 
-#path-menu-div{
+#breadcrumb-div{
+
   max-width: 556px;
-  max-width: 309px;
-  border: 1px dotted black;
+  min-width: 309px;
+  /*border: 1px dotted black;*/
   /*float: right;*/
-  margin-left: 180px;
+  margin-left: 144px;
+  padding-top: 14px;
+}
+.breadcrumb{
+  color: #757575 !important;
+}
+.breadcrumb:last-child{
+  color:#3f3f3f !important;
 }
 
 #main{

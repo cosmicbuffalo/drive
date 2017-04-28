@@ -396,7 +396,7 @@ tr{
 }
 
 .selected{
-  background: #4285f4;
+  background-color: #4285f4 !important;
   color: white;
 }
 .selected a{
@@ -432,6 +432,9 @@ tr{
   padding-top: 8px;
   padding-left: 8px;
 }
+.text-color{
+  color: #404040 !important;
+}  
 
 tr a{
   color: #404040 !important;
@@ -486,7 +489,7 @@ tr.header-row :first-child label{
   height: 600px;
 }
 .folder-container{
-  box-shadow:  0px 2px 5px #888888 !important;
+  box-shadow:  0px 1px 5px #888888 !important;
   display: inline-block;
   padding-top: 8px;
   background-color:white;
@@ -500,4 +503,51 @@ tr.header-row :first-child label{
 }
 .image-padding{
   padding-left: 3px;
+  display:inline-block;
+}
+.file-container{
+ background-color: white;
+ display:inline-block;
+ overflow:hidden;
+ width: 190px;
+ height:194px;
+ margin-left: 10px;
+ box-shadow:  0px 1px 5px #888888 !important;
+
+
+}
+.tile-file{
+  height:150px;
+  overflow:hidden;
+}
+
+.material-placeholder{
+  padding-top: 0px !important;
+}
+.title-div{
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 5px;
+  padding-bottom: 3px;
+  padding-top: 4px; 
+}
+.title-div p{
+  display: inline-block;
+  glyph-orientation-vertical: top;
+  white-space: nowrap;
+  width: 130px;
+  padding-top: 7px;
+  padding-left: 5px;
+}
+.round-image-border{
+  vertical-align: top;
+}
+.picture-div{
+  width:auto;
+  background-color: white;
+}
+
+.headers{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

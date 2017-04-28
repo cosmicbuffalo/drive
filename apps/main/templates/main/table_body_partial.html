@@ -49,29 +49,43 @@
     </table>
   {% elif request.session.current_view == "grid" %}
     <div class = 'tile-div'>
-      <h6>Folders</h6>
+      <h6 class='headers'>Folders</h6>
     {% for folder in folders %}
-      <div  class="folder-container" folder-id='{{folder.id}}' item-type="folder">
+      <div  class="folder-container tile" folder-id='{{folder.id}}' item-type="folder">
         <div class="round-image-border">
           <img class="image-padding" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
         </div>
         <div class="folder-text">
-          <a href="{% url 'get_folder_contents' folder_id=folder.id %}">
+          <a class = "text-color"href="{% url 'get_folder_contents' folder_id=folder.id %}">
             {{folder.name}}
           </a>
         </div>
       </div>
     {% endfor %}
+    <h6 class='headers'>Files</h6>
+    {%for file in media_files%}
+    <div class="file-container tile" item-type="file">
+      <div class="picture-div">
+      {% if file.file_type == "image" %}
+      <img class="tile-file materialboxed" src="{{file.file_data.url}}">
+      {% elif file.file_type == "text" %}
+          <img class="tile-file" src="{% static 'main/img/icons/black/big_file.png' %}" file-name="document.png" alt="">
+      {% endif %}
+      </div>
+    <div class="title-div">
+      <div class="round-image-border">
+          <img class="image-padding" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
+        </div>
+         <p>{{file.file_data}}</p>
+        
+
     </div>
+    </div>
+    {% endfor %}
 
 
-
-
-
-
-
-
-
+   
+    
   {% endif %}
 
 

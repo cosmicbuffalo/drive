@@ -416,7 +416,7 @@ tr{
   padding-right: 20px;
   border-right: 1px solid #ebebeb;
   border-left: 1px solid #ebebeb;
-  background-color: white;
+  
   border-radius: 2px;
   overflow-y: scroll;
 }
@@ -424,7 +424,9 @@ tr{
   padding: 6px 0px 0px 5px !important;
 
 }
-
+#table-body{
+  background-color: rgb(255, 255, 255);
+}
 #table-body tr.selected {
   background-color: #5764f7;
   color: white;
@@ -465,6 +467,12 @@ table .selected a{
   vertical-align: top;
   display: inline-block;
   padding-top: 12px;
+  padding-left: 8px;
+}
+.name-tile-text{
+  vertical-align: top;
+  display: inline-block;
+  padding-top: 8px;
   padding-left: 8px;
 }
 .text-color{
@@ -520,7 +528,7 @@ tr.header-row :first-child label{
   font-weight: bold;
 }
 .tile-div{
-  background-color: #f5f5f5;
+  /*background-color: #f5f5f5;*/
   height: 600px;
 }
 .folder-container{
@@ -532,7 +540,8 @@ tr.header-row :first-child label{
   height: 48px;
   width: 185px;
   border-radius: 3%;
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
 
 
 }
@@ -545,9 +554,10 @@ tr.header-row :first-child label{
  display:inline-block;
  overflow:hidden;
  width: 190px;
- height:194px;
- margin-left: 10px;
+ height:200px;
+ margin-left: 20px;
  box-shadow:  0px 1px 5px #888888 !important;
+ margin-bottom: 15px;
 
 
 }
@@ -564,7 +574,7 @@ tr.header-row :first-child label{
   vertical-align: top;
   padding-left: 5px;
   padding-bottom: 3px;
-  padding-top: 4px;
+  padding-top: 7px;
 }
 .title-div p{
   display: inline-block;

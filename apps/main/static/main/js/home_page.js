@@ -166,6 +166,14 @@ $(document).ready(function () {
       }
     })
   })
+  $('#recent-tab').on('click', function () {
+    $.get({
+      url: $(this).attr('href'),
+      success: function (res) {
+        replaceTableBody(res)
+      }
+    })
+  })
 
 
   //---------------------------
@@ -227,7 +235,26 @@ $(document).ready(function () {
   $("#view-change-icon")
 
   $("#view-change-icon").on('click', function () {
-    // document.getElementById('#view-change-icon').src=$(this).attr("list-grey")
+    $('.header-row').toggle()
+    var current
+    if ($("#table-body").css("background-color") == "rgb(255, 255, 255)" ){
+      current = "grid"
+      $("#table-body").css({"background-color": "rgb(245, 245, 245)"})
+      $('#tbody-content-wrapper').css({'border-left':'none'})
+      console.log("if working")
+    }
+    else{
+      current ="table"
+      $("#table-body").css({"background-color":"rgb(255, 255, 255)"})
+      console.log("else working")
+      $('#tbody-content-wrapper').css({'border-left':'1px solid #ebebeb'})
+    }
+    if ($(this).attr("src")==$(this).attr("list-black")){
+      $(this).attr("src",$(this).attr('list-grey'))
+    }
+    else {
+    $("#view-change-icon").attr('src', $('#view-change-icon').attr('list-black'))
+    }
     $.get({
       url: $(this).attr('href'),
       success: function (res) {
@@ -236,12 +263,14 @@ $(document).ready(function () {
           url: "home/folder_body/" + res["current_folder"],
           success: function (result) {
             replaceTableBody(result)
+            if (current == "grid"){
+               $('#tbody-content-wrapper').css({'border-left':'none'})
+            }
+
 
           }
         })
       }
-
-
     })
   })
 

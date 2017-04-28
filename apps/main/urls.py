@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^authenticate_login$', views.authenticate_login, name="authenticate_login"),
     url(r'^validate_registration$', views.validate_registration, name="validate_registration"),
     url(r'^share_items$', views.share_items_by_emails, name="share_items"),
+    url(r'^recent_uploads', views.recent_uploads, name="recent_uploads"),
     #FILE MANIPULATION ROUTES (JSON)
     url(r'^move_to_trash$', views.move_to_trash, name="move_to_trash"),
     url(r'^toggle', views.grid_view, name="grid_view"),

@@ -17,6 +17,10 @@ $ (document).ready(function(){
     }
   })
 
+  $('#share-button').on('click', function(){
+    $('#share-modal').modal();
+  })
+
   $('#move_to_trash').on('click', function(){
 
     var post_data ={}

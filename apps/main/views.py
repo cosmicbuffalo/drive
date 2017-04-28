@@ -187,7 +187,7 @@ def process_registration(request):
         print "success"
         print "current_user in session:",  request.session['current_user']
 
-    return JsonResponse({'redirect':True,'redirect_url':'/home'})
+    return JsonResponse({'redirect':True,'redirect_url':'/create_success'})
 
 
 # -----------------------
@@ -251,7 +251,15 @@ def validate_registration(request):
 
         return JsonResponse(result)
 
+def share_items_by_emails(request):
+    if request.method == "POST":
+        print request.POST
 
+        for key in request.POST.keys():
+            print "key: --->", key, "value: --->", request.POST[key]
+
+
+    return JsonResponse({'result':'success'})
 
 # -----------------------------
 # - FILE MANIPULATION METHODS -

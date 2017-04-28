@@ -286,7 +286,7 @@ $("#view-change-icon").on('click', function(){
   })
 
 
-  $('#table-body').on('click','.folder-text a', function(){
+  $('#table-body').on('click','.folder-name-div a', function(){
     console.log("You just clicked a folder link!")
     event.preventDefault()
     var folder_name = $(this)[0].innerText

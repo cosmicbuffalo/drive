@@ -13,7 +13,7 @@
               <div class="round-image-border">
                 <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
               </div>
-              <div class="folder-text">
+              <div class="name-text folder-name-div">
                 <a href="{% url 'get_folder_contents' folder_id=folder.id %}">
                   {{folder.name}}
                 </a>
@@ -40,7 +40,7 @@
                   <img class="table-image" src="{% static 'main/img/icons/grey/document.png' %}" file-name="document.png" alt="">
                 {% endif %}
               </div>
-              <div class="folder-text">
+              <div class="name-text file-name-div">
                 <a href="{{ MEDIA_URL }}{{file.file_data.url}}" download>
                   {{file.file_data}}
                 </a>
@@ -67,7 +67,7 @@
         <div class="round-image-border">
           <img class="image-padding" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
         </div>
-        <div class="folder-text">
+        <div class="name-text folder-name-div">
           <a class = "text-color"href="{% url 'get_folder_contents' folder_id=folder.id %}">
             {{folder.name}}
           </a>
@@ -89,15 +89,15 @@
           <img class="image-padding" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
         </div>
          <p><a href="{{ MEDIA_URL }}{{file.file_data.url}}" download>{{file.file_data}}</a></p>
-        
+
 
     </div>
     </div>
     {% endfor %}
 
 
-   
-    
+
+
   {% endif %}
 
 

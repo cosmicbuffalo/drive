@@ -307,7 +307,7 @@ def file_upload(request, folder_id):
         # }
     # return JsonResponse(file_info)
 
-    return redirect(reverse("home_folder", kwargs={'folder_id':folder_id}))
+    return JsonResponse({'success': "it worked",'folder_id':folder_id})
 
 def folder_creation(request, folder_id):
     if request.method == "POST":
@@ -318,7 +318,7 @@ def folder_creation(request, folder_id):
         parent_folder.child_folders.add(Folder.objects.create(name=request.POST.get('name'), owner=user))
 
         # Folder.objects.create(name=request.POST.get('name'), owner=user, parent_folder=parent_folder)
-    return redirect(reverse("home_folder", kwargs={'folder_id':folder_id}))
+    return JsonResponse({'success': "it worked",'folder_id':folder_id})
 
 
 def move_to_trash(request):

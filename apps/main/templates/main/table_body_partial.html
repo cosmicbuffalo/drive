@@ -107,7 +107,7 @@
     <div id="modal1" class="modal">
       <div class="modal-content">
         <h4>Create Folder</h4>
-        <form action="{% url 'folder_creation' folder_id=parent_folder.id%}" method="POST">
+        <form  id="folder-create-form" action="{% url 'folder_creation' folder_id=parent_folder.id%}" method="POST">
           {% csrf_token %}
           {{folder_form.as_p}}
           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>

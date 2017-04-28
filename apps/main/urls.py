@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^validate_identifier$', views.validate_identifier, name="validate_identifier"),
     url(r'^authenticate_login$', views.authenticate_login, name="authenticate_login"),
     url(r'^validate_registration$', views.validate_registration, name="validate_registration"),
+    url(r'^share_items$', views.share_items_by_emails, name="share_items"),
     #FILE MANIPULATION ROUTES (JSON)
     url(r'^move_to_trash$', views.move_to_trash, name="move_to_trash"),
     # Test Route for File upload

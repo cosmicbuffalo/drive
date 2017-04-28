@@ -119,7 +119,9 @@
         <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
           <div id="selection-tools">
             <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/insert_link.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/insert_link.png' %}'" file-name="insert_link.png" alt="Get shareable link">
-            <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/person_add.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/person_add.png' %}'" alt="Share {selected}">
+            <a id="share-button" class="modal-trigger" href="#share-modal">
+              <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/person_add.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/person_add.png' %}'" alt="Share {selected}">
+            </a>
             <a id="preview-button" href="#">
               <img id="preview-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/visibility.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/visibility.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/visibility.png' %}'" alt="Preview">
             </a>
@@ -190,6 +192,20 @@
           </table>
 
 
+        </div>
+      </div>
+      <div class="invis-items">
+        <div id="share-modal" class="modal">
+          <div class="modal-content">
+            <h4>Share with other users</h4>
+            <h6>Add emails separated by commas</h6>
+            <form action="{% url 'share_items' %}" method="POST">
+              {% csrf_token %}
+              <input type="text" name="share_to_emails">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+              <input type="submit" class="btn-flat" value="Share">
+            </form>
+          </div>
         </div>
       </div>
     </div>

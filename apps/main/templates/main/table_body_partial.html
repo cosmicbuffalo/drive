@@ -19,7 +19,13 @@
                 </a>
               </div>
             </td>
-            <td class="owner-cell">{{folder.owner.first_name}}</td>
+            <td class="owner-cell">
+              {% if folder.owner.id == request.session.current_user %}
+                me
+              {% else %}
+                {{folder.owner.first_name}}
+              {% endif %}
+            </td>
             <td class="updated-at-cell">{{folder.updated_at}}</td>
             <td class="size-cell folder-size">-</td>
           </tr>
@@ -40,7 +46,13 @@
                 </a>
               </div>
             </td>
-            <td class="owner-cell">{{file.owner.first_name}}</td>
+            <td class="owner-cell">
+              {% if file.owner.id == request.session.current_user %}
+                me
+              {% else %}
+                {{file.owner.first_name}}
+              {% endif %}
+            </td>
             <td class="updated-at-cell">{{file.updated_at}}</td>
             <td class="size-cell">{{file.file_data.size|filesizeformat}}</td>
           </tr>
@@ -77,7 +89,7 @@
 
 
   </div>
-  <div id="invis-elements">
+  <div class="invis-items">
     <div id="modal1" class="modal">
       <div class="modal-content">
         <h4>Create Folder</h4>
@@ -96,4 +108,3 @@
     </form>
   </div>
 </td>
-

@@ -85,6 +85,9 @@ a.dropdown-button:hover{
   font-weight: 300;
   color: white !important;
 }
+#new-button:hover{
+  cursor: pointer;
+}
 li.spacer-divider{
   margin:7px 0px
 }
@@ -331,6 +334,7 @@ div.top-bottom-spacer{
   color: #3f3f3f;
   padding-top: 8px;
   display: inline-block;
+  cursor: pointer;
 }
 #left-bar-tab-menu li:hover{
   cursor: pointer;
@@ -460,7 +464,7 @@ tr{
 .folder-text{
   vertical-align: top;
   display: inline-block;
-  padding-top: 8px;
+  padding-top: 12px;
   padding-left: 8px;
 }
 

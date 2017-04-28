@@ -23,6 +23,8 @@ $ (document).ready(function(){
 
 
     $('#share-modal').modal();
+
+    
   })
 
   $('#move_to_trash').on('click', function(){
@@ -224,7 +226,7 @@ $ (document).ready(function(){
 //-----------------------------
 //--------- GRID VIEW ---------
 //-----------------------------
-$("#view-change-icon")
+
 
 $("#view-change-icon").on('click', function(){
   // document.getElementById('#view-change-icon').src=$(this).attr("list-grey")

@@ -115,6 +115,19 @@
         </form>
       </div>
     </div>
+    <div id="share-modal" class="modal">
+      <div class="modal-content">
+        <h4>Share with other users</h4>
+        <h6>Add emails separated by commas</h6>
+        <form id="share-items-form" action="{% url 'share_items' folder_id=parent_folder.id%}" method="POST">
+          {% csrf_token %}
+
+          <input type="text" name="share_to_emails">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+          <input id="share-submit-button" type="submit" class="btn-flat" value="Share">
+        </form>
+      </div>
+    </div>
 
     <form id="file-upload-form" action="{% url 'file_upload' folder_id=parent_folder.id %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}

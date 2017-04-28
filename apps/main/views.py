@@ -251,15 +251,19 @@ def validate_registration(request):
 
         return JsonResponse(result)
 
-def share_items_by_emails(request):
+def share_items_by_emails(request, folder_id):
     if request.method == "POST":
         print request.POST
 
-        for key in request.POST.keys():
-            print "key: --->", key, "value: --->", request.POST[key]
+        if 'file' in request.POST.keys():
+            for item in request.POST['file']:
+                print item
+        if 'folder' in request.POST.keys():
+            for item in request.POST['folder']:
+                print item
 
 
-    return JsonResponse({'result':'success'})
+    return JsonResponse({'result': "success",'folder_id':folder_id})
 
 # -----------------------------
 # - FILE MANIPULATION METHODS -

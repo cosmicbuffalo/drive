@@ -294,13 +294,13 @@ div.top-bottom-spacer{
 }
 .breadcrumb:last-child{
   color:#3f3f3f !important;
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 .breadcrumb:last-child .crumb-hover:after{
-  content: url('/static/main/img/icons/black/carrot_down.png');
-  position: relative;
-  top: 4px;
-  left: 3px;
+  content: url('/static/main/img/icons/black/carrot_down.png') !important;
+  position: relative !important;
+  top: 4px !important;
+  left: 3px !important;
 }
 
 #main{

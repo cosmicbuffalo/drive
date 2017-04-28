@@ -19,13 +19,38 @@ $(document).ready(function () {
 
   $('#share-button').on('click', function () {
 
+    for (var x = 0; x < $('table .selected').length; x += 1){
+      console.log($('table .selected')[x].attributes)
 
+      var id = ($('table .selected')[x].attributes[1].value)
+      console.log(id)
+      var type = ($('table .selected')[x].attributes[2].value)
+      console.log(type)
+      var htmlString = "<input type='hidden' name='" + type + "' value='" + id + "'>"
+      $('#share-items-form').append(htmlString)
+
+    }
+
+    $('#share-items-form').ajaxForm({
+      success: function (res) {
+        console.log(res)
+        alert("Share success!");
+        $('#share-modal').modal('close')
+        $.get({
+          url: "home/folder_body/" + res["folder_id"],
+          success: function (result) {
+            replaceTableBody(result)
+          }
+        })
+      }
+    })
 
 
     $('#share-modal').modal();
 
 
   })
+
 
   $('#move_to_trash').on('click', function () {
 
@@ -292,6 +317,22 @@ $(document).ready(function () {
 
   $('#breadcrumb-div').on('mouseover', '.breadcrumb:last-child', function(){
     console.log("hovering over last breadcrumb")
+    $('.breadcrumb:last-child').attr('data-activates', 'new-button-dropdown')
+    $('.breadcrumb:last-child').addClass('dropdown-button')
+
+    $('.breadcrumb:last-child').dropdown({
+      inDuration: 100,
+      outDuration: 100,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 29, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: true // Stops event propagation
+    }
+    );
+    return
+    $('.breadcrumb:last-child').dropdown('open')
   })
 
 
@@ -384,7 +425,7 @@ function selectRowsBetweenIndexes(indexes, rows) {
   });
 
   for (var i = indexes[0]; i <= indexes[1]; i++) {
-    $(rows[i + 1]).addClass('selected');
+    $(rows[i]).addClass('selected');
   }
 }
 

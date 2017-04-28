@@ -430,11 +430,11 @@ tr{
   color: white;
 }
 
-.selected{
+table .selected{
   background-color: #4285f4 !important;
   color: white;
 }
-.selected a{
+table .selected a{
   color: white !important;
 }
 .thumbnail{
@@ -469,7 +469,7 @@ tr{
 }
 .text-color{
   color: #404040 !important;
-}  
+}
 
 tr a{
   color: #404040 !important;
@@ -564,7 +564,7 @@ tr.header-row :first-child label{
   vertical-align: top;
   padding-left: 5px;
   padding-bottom: 3px;
-  padding-top: 4px; 
+  padding-top: 4px;
 }
 .title-div p{
   display: inline-block;

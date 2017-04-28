@@ -18,6 +18,10 @@ $ (document).ready(function(){
   })
 
   $('#share-button').on('click', function(){
+
+
+
+
     $('#share-modal').modal();
   })
 
@@ -26,11 +30,11 @@ $ (document).ready(function(){
     var post_data ={}
     var num_rows = 0
     event.preventDefault()
-    for(var i = 0; i < $('.selected').length; i=i+1){
-        console.log($('.selected')[i].attributes)
+    for(var i = 0; i < $('table .selected').length; i=i+1){
+        console.log($('table .selected')[i].attributes)
 
-        var id = ($('.selected')[i].attributes[1].value)
-        var type = ($('.selected')[i].attributes[2].value)
+        var id = ($('table .selected')[i].attributes[1].value)
+        var type = ($('table .selected')[i].attributes[2].value)
 
 
         post_data[i]= {"type": type,'id': id,}
@@ -46,8 +50,8 @@ $ (document).ready(function(){
         dataType:'json',
         success: function(res){
 
-          $('tr.selected').delay(400).slideToggle(400).delay(500)
-          $('tr.selected').delay(400).remove()
+          $('table .selected').delay(400).slideToggle(400).delay(500)
+          $('table .selected').delay(400).remove()
 
             // console.log(res)
             // $.get({
@@ -215,11 +219,13 @@ $ (document).ready(function(){
         $('#preview-button').css('display', 'none')
       }
   })
-  
+
+
 //-----------------------------
 //--------- GRID VIEW ---------
 //-----------------------------
 $("#view-change-icon")
+
 $("#view-change-icon").on('click', function(){
   // document.getElementById('#view-change-icon').src=$(this).attr("list-grey")
    $.get({
@@ -234,7 +240,7 @@ $("#view-change-icon").on('click', function(){
         }
       })
     }
-    
+
 
   })
 })

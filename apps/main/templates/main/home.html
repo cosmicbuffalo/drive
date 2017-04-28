@@ -112,9 +112,10 @@
             <div class="top-bottom-spacer"></div>
           </ul>
         </div>
-        <!-- <div class="top-bar-item" id="path-menu-div">
+        <div class="top-bar-item" id="breadcrumb-div">
+          <a class="breadcrumb" href="#"><span class="crumb-hover">My Drive</span></a>
 
-        </div> -->
+        </div>
         <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
           <div id="selection-tools">
             <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/insert_link.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/insert_link.png' %}'" file-name="insert_link.png" alt="Get shareable link">
@@ -142,7 +143,7 @@
         <div id="left-bar-top" class="left-bar-section">
           <ul id="left-bar-tab-menu">
             <div class="top-bottom-spacer"></div>
-            <li class="left-bar-tab dropdown-menu" id="my-drive-tab" href="{% url 'get_home_contents' %}">
+            <li class="left-bar-tab dropdown-menu selected" id="my-drive-tab" href="{% url 'get_home_contents' %}">
               <img class="icon" src="{% static 'main/img/icons/grey/storage.png' %}" alt="My Drive icon">
               <label class="tab-label">My Drive</label>
             </li>
@@ -187,7 +188,7 @@
             </tbody>
 
           </table>
-          
+
 
         </div>
       </div>

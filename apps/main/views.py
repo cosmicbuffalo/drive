@@ -36,7 +36,7 @@ def show_create_success_page(request):
 def show_home_page_root(request):
     file_form = FileForm()
     folder_form = FolderForm()
-    request.session["current_view"] = "grid"
+    request.session["current_view"] = "table"
     if 'current_user' in request.session.keys():
         print "Current user in session: ---->", request.session['current_user']
     else:
@@ -108,7 +108,7 @@ def show_home_page_folder(request, folder_id):
 
     file_form = FileForm()
     folder_form = FolderForm()
-    
+
     folder = Folder.objects.get(id=folder_id)
     request.session['current_folder'] = folder_id
     # folder2 = Folder.objects.filter(parent_folder=folder).order_by('-created_at')

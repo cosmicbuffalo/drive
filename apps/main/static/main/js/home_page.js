@@ -41,14 +41,18 @@ $ (document).ready(function(){
         data: post_data,
         dataType:'json',
         success: function(res){
-            console.log(res)
-            $.get({
-                url: "/folder_body/" + res.current_folder,
-                success:function(new_html){
-                    replaceTableBody(new_html)
-                    // assignSelectionHandler();
-                }
-            })
+
+          $('tr.selected').delay(400).slideToggle(400).delay(500)
+          $('tr.selected').delay(400).remove()
+
+            // console.log(res)
+            // $.get({
+            //     url: "/folder_body/" + res.current_folder,
+            //     success:function(new_html){
+            //         replaceTableBody(new_html)
+            //         // assignSelectionHandler();
+            //     }
+            // })
         }
 
 
@@ -140,7 +144,9 @@ $ (document).ready(function(){
       url: $(this).attr('href'),
       success:function(res){
         // console.log(res)
+        $('#breadcrumb-div').html('<a class="breadcrumb first-crumb" href="#"><span class="crumb-hover">My Drive</span></a>')
         replaceTableBody(res)
+
       }
     })
   })
@@ -149,8 +155,7 @@ $ (document).ready(function(){
         $.get({
             url: $(this).attr('href'),
             success: function(res){
-            replaceTableBody(res)
-
+              replaceTableBody(res)
             }
         })
     })
@@ -215,13 +220,56 @@ $ (document).ready(function(){
   //---- FOLDER NAVIGATION ----
   //---------------------------
 
-  $('#table-body').on('click','.folder-text a', function(){
-    console.log("You just clicked a folder link!")
+  // $('#breadcrumb-div').on('click', 'a#first-crumb', function(){
+  //   event.preventDefault()
+  //   event.stopPropagation()
+  //   $('#my-drive-tab').trigger('click')
+  // })
+
+
+  $('#breadcrumb-div').on('click', 'a.not-first', function(){
     event.preventDefault()
+    console.log("You just clicked a breadcrumb")
+    console.log($(this).attr('href'))
+    console.log($(this))
+    var clicked = $(this)
+
     $.get({
       url: $(this).attr('href'),
       success:function(res){
         replaceTableBody(res)
+        console.log(clicked)
+        console.log(clicked.nextAll('a.breadcrumb'))
+        clicked.nextAll('a.breadcrumb').remove()
+      }
+    })
+
+  })
+
+  $('#breadcrumb-div').on('click', '#first-crumb', function(){
+    console.log("clicked first child")
+    event.preventDefault()
+    console.log($(this))
+    // $(this).stop()
+    $('#my-drive-tab').trigger('click')
+
+
+  })
+
+
+  $('#table-body').on('click','.folder-text a', function(){
+    console.log("You just clicked a folder link!")
+    event.preventDefault()
+    var folder_name = $(this)[0].innerText
+    // console.log(folder_name)
+    href = $(this).attr('href')
+    // console.log(href)
+
+    $.get({
+      url: $(this).attr('href'),
+      success:function(res){
+        replaceTableBody(res)
+        $('#breadcrumb-div').append('<a class="breadcrumb not-first" href=' + href + '><span class="crumb-hover">' + folder_name + '</span></a>')
       }
     })
   })
@@ -232,6 +280,7 @@ $ (document).ready(function(){
     success:function(res){
       // console.log(res)
       replaceTableBody(res)
+      $('#breadcrumb-div').html('<a id="first-crumb" class="breadcrumb" href="#"><span class="crumb-hover">My Drive</span></a>')
     }
   })
 

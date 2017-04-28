@@ -158,7 +158,6 @@ $ (document).ready(function(){
       }
     })
   })
-////// WRITE THE DELETE route like above, look at the html too!
     $('#trash-tab').on('click', function(){
         $.get({
             url: $(this).attr('href'),
@@ -222,7 +221,28 @@ $ (document).ready(function(){
   })
 
 
+//-----------------------------
+//--------- GRID VIEW ---------
+//-----------------------------
 
+
+$("#view-change-icon").on('click', function(){
+  $.get({
+    url: $(this).attr('href'),
+    success: function(res){
+      $('#tbody-content-wrapper').delay(400).remove()
+      $.get({
+        url: "home/folder_body/"+res["current_folder"],
+        success: function(result){
+          replaceTableBody(result)
+
+        }
+      })
+    }
+
+
+  })
+})
 
   //---------------------------
   //---- FOLDER NAVIGATION ----

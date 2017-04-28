@@ -80,6 +80,8 @@ def render_contents_of_folder(request, folder_id):
     request.session['current_folder'] = folder_id
     folder_form = FolderForm()
     parent_folder = Folder.objects.get(id=folder_id)
+    print "*************************************"
+    print "working"
     context = {
         'media_files':File.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at'),
         'folders':Folder.objects.filter(parent_folder__id=folder_id).exclude(is_in_trash=True).order_by('-created_at'),
@@ -338,5 +340,12 @@ def move_to_trash(request):
                     folder.save()
     return JsonResponse({"result":"success", "current_folder": request.session['current_folder']})
 
+def grid_view(request):
+    if request.session['current_view'] == "grid":
+        request.session['current_view'] = "table"
+    else:
+        request.session['current_view'] = "grid"
+    print "I was here."
+    return JsonResponse({"result":'success', 'current_folder':request.session['current_folder']})
 
 # CONTINUED....

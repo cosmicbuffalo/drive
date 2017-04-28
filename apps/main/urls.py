@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^home$', views.show_home_page_root, name="home_root"),
     url(r'^home/(?P<folder_id>\d+)$', views.show_home_page_folder, name="home_folder"),
     url(r'^home_body$', views.render_root_folder_contents, name="get_home_contents"),
-    url(r'^folder_body/(?P<folder_id>\d+)$', views.render_contents_of_folder, name="get_folder_contents"),
+    url(r'^home/folder_body/(?P<folder_id>\d+)$', views.render_contents_of_folder, name="get_folder_contents"),
     url(r'^home/trash$',views.render_trash_contents, name="get_trash_contents"),
     # REDIRECT ROUTES
     url(r'^process_login$', views.process_login, name="process_login"),
@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^share_items$', views.share_items_by_emails, name="share_items"),
     #FILE MANIPULATION ROUTES (JSON)
     url(r'^move_to_trash$', views.move_to_trash, name="move_to_trash"),
+    url(r'^toggle', views.grid_view, name="grid_view"),
     # Test Route for File upload
     url(r'^file_upload/(?P<folder_id>\d+)$', views.file_upload, name='file_upload'),
     # Going into a folder

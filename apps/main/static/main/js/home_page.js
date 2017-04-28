@@ -219,9 +219,10 @@ $ (document).ready(function(){
 //-----------------------------
 //--------- GRID VIEW ---------
 //-----------------------------
-
+$("#view-change-icon")
 $("#view-change-icon").on('click', function(){
-  $.get({
+  // document.getElementById('#view-change-icon').src=$(this).attr("list-grey")
+   $.get({
     url: $(this).attr('href'),
     success: function(res){
       $('#tbody-content-wrapper').delay(400).remove()

@@ -192,17 +192,18 @@ $ (document).ready(function(){
       }
   })
 //-----------------------------
-//----TILED VIEW SELECTIOn-----
+//----TILED VIEW SELECTION-----
 //-----------------------------
    var lastSelectedRow;
-  $('#table-body').on('click','div.folder-container', function(){
-      var tiles = $('.folder-container')
+  $('#table-body').on('click','div.tile', function(){
+      var tiles = $('.tile')
       console.log("triggered row selection handler")
       RowClick($(this),false,tiles)
       $('#selection-tools').css('display', 'inline-block')
-      var selected = $('tr.selected')
+      var selected = $('div.tile.selected')
       if (selected.length == 1){
         // console.log("There is one row selected")
+        // $(selected).css('background-color',"#5764f7")
         selected_type = $(selected[0])[0].attributes['item-type'].value
         // console.log(selected_type)
         if (selected_type != "folder"){
@@ -215,6 +216,7 @@ $ (document).ready(function(){
         $('#preview-button').css('display', 'none')
       }
   })
+  
 
 
 

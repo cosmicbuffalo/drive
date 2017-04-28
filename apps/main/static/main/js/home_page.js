@@ -23,6 +23,8 @@ $(document).ready(function () {
 
 
     $('#share-modal').modal();
+
+
   })
 
   $('#move_to_trash').on('click', function () {
@@ -91,7 +93,7 @@ $(document).ready(function () {
     outDuration: 100,
     constrainWidth: false, // Does not change width of dropdown to that of the activator
     hover: false, // Activate on hover
-    gutter: 14, // Spacing from edge
+    gutter: 0, // Spacing from edge
     belowOrigin: true, // Displays dropdown below the button
     alignment: 'left', // Displays dropdown with edge aligned to the left of button
     stopPropagation: false // Stops event propagation
@@ -107,7 +109,11 @@ $(document).ready(function () {
   assignFileUploadHandler();
 
   $('#new-folder-button').on('click', function () {
+    console.log("clicked new folder tab")
+
     $('#modal1').modal();
+    $('#modal1').modal('open')
+    // $('#folder-create-override').trigger('click')
   })
 
 
@@ -229,10 +235,11 @@ $(document).ready(function () {
   })
 
 
-  //-----------------------------
-  //--------- GRID VIEW ---------
-  //-----------------------------
-  $("#view-change-icon")
+//-----------------------------
+//--------- GRID VIEW ---------
+//-----------------------------
+
+
 
   $("#view-change-icon").on('click', function () {
     $('.header-row').toggle()
@@ -310,8 +317,10 @@ $(document).ready(function () {
     console.log($(this))
     // $(this).stop()
     $('#my-drive-tab').trigger('click')
+  })
 
-
+  $('#breadcrumb-div').on('mouseover', '.breadcrumb:last-child', function(){
+    console.log("hovering over last breadcrumb")
   })
 
 
@@ -392,7 +401,6 @@ function toggleRow(row) {
     }
     else {
       row.addClass('selected')
-
     }
     lastSelectedRow = row;
   }
@@ -432,12 +440,8 @@ function replaceTableBody(new_html) {
             url: "home/folder_body/" + res["folder_id"],
             success: function (result) {
               replaceTableBody(result)
-
             }
           })
-
-
-
         }
       })
       $('#folder-create-form').ajaxForm({
@@ -449,13 +453,8 @@ function replaceTableBody(new_html) {
             url: "home/folder_body/" + res["folder_id"],
             success: function (result) {
               replaceTableBody(result)
-
-
             }
           })
-
-
-
         }
       })
     })

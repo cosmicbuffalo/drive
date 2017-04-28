@@ -352,4 +352,22 @@ def grid_view(request):
     print "I was here."
     return JsonResponse({"result":'success', 'current_folder':request.session['current_folder']})
 
+def recent_uploads(request):
+    folder_form = FolderForm()
+    parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
+
+    context= {
+        'media_files':File.objects.filter(owner_id = request.session['current_user']).order_by('-updated_at')[:3],
+        'folders':Folder.objects.filter(owner_id = request.session['current_user']).order_by('-updated_at')[:3],
+        'folder_form': folder_form,
+        "parent_folder" : parent_folder,
+
+    }
+    
+
+    return render(request, "main/table_body_partial.html", context)
+
+
+
+
 # CONTINUED....

@@ -475,11 +475,8 @@ tr a{
   color: #404040 !important;
 }
 
-.radius{
-  border-radius: 0%;
-}
 
-#folder-create-overide{
+#folder-create-override{
   color: rgba(0,0,0,0.87) !important;
   font-size: 1.0em !important;
   display: inline-block !important;
@@ -488,15 +485,20 @@ tr a{
   position: relative;
   top: 5px;
 }
-#folder-create-overide:hover{
+#folder-create-override:hover{
   text-decoration: none;
 }
-#folder-create-overide drop-label{
+#folder-create-override drop-label{
   padding-top: 10px;
 }
-
+#new-folder-button:hover{
+  cursor: pointer;
+}
 #new-folder-icon{
   padding-top: 0px;
+}
+#file-upload-button:hover{
+  cursor: pointer;
 }
 td, th{
   border-radius: 0px !important;

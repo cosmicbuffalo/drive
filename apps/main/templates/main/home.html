@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{% static 'main/css/home_styles.css' %}">
   <script type="text/javascript" src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'main/js/jquery-ui.min.js' %}"></script>
-  <script src="http://malsup.github.com/jquery.form.js"></script> 
+  <script src="http://malsup.github.com/jquery.form.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
   <link rel="stylesheet" href="{% static 'main/css/materialize.min.css' %}">
   <script type="text/javascript" src="{% static 'main/js/home_page.js' %}"></script>
@@ -82,7 +82,7 @@
           <ul id="new-button-dropdown" class="dropdown-content">
             <div class="top-bottom-spacer"></div>
             <li id="new-folder-button" class="dropdown-item">
-              <a id="folder-create-overide" href="#modal1">
+              <a id="folder-create-override" href="#modal1">
                 <img id="new-folder-icon" class="icon" src="{% static 'main/img/icons/grey/new_folder.png' %}" alt="New folder">
                 <drop-label>New folder...</drop-label>
               </a>
@@ -132,7 +132,7 @@
             <img id="more-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/more_vert.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/more_vert.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/more_vert.png' %}'"alt="More actions">
           </div>
           <div class="top-bar-item top-bar-right-links">
-    
+
             <img id="view-change-icon" current-view="table" class="icon hover-circle" href = "{% url 'grid_view' %}" src="{% static 'main/img/icons/grey/view_module.png' %}" grid-black="{% static 'main/img/icons/black/view_module.png' %}" grid-gray="{% static 'main/img/icons/grey/view_module.png' %}" alt="Grid view" list-grey= "{% static 'main/img/icons/grey/list.png' %}" list-black"{% static 'main/img/icons/black/list.png'%}">
             <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/info.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/info.png' %}'"alt="View details">
             <img id="settings-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/settings.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/settings.png' %}'"alt="Settings">

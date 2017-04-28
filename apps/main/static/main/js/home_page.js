@@ -93,7 +93,7 @@ $(document).ready(function () {
     outDuration: 100,
     constrainWidth: false, // Does not change width of dropdown to that of the activator
     hover: false, // Activate on hover
-    gutter: 14, // Spacing from edge
+    gutter: 0, // Spacing from edge
     belowOrigin: true, // Displays dropdown below the button
     alignment: 'left', // Displays dropdown with edge aligned to the left of button
     stopPropagation: false // Stops event propagation
@@ -109,7 +109,11 @@ $(document).ready(function () {
   assignFileUploadHandler();
 
   $('#new-folder-button').on('click', function () {
+    console.log("clicked new folder tab")
+
     $('#modal1').modal();
+    $('#modal1').modal('open')
+    // $('#folder-create-override').trigger('click')
   })
 
 
@@ -284,8 +288,10 @@ $(document).ready(function () {
     console.log($(this))
     // $(this).stop()
     $('#my-drive-tab').trigger('click')
+  })
 
-
+  $('#breadcrumb-div').on('mouseover', '.breadcrumb:last-child', function(){
+    console.log("hovering over last breadcrumb")
   })
 
 

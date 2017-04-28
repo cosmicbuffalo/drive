@@ -307,7 +307,7 @@ def file_upload(request, folder_id):
         # }
     # return JsonResponse(file_info)
 
-    return redirect(reverse("home_folder", kwargs={'folder_id':folder_id}))
+    return redirect(reverse("get_folder_contents", kwargs={'folder_id':folder_id}))
 
 def folder_creation(request, folder_id):
     if request.method == "POST":

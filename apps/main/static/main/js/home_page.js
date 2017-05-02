@@ -265,6 +265,23 @@ $(document).ready(function () {
 //-----------------------------
 
 
+  $('#view-change-icon').hover(
+    function(){
+      if ($(this).attr('src') == $(this).attr('grid-gray')){
+        $(this).attr('src', $(this).attr('grid-black'))
+      } else if ($(this).attr('src') == $(this).attr('list-grey')) {
+        $(this).attr('src', $(this).attr('list-black'))
+      }
+
+    },
+    function(){
+      if ($(this).attr('src') == $(this).attr('grid-black')){
+        $(this).attr('src', $(this).attr('grid-gray'))
+      } else if ($(this).attr('src') == $(this).attr('list-black')){
+        $(this).attr('src', $(this).attr('list-grey'))
+      }
+    }
+  )
 
   $("#view-change-icon").on('click', function () {
     $('.header-row').toggle()
@@ -281,12 +298,12 @@ $(document).ready(function () {
       console.log("else working")
       $('#tbody-content-wrapper').css({'border-left':'1px solid #ebebeb'})
     }
-    if ($(this).attr("src")==$(this).attr("list-black")){
-      $(this).attr("src",$(this).attr('list-grey'))
+    if ($(this).attr("src") == $(this).attr("list-black")){
+      $(this).attr("src", $(this).attr('grid-black'))
+    } else if ($(this).attr("src") == $(this).attr("grid-black")){
+      $(this).attr('src', $(this).attr('list-black'))
     }
-    else {
-    $("#view-change-icon").attr('src', $('#view-change-icon').attr('list-black'))
-    }
+
     $.get({
       url: $(this).attr('href'),
       success: function (res) {

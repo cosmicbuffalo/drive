@@ -434,13 +434,13 @@ document.onselectstart = function () {
 }
 
 function RowClick(currenttr, lock, rows) {
-  if (window.event.ctrlKey) {
+  if (window.event.ctrlKey || window.event.metaKey) {
     toggleRow(currenttr);
   }
 
   if (window.event.button === 0) {
 
-    if (!window.event.ctrlKey && !window.event.shiftKey) {
+    if (!window.event.ctrlKey && !window.event.shiftKey && !window.event.metaKey) {
       clearAll(rows);
       toggleRow(currenttr);
     }
@@ -455,7 +455,7 @@ function toggleRow(row) {
   if (!row.hasClass('header-row')) {
     if (row.hasClass('selected')) {
       row.removeClass('selected')
-      console.log(rows)
+      // console.log(rows)
     }
     else {
       row.addClass('selected')

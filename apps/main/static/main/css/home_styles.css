@@ -340,6 +340,15 @@ div.top-bottom-spacer{
   cursor: pointer;
   background-color: rgba(228,228,228,0.65);
 }
+#left-bar-tab-menu li .purple-icon{
+  display: none
+}
+#left-bar-tab-menu li.selected .purple-icon{
+  display: inline-block;
+}
+#left-bar-tab-menu li.selected .grey-icon{
+  display: none;
+}
 #left-bar-tab-menu li.selected{
   background-color: #e4e4e4;
 }
@@ -427,13 +436,13 @@ tr{
 #table-body{
   background-color: rgb(255, 255, 255);
 }
-#table-body tr.selected {
+/*#table-body tr.selected {
   background-color: #5764f7;
   color: white;
-}
+}*/
 
 table .selected{
-  background-color: #4285f4 !important;
+  background-color: #5764f7 !important;
   color: white;
 }
 table .selected a{
@@ -608,13 +617,13 @@ tr.header-row :first-child label{
   margin-left: 20px;
 }
 tr div.shared-icon-box:after{
-  content: url('/static/main/img/icons/grey/shared.png');
+  content: url('/static/main/img/icons/grey/group_small.svg');
   position: relative;
   top: 9px;
   left: 5px;
 }
 tr.selected div.shared-icon-box:after{
-  content: url('/static/main/img/icons/white/shared.png');
+  content: url('/static/main/img/icons/white/group_small.svg');
   position: relative;
   top: 9px;
   left: 5px;

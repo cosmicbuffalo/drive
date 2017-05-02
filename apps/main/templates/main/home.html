@@ -27,16 +27,16 @@
           <span class="top-bar-item" id="top-bar-drive-link">Drive</span>
         </div>
         <div class="top-bar-item" id="search-bar-div">
-          <img id="search-bar-icon" class="icon" src="{% static 'main/img/icons/grey/search.png' %}" alt="Search Icon">
+          <img id="search-bar-icon" class="icon" src="{% static 'main/img/icons/grey/search.svg' %}" alt="Search Icon">
           <form class="search" action="#" method="post">
             <input id="search-field" type="text" name="search-field" value="" placeholder="Search Drive">
           </form>
         </div>
         <div class="top-bar-item top-bar-right-links">
           <div id="apps-and-notifications-wrapper">
-            <img id="doodle-apps-icon" class="icon" src="{% static 'main/img/icons/grey/apps.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/apps.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/apps.png' %}'"alt="Doodle apps">
+            <img id="doodle-apps-icon" class="icon" src="{% static 'main/img/icons/grey/apps.svg' %}" onmouseover="this.src='{% static 'main/img/icons/black/apps.svg' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/apps.svg' %}'"alt="Doodle apps">
             <div id="notification-icon-sizer">
-              <img id="notifications-icon" class="icon round" src="{% static 'main/img/icons/notifications.png' %}" alt="Notfications">
+              <img id="notifications-icon" class="icon round" src="{% static 'main/img/icons/white/notifications.svg' %}" alt="Notfications">
             </div>
           </div>
           <a id="account-dropdown-button" class="dropdown-button" href="#" data-activates="account-dropdown" belowOrigin="True">
@@ -83,18 +83,18 @@
             <div class="top-bottom-spacer"></div>
             <li id="new-folder-button" class="dropdown-item">
               <a id="folder-create-override" href="#modal1">
-                <img id="new-folder-icon" class="icon" src="{% static 'main/img/icons/grey/new_folder.png' %}" alt="New folder">
+                <img id="new-folder-icon" class="icon" src="{% static 'main/img/icons/grey/new_folder.svg' %}" alt="New folder">
                 <drop-label>New folder...</drop-label>
               </a>
 
             </li>
             <li class="divider spacer-divider"></li>
             <li id="file-upload-button" class="dropdown-item">
-              <img class="icon" src="{% static 'main/img/icons/grey/file_upload.png' %}" alt="File upload">
+              <img class="icon" src="{% static 'main/img/icons/grey/file_upload.svg' %}" alt="File upload">
               <drop-label>File upload</drop-label>
             </li>
             <li class="dropdown-item">
-              <img class="icon" src="{% static 'main/img/icons/grey/folder_upload.png' %}" alt="Folder upload">
+              <img class="icon" src="{% static 'main/img/icons/grey/folder_upload.svg' %}" alt="Folder upload">
               <drop-label>Folder upload</drop-label>
             </li>
             <li class="divider spacer-divider"></li>
@@ -119,24 +119,24 @@
         </div>
         <div id="tool-bar-controls" static-url="{% static 'main/img/icons' %}" class="top-bar-item">
           <div id="selection-tools">
-            <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/insert_link.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/insert_link.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/insert_link.png' %}'" file-name="insert_link.png" alt="Get shareable link">
+            <img id="link-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/link.svg' %}" onmouseover="this.src='{% static 'main/img/icons/black/link.svg' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/link.svg' %}'" alt="Get shareable link">
             <a id="share-button" class="modal-trigger" href="#share-modal">
-              <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/person_add.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/person_add.png' %}'" alt="Share {selected}">
+              <img id="share-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/person_add.svg' %}" onmouseover="this.src='{% static 'main/img/icons/black/person_add.svg' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/person_add.svg' %}'" alt="Share {selected}">
             </a>
             <a id="preview-button" href="#">
-              <img id="preview-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/visibility.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/visibility.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/visibility.png' %}'" alt="Preview">
+              <img id="preview-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/visibility.svg' %}" onmouseover="this.src='{% static 'main/img/icons/black/visibility.svg' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/visibility.svg' %}'" alt="Preview">
             </a>
             <a id="move_to_trash" class="tool-bar-link" href="{% url 'move_to_trash' %}">
-              <img id="delete-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/delete.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/delete.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/delete.png' %}'" alt="Remove">
+              <img id="delete-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/delete.svg' %}" onmouseover="this.src='{% static 'main/img/icons/black/delete.svg' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/delete.svg' %}'" alt="Remove">
             </a>
-            <img id="more-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/more_vert.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/more_vert.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/more_vert.png' %}'"alt="More actions">
+            <img id="more-icon" class="icon hover-circle" src="{% static 'main/img/icons/grey/more_vert.svg' %}" onmouseover="this.src='{% static 'main/img/icons/black/more_vert.svg' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/more_vert.svg' %}'"alt="More actions">
           </div>
           <div class="top-bar-item top-bar-right-links">
 
-            <img id="view-change-icon" current-view="table" class="icon hover-circle" href = "{% url 'grid_view' %}" src="{% static 'main/img/icons/grey/view_module.png' %}" grid-black="{% static 'main/img/icons/black/view_module.png' %}"  grid-gray="{% static 'main/img/icons/grey/view_module.png' %}" alt="Grid view" list-grey= "{% static 'main/img/icons/grey/list.png' %}" list-black="{% static 'main/img/icons/black/list.png'%}">
+            <img id="view-change-icon" current-view="table" class="icon hover-circle" href = "{% url 'grid_view' %}" src="{% static 'main/img/icons/grey/view_module.svg' %}" grid-black="{% static 'main/img/icons/black/view_module.svg' %}"  grid-gray="{% static 'main/img/icons/grey/view_module.svg' %}" alt="Grid view" list-grey= "{% static 'main/img/icons/grey/list.svg' %}" list-black="{% static 'main/img/icons/black/list.svg'%}">
 
-            <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/info.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/info.png' %}'"alt="View details">
-            <img id="settings-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.png' %}" onmouseover="this.src='{% static 'main/img/icons/black/settings.png' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/settings.png' %}'"alt="Settings">
+            <img id="view-details-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/info.svg' %}" onmouseover="this.src='{% static 'main/img/icons/black/info.svg' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/info.svg' %}'"alt="View details">
+            <img id="settings-icon" class="icon round hover-circle" src="{% static 'main/img/icons/grey/settings.svg' %}" onmouseover="this.src='{% static 'main/img/icons/black/settings.svg' %}'" onmouseout="this.src='{% static 'main/img/icons/grey/settings.svg' %}'"alt="Settings">
           </div>
         </div>
 
@@ -149,27 +149,33 @@
           <ul id="left-bar-tab-menu">
             <div class="top-bottom-spacer"></div>
             <li class="left-bar-tab dropdown-menu selected" id="my-drive-tab" href="{% url 'get_home_contents' %}">
-              <img class="icon" src="{% static 'main/img/icons/grey/storage.png' %}" alt="My Drive icon">
+              <img class="icon grey-icon" src="{% static 'main/img/icons/grey/storage.svg' %}" alt="My Drive icon">
+              <img class="icon purple-icon" src="{% static 'main/img/icons/purple/storage.svg' %}" alt="My Drive icon">
               <label class="tab-label">My Drive</label>
             </li>
             <li class="left-bar-tab">
-              <img class="icon" src="{% static 'main/img/icons/grey/group.png' %}" alt="Shared with me icon">
+              <img class="icon grey-icon" src="{% static 'main/img/icons/grey/group.svg' %}" alt="Shared with me icon">
+              <img class="icon purple-icon" src="{% static 'main/img/icons/purple/group.svg' %}" alt="Shared with me icon">
               <label class="tab-label">Shared with me</label>
             </li>
             <li class="left-bar-tab" id="recent-tab"href="{% url 'recent_uploads' %}">
-              <img class="icon" src="{% static 'main/img/icons/grey/recent.png' %}" alt="Recent icon">
+              <img class="icon grey-icon" src="{% static 'main/img/icons/grey/recent.svg' %}" alt="Recent icon">
+              <img class="icon purple-icon" src="{% static 'main/img/icons/purple/recent.svg' %}" alt="Recent icon">
               <label class="tab-label">Recent</label>
             </li>
             <li class="left-bar-tab">
-              <img class="icon" src="{% static 'main/img/icons/grey/photos.png' %}" alt="Doogle Photos icon">
+              <img class="icon grey-icon" src="{% static 'main/img/icons/grey/photo.svg' %}" alt="Doogle Photos icon">
+              <img class="icon purple-icon" src="{% static 'main/img/icons/purple/photo.svg' %}" alt="Doogle Photos icon">
               <label class="tab-label">Doodle Photos</label>
             </li>
             <li class="left-bar-tab">
-              <img class="icon" src="{% static 'main/img/icons/grey/star.png' %}" alt="Starred icon">
+              <img class="icon grey-icon" src="{% static 'main/img/icons/grey/star.svg' %}" alt="Starred icon">
+              <img class="icon purple-icon" src="{% static 'main/img/icons/purple/star.svg' %}" alt="Starred icon">
               <label class="tab-label">Starred</label>
             </li>
             <li class="left-bar-tab" id="trash-tab" href= '{% url "get_trash_contents" %}' >
-              <img class="icon" src="{% static 'main/img/icons/grey/delete.png' %}" alt="Trash icon">
+              <img class="icon grey-icon" src="{% static 'main/img/icons/grey/delete.svg' %}" alt="Trash icon">
+              <img class="icon purple-icon" src="{% static 'main/img/icons/purple/delete.svg' %}" alt="Trash icon">
               <label class="tab-label">Trash</label>
             </li>
             <div class="top-bottom-spacer"></div>

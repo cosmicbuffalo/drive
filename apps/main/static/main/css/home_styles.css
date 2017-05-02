@@ -416,7 +416,7 @@ tr{
   padding-right: 20px;
   border-right: 1px solid #ebebeb;
   border-left: 1px solid #ebebeb;
-  
+
   border-radius: 2px;
   overflow-y: scroll;
 }
@@ -597,4 +597,25 @@ tr.header-row :first-child label{
 .headers{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.shared-icon-box{
+  display: inline-block;
+}
+.shared-item-icon{
+  padding: 5px !important;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  margin-left: 20px;
+}
+tr div.shared-icon-box:after{
+  content: url('/static/main/img/icons/grey/shared.png');
+  position: relative;
+  top: 9px;
+  left: 5px;
+}
+tr.selected div.shared-icon-box:after{
+  content: url('/static/main/img/icons/white/shared.png');
+  position: relative;
+  top: 9px;
+  left: 5px;
 }

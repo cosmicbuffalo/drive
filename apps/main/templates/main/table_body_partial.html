@@ -11,13 +11,18 @@
           <tr class="item-row" folder-id='{{folder.id}}' item-type="folder">
             <td class="name-cell">
               <div class="round-image-border">
+                {% if folder.authorized_users.all %}
+                <img class="table-image" src="{% static 'main/img/icons/grey/shared_folder.png' %}" file-name="folder.png">
+                {% else %}
                 <img class="table-image" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
+                {% endif %}
               </div>
               <div class="name-text folder-name-div">
                 <a href="{% url 'get_folder_contents' folder_id=folder.id %}">
                   {{folder.name}}
                 </a>
               </div>
+
             </td>
             <td class="owner-cell">
               {% if folder.owner.id == request.session.current_user %}
@@ -45,6 +50,11 @@
                   {{file.file_data}}
                 </a>
               </div>
+              {% if file.authorized_users.all %}
+                <div class="shared-icon-box">
+                  <!-- <img class="shared-item-icon icon" src="{% static 'main/img/icons/grey/group.png' %}" alt="Shared File"> -->
+                </div>
+              {% endif %}
             </td>
             <td class="owner-cell">
               {% if file.owner.id == request.session.current_user %}

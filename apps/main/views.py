@@ -68,8 +68,8 @@ def render_root_folder_contents(request):
     parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
     request.session['current_folder'] = parent_folder.id
     context = {
-        'media_files':File.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
-        'folders': Folder.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at'),
+        'media_files':File.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at')|File.objects.filter(authorized_users__id=request.session['current_user']),
+        'folders': Folder.objects.filter(parent_folder=parent_folder).exclude(is_in_trash=True).order_by('-created_at')|Folder.objects.filter(authorized_users__id=request.session['current_user']),
         'folder_form': folder_form,
         "parent_folder" : parent_folder,
     }
@@ -253,14 +253,46 @@ def validate_registration(request):
 
 def share_items_by_emails(request, folder_id):
     if request.method == "POST":
-        print request.POST
+        print "request.POST ----->", request.POST
+        # print "request.POST['file'] ----->", request.POST['file']
+        # print "request.POST['folder'] ----->", request.POST['folder']
 
-        if 'file' in request.POST.keys():
-            for item in request.POST['file']:
-                print item
-        if 'folder' in request.POST.keys():
-            for item in request.POST['folder']:
-                print item
+        post_data = dict(request.POST.iterlists())
+        print post_data
+
+        # print "post_data['file'] ----->", post_data['file']
+        # print "post_data['folder'] ----->", post_data['folder']
+
+        if 'share_to_emails' in post_data.keys():
+            print "share to emails: -->", post_data['share_to_emails']
+
+            emails_list = post_data['share_to_emails'][0].split(', ')
+            print emails_list
+            for email in emails_list:
+                print "email: --->", email
+
+            if 'file' in post_data.keys():
+                for item_id in post_data['file']:
+                    print "file ID: -->", item_id
+
+                print "attempting to share files to emails..."
+                file_share_result = File.objects.share_via_emails(post_data['file'], emails_list)
+                print "done"
+                print "printing messages from file share result..."
+                for message in file_share_result['messages']:
+                    print message
+            if 'folder' in post_data.keys():
+                for item_id in post_data['folder']:
+                    print "folder ID: -->", item_id
+
+                print "attemting to share folders to emails..."
+                folder_share_result = Folder.objects.share_via_emails(post_data['folder'], emails_list)
+                print "done"
+                print "printing messages from folder share result..."
+                for message in folder_share_result['messages']:
+                    print message
+
+
 
 
     return JsonResponse({'result': "success",'folder_id':folder_id})
@@ -363,7 +395,7 @@ def recent_uploads(request):
         "parent_folder" : parent_folder,
 
     }
-    
+
 
     return render(request, "main/table_body_partial.html", context)
 

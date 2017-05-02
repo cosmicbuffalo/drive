@@ -294,10 +294,10 @@ class UserManager(models.Manager):
         else:
             user = User.objects.get(phone_number=postData['identifier'])
 
-        # hashed_password = bcrypt.hashpw(str(postData['password']), str(user.salt))
+        hashed_password = bcrypt.hashpw(str(postData['password']), str(user.salt))
 
-        # if user.password != hashed_password:
-        if user.password != postData['password']:
+        if user.password != hashed_password:
+        # if user.password != postData['password']:
             # print "found_user password doesn't match hashed password"
             messages.append("Incorrect password! Please try again")
             failed_authentication = True
@@ -310,6 +310,49 @@ class UserManager(models.Manager):
             # print "authentication succeeded, should be successfully logged in"
             messages.append('Successfully logged in!')
             return {'result':'success', 'messages':messages, 'user_id':user.id}
+
+
+
+class SharingManager(models.Manager):
+
+
+    def share_via_emails(self, item_id_list, email_list):
+
+        messages = []
+
+        if len(email_list) < 1:
+            messages.append('ERROR: Email list is empty')
+            return {'result':'error', 'messages':messages}
+
+        for email in email_list:
+
+            print "attempting to share files to user with email:", email
+            try:
+                user = User.objects.get(email=email)
+
+                for item_id in item_id_list:
+                    print "attempting to share item with id: -->", item_id
+                    try:
+                        item = self.get(pk=item_id)
+                        if item.owner == user:
+                            print "Found item already owned by user with email address: " + email
+                            messages.append("This item cannot be shared to its owner...")
+                        else:
+                            print "found item, adding user to list of authorized users..."
+                            item.authorized_users.add(user)
+                            print "done"
+                    except:
+                        print "item with this id does not exist"
+                        messages.append("Couldn't find item with id: " + item_id)
+            except:
+                print "user with this email does not exist"
+                messages.append("There is no user with the email address: " + email)
+
+        print "share_via_emails concluding, returning JSON result"
+        return {'result':'success', 'messages':messages}
+
+
+
 
 
 
@@ -364,6 +407,7 @@ class Folder(models.Model):
     stars = models.ManyToManyField(User, related_name="starred_folders")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = SharingManager()
 
     def __str__(self):
         return " Name: %s || Parent: %s || Owner: %s " %(self.name,self.parent_folder, self.owner)
@@ -397,6 +441,7 @@ class File(models.Model):
     stars = models.ManyToManyField(User, related_name="starred_files")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = SharingManager()
 
 
 

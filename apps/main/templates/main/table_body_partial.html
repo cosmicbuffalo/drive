@@ -8,7 +8,7 @@
     <table id="tbody-content-table">
 
         {% for folder in folders %}
-          <tr class="item-row" folder-id='{{folder.id}}' item-type="folder">
+          <tr class="item-row" item-id='{{folder.id}}' item-type="folder">
             <td class="name-cell">
               <div class="round-image-border">
                 {% if folder.authorized_users.all %}
@@ -73,7 +73,7 @@
     <div class = 'tile-div'>
       <h6 class='headers'>Folders</h6>
     {% for folder in folders %}
-      <div  class="folder-container tile" folder-id='{{folder.id}}' item-type="folder">
+      <div class="folder-container tile" item-id='{{folder.id}}' item-type="folder">
         <div class="round-image-border">
           <img class="image-padding" src="{% static 'main/img/icons/grey/folder.png' %}" file-name="folder.png">
         </div>

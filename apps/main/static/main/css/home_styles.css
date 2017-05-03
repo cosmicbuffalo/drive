@@ -330,7 +330,7 @@ div.top-bottom-spacer{
 }
 .tab-label{
   font-size: .85rem;
-  font-weight: bold;
+  font-weight: 400;
   color: #3f3f3f;
   padding-top: 8px;
   display: inline-block;
@@ -351,6 +351,9 @@ div.top-bottom-spacer{
 }
 #left-bar-tab-menu li.selected{
   background-color: #e4e4e4;
+}
+#left-bar-tab-menu li.selected label{
+  font-weight: bold;
 }
 #dynamic-home-content{
   display: block;
@@ -423,6 +426,7 @@ tr{
   width: 100%;
   box-sizing: border-box;
   padding-right: 20px;
+
   border-right: 1px solid #ebebeb;
   border-left: 1px solid #ebebeb;
 
@@ -627,4 +631,14 @@ tr.selected div.shared-icon-box:after{
   position: relative;
   top: 9px;
   left: 5px;
+}
+#right-click-menu-div{
+  position: absolute;
+  z-index: 10;
+  display: none;
+  background-color: white;
+  border: 1px solid #ebebeb;
+  border-radius: 2px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+
 }

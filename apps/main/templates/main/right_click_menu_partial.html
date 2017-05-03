@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<ul id="right-click-menu-list" >
+  <div class="top-bottom-spacer"></div>
+  <!-- Files only: -->
+  <!-- <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/visibility.svg' %}" alt="Preview">
+    <drop-label>Preview</drop-label>
+  </li> -->
+  <li class="dropdown-item">
+    <img id="new-folder-icon" class="icon" src="{% static 'main/img/icons/grey/open_with.svg' %}" alt="Open with...">
+    <drop-label>Open with...</drop-label>
+  </li>
+
+  <li class="divider spacer-divider"></li>
+
+  <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/person_add.svg' %}" alt="Share...">
+    <drop-label>Share...</drop-label>
+  </li>
+  <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/link.svg' %}" alt="Get shareable link">
+    <drop-label>Get shareable link</drop-label>
+  </li>
+  <li class="dropdown-item">
+    <drop-label>Move to...</drop-label>
+  </li>
+  <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/star.svg' %}" alt="Add star">
+    <drop-label>Add star</drop-label>
+  </li>
+
+  <!-- Folder only: -->
+  <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/change_color.svg' %}" alt="Change color">
+    <drop-label>Change color</drop-label>
+  </li>
+
+  <li class="dropdown-item">
+    <img class="icon" src="" alt="Rename...">
+    <drop-label>Rename...</drop-label>
+  </li>
+
+  <li class="divider spacer-divider"></li>
+
+
+  <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/info.svg' %}" alt="View details">
+    <drop-label>View details</drop-label>
+  </li>
+  <!-- Files only: -->
+  <!-- <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/history.svg' %}" alt="Manage versions...">
+    <drop-label>Manage versions...</drop-label>
+  </li> -->
+  <!-- Files only: -->
+  <!-- <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/copy.svg' %}" alt="Make a copy">
+    <drop-label>Make a copy</drop-label>
+  </li> -->
+  <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/download.svg' %}" alt="Download">
+    <drop-label>Download</drop-label>
+  </li>
+
+  <li class="divider spacer-divider"></li>
+
+
+  <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/delete.svg' %}" alt="Remove">
+    <drop-label>Remove</drop-label>
+  </li>
+  <div class="top-bottom-spacer"></div>
+</ul>

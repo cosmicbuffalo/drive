@@ -153,7 +153,7 @@
               <img class="icon purple-icon" src="{% static 'main/img/icons/purple/storage.svg' %}" alt="My Drive icon">
               <label class="tab-label">My Drive</label>
             </li>
-            <li class="left-bar-tab">
+            <li class="left-bar-tab" id="shared-tab" href="{% url 'get_shared_contents' %}">
               <img class="icon grey-icon" src="{% static 'main/img/icons/grey/group.svg' %}" alt="Shared with me icon">
               <img class="icon purple-icon" src="{% static 'main/img/icons/purple/group.svg' %}" alt="Shared with me icon">
               <label class="tab-label">Shared with me</label>
@@ -204,6 +204,9 @@
         </div>
       </div>
       <div class="invis-items">
+        <div id="right-click-menu-div" href="{% url 'get_right_click_menu' %}">
+
+        </div>
 
       </div>
     </div>

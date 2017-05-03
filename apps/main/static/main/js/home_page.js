@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+  $(document).on('click', function(){
+    $('#right-click-menu-div').slideUp(200);
+  })
+
   //---------------------------
   //------ TOOLBAR STUFF ------
   //---------------------------
@@ -190,6 +194,14 @@ $(document).ready(function () {
     })
   })
   $('#trash-tab').on('click', function () {
+    $.get({
+      url: $(this).attr('href'),
+      success: function (res) {
+        replaceTableBody(res)
+      }
+    })
+  })
+  $('#shared-tab').on('click', function () {
     $.get({
       url: $(this).attr('href'),
       success: function (res) {
@@ -413,7 +425,56 @@ $(document).ready(function () {
   //----- BEAUTIFICATION -----
   //--------------------------
 
+  $(document).on('contextmenu', function(e){
+    e.preventDefault()
+  })
 
+  $('#table-body').on('contextmenu', ' tbody tr', function(e){
+    console.log($(this))
+    console.log($(this)[0])
+    console.log($($(this)[0]).attr('item-type'))
+    console.log($($(this)[0]).attr('item-id'))
+
+    var post_data = {}
+
+    if ($(this).hasClass('selected')){
+      console.log("right clicked selection")
+      post_data['selection'] = true;
+      var selected = $('tr.selected')
+      console.log(selected)
+      post_data['num_selected'] = selected.length
+      for (var x = 0; x < selected.length; x+=1){
+        console.log(selected[x])
+        post_data[String(x)] = $(selected[x]).attr('item-type') + ':' + $(selected[x]).attr('item-id')
+      }
+      console.log(post_data)
+    } else{
+      console.log("clicked outside selection")
+      post_data['selection'] = false;
+      post_data['num_selected'] = 1
+      post_data['0'] = $($(this)[0]).attr('item-type') + ':' + $($(this)[0]).attr('item-id')
+      console.log(post_data)
+      var rows = $('#tbody-content-table tr')
+      clearAll(rows)
+      toggleRow($(this))
+    }
+
+    post_data['csrfmiddlewaretoken'] = document.getElementsByName('csrfmiddlewaretoken')[0].value
+
+    $.post({
+      url:$('#right-click-menu-div').attr('href'),
+      data:post_data,
+      success:function(res){
+        console.log(res)
+        $('#right-click-menu-div').html(res)
+        $('#right-click-menu-div').css('top', determineMouseY(e) + 'px')
+        $('#right-click-menu-div').css('left', mouseX(e) + 'px')
+        $('#right-click-menu-div').slideDown(300)
+      }
+    })
+
+    e.preventDefault()
+  });
 
 
 
@@ -525,4 +586,48 @@ function assignFileUploadHandler() {
     $('#file-upload-form').submit();
   })
 
+}
+
+// $(document).bind("click", function() {
+//     document.getElementById("right-click-menu").remove();
+// });
+
+
+
+function mouseX(evt) {
+if (evt.pageX) {
+    return evt.pageX;
+} else if (evt.clientX) {
+   return evt.clientX + (document.documentElement.scrollLeft ?
+       document.documentElement.scrollLeft :
+       document.body.scrollLeft);
+} else {
+    return null;
+}
+}
+
+function mouseY(evt) {
+if (evt.pageY) {
+    return evt.pageY;
+} else if (evt.clientY) {
+   return evt.clientY + (document.documentElement.scrollTop ?
+   document.documentElement.scrollTop :
+   document.body.scrollTop);
+} else {
+    return null;
+}
+}
+
+
+function determineMouseY(evt){
+  var window_height = $(window).height()
+
+  var click_mouse_y = mouseY(evt)
+  var menu_height = 397 //Measured in inspector... probably should calculate this
+
+  if (window_height - click_mouse_y < menu_height){
+    return window_height - menu_height
+  } else {
+    return click_mouse_y
+  }
 }

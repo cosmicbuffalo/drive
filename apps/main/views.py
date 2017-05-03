@@ -103,10 +103,34 @@ def render_trash_contents(request):
     }
     return render(request, 'main/table_body_partial.html', context)
 
+def render_shared_with_me(request):
+    folder_form = FolderForm()
+    parent_folder = Root_Folder.objects.get(user_id=request.session['current_user']).folder
+    context= {
+        'media_files':File.objects.filter(authorized_users__id=request.session['current_user']).order_by('-updated_at'),
+        'folders': Folder.objects.filter(authorized_users__id=request.session['current_user']).order_by('-updated_at'),
+        'folder_form': folder_form,
+        "parent_folder" : parent_folder,
 
+    }
+    return render(request, 'main/table_body_partial.html', context)
+
+
+def render_right_click_menu(request):
+    if request.method == "POST":
+        print request.POST
+
+        context = {
+
+        }
+        return render(request, 'main/right_click_menu_partial.html', context)
+
+    return render(request, 'main/right_click_menu_partial.html')
 
 
 def show_home_page_folder(request, folder_id):
+
+    return None
 
     file_form = FileForm()
     folder_form = FolderForm()

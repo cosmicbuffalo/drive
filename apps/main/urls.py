@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^home_body$', views.render_root_folder_contents, name="get_home_contents"),
     url(r'^home/folder_body/(?P<folder_id>\d+)$', views.render_contents_of_folder, name="get_folder_contents"),
     url(r'^home/trash$',views.render_trash_contents, name="get_trash_contents"),
+    url(r'^home/shared$', views.render_shared_with_me, name="get_shared_contents"),
+    url(r'^right_click$', views.render_right_click_menu, name="get_right_click_menu"),
     # REDIRECT ROUTES
     url(r'^process_login$', views.process_login, name="process_login"),
     url(r'^process_registration$', views.process_registration, name="process_registration"),

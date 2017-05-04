@@ -469,7 +469,9 @@ $(document).ready(function () {
         $('#right-click-menu-div').html(res)
         $('#right-click-menu-div').css('top', determineMouseY(e) + 'px')
         $('#right-click-menu-div').css('left', mouseX(e) + 'px')
-        $('#right-click-menu-div').slideDown(300)
+        $('#right-click-menu-div').slideDown(300, function(){
+
+        })
       }
     })
 
@@ -623,7 +625,10 @@ function determineMouseY(evt){
   var window_height = $(window).height()
 
   var click_mouse_y = mouseY(evt)
-  var menu_height = 397 //Measured in inspector... probably should calculate this
+  // var menu_height = 397 //Measured in inspector... probably should calculate this
+
+  var menu_height = $('#right-click-menu-div').height()
+  console.log(menu_height)
 
   if (window_height - click_mouse_y < menu_height){
     return window_height - menu_height

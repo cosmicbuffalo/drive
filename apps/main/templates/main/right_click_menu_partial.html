@@ -1,11 +1,13 @@
 {% load staticfiles %}
 <ul id="right-click-menu-list" >
   <div class="top-bottom-spacer"></div>
-  <!-- Files only: -->
-  <!-- <li class="dropdown-item">
+
+  {% if show_preview %}
+  <li class="dropdown-item">
     <img class="icon" src="{% static 'main/img/icons/grey/visibility.svg' %}" alt="Preview">
     <drop-label>Preview</drop-label>
-  </li> -->
+  </li>
+  {% endif %}
   <li class="dropdown-item">
     <img id="new-folder-icon" class="icon" src="{% static 'main/img/icons/grey/open_with.svg' %}" alt="Open with...">
     <drop-label>Open with...</drop-label>
@@ -17,11 +19,14 @@
     <img class="icon" src="{% static 'main/img/icons/grey/person_add.svg' %}" alt="Share...">
     <drop-label>Share...</drop-label>
   </li>
+  {% if show_get_link %}
   <li class="dropdown-item">
     <img class="icon" src="{% static 'main/img/icons/grey/link.svg' %}" alt="Get shareable link">
     <drop-label>Get shareable link</drop-label>
   </li>
+  {% endif %}
   <li class="dropdown-item">
+    <img class="icon" src="{% static 'main/img/icons/grey/move_to.svg' %}" alt="Move to...">
     <drop-label>Move to...</drop-label>
   </li>
   <li class="dropdown-item">
@@ -29,34 +34,40 @@
     <drop-label>Add star</drop-label>
   </li>
 
-  <!-- Folder only: -->
+
+  {% if show_change_color %}
   <li class="dropdown-item">
     <img class="icon" src="{% static 'main/img/icons/grey/change_color.svg' %}" alt="Change color">
     <drop-label>Change color</drop-label>
   </li>
-
+  {% endif %}
+  {% if show_rename %}
   <li class="dropdown-item">
-    <img class="icon" src="" alt="Rename...">
+    <img class="icon" src="{% static 'main/img/icons/grey/rename.svg' %}" alt="Rename...">
     <drop-label>Rename...</drop-label>
   </li>
+  {% endif %}
 
   <li class="divider spacer-divider"></li>
 
-
+  {% if show_view_details %}
   <li class="dropdown-item">
     <img class="icon" src="{% static 'main/img/icons/grey/info.svg' %}" alt="View details">
     <drop-label>View details</drop-label>
   </li>
-  <!-- Files only: -->
-  <!-- <li class="dropdown-item">
+  {% endif %}
+  {% if show_manage_versions %}
+  <li class="dropdown-item">
     <img class="icon" src="{% static 'main/img/icons/grey/history.svg' %}" alt="Manage versions...">
     <drop-label>Manage versions...</drop-label>
-  </li> -->
-  <!-- Files only: -->
-  <!-- <li class="dropdown-item">
+  </li>
+  {% endif %}
+  {% if show_make_copy %}
+  <li class="dropdown-item">
     <img class="icon" src="{% static 'main/img/icons/grey/copy.svg' %}" alt="Make a copy">
     <drop-label>Make a copy</drop-label>
-  </li> -->
+  </li>
+  {% endif %}
   <li class="dropdown-item">
     <img class="icon" src="{% static 'main/img/icons/grey/download.svg' %}" alt="Download">
     <drop-label>Download</drop-label>

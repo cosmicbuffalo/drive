@@ -642,3 +642,6 @@ tr.selected div.shared-icon-box:after{
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
 
 }
+#right-click-menu-div li:hover{
+  background-color: #eee;
+}

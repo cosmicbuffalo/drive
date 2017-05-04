@@ -121,8 +121,52 @@ def render_right_click_menu(request):
         print request.POST
 
         context = {
-
+            'selection':request.POST['selection'],
+            'num_selected':request.POST['num_selected']
         }
+
+        if int(request.POST['num_selected']) == 1:
+            print "one item selected"
+            item = request.POST['0'].split(':')
+            print item
+            context['show_get_link'] = True
+            context['show_rename'] = True
+            context['show_view_details'] = True
+            if item[0] == "file":
+                print "Item is a file"
+                context['show_preview'] = True
+                context['show_change_color'] = False
+                context['show_manage_versions'] = True
+                context['show_make_copy'] = True
+            else:
+                print "Item is a folder"
+                context['show_preview'] = False
+                context['show_change_color'] = True
+                context['show_manage_versions'] = False
+                context['show_make_copy'] = False
+        else:
+            file_count = 0
+            folder_count = 0
+            context['show_get_link'] = False
+            context['show_rename'] = False
+            context['show_view_details'] = False
+            context['show_preview'] = False
+            context['show_manage_versions'] = False
+            context['show_make_copy'] = False
+            for index in range(int(request.POST['num_selected'])):
+                item = request.POST[str(index)].split(':')
+                if item[0] == 'file':
+                    file_count += 1
+                else:
+                    folder_count += 1
+            print "Number of files: -->", file_count
+            print "Number of folders: -->", folder_count
+            if file_count == 0:
+                context['show_change_color'] = True
+            else:
+                context['show_change_color'] = False
+
+
         return render(request, 'main/right_click_menu_partial.html', context)
 
     return render(request, 'main/right_click_menu_partial.html')
